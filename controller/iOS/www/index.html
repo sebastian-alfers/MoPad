@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Page</title>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable:no">
+            <link rel="stylesheet" href="js/jquery.mobile-1.2.0.min.css" />
+            <script src="js/jquery-1.8.2.min.js"></script>
+            <script src="js/jquery.mobile-1.2.0.min.js"></script>                
+        <script type="text/javascript" charset="utf-8" src="cordova-2.1.0.js"></script>
+        <script src="http://192.168.1.34:8081/socket.io/socket.io.js"></script>            
+        <script type="text/javascript" charset="utf-8">            
+            
+            $(document).ready(function(){
+
+                              var btn;
+                              var socket = io.connect('http://192.168.1.34:8081');
+                              
+                              var interval;
+
+
+                              // Wait for Cordova to load
+                              //
+                              document.addEventListener("deviceready", onDeviceReady, false);
+                              
+                              var watchID = null;
+                              
+                              // Cordova is ready
+                              //
+                              function onDeviceReady() {
+                              
+                                $(".btn").bind('touchstart', function(){
+                                               btn = $(this).attr("rel");
+                                               $(this).css("background-color","blue");
+                                               
+                                               interval = self.setInterval(function(){update()},200);
+                                               
+                                             // Update acceleration every 3 seconds
+                                             //var options = { frequency: 100 };
+                                             //watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+                               });
+                              $(".btn").bind('touchend', function(){
+                                       $(this).css("background-color","grey");
+                                       if (interval) {
+                                             //navigator.accelerometer.clearWatch(watchID);
+                                             //watchID = null;
+                                             window.clearInterval(interval);
+                                             interval = null;                                             
+                                       }
+                               });
+
+                              
+                              }
+                              
+                              // onSuccess: Get a snapshot of the current acceleration
+                              
+                              function update() {
+                                
+                                  socket.emit('update', { move: btn });
+                               }
+                                                          
+
+                              
+                              // onError: Failed to get the acceleration
+                              //
+                              function onError() {
+                                alert('error');
+                              }
+                              
+            });
+
+            
+                     
+            </script>
+            
+            <style type="text/css">
+                * {
+                    -webkit-touch-callout: none;
+                    -webkit-user-select: none; /* Disable selection/Copy of UIWebView */
+                }
+                .btn{
+                    background-color: #c0c0c0;
+                    height: 80px;
+                    width: 80px;
+                    margin: 20px;
+                }
+                </style>
+            
+    </head>
+    <body>
+        <div class="btn" rel="up">up</div>
+        <div class="btn" rel="down">down</div>
+        <div class="btn" rel="left">left</div>
+        <div class="btn" rel="right">right</div>
+</html>
