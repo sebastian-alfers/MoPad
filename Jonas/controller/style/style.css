@@ -1,0 +1,106 @@
+/* Stylesheet */
+
+* { box-sizing: border-box; }
+
+body {
+	margin: 2em;
+	font-family: Arial, sans-serif;
+}
+
+#controller {
+	margin: 2em;
+}
+
+h2 {
+	margin: 1.4em 0em 0.6em 0em;
+}
+
+.clear {
+	clear: both;
+}
+
+
+/* General */
+
+.controlModule {
+	/* disable selection of text, when clicked/dragged/etc. */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.button {
+	height: 2em;
+	width: 2em;
+	text-align: center;
+	line-height: 2em;
+	
+	border: 1px solid #000;
+	border-radius: 50%;
+}
+
+.button:hover { background-color: #ddd; }
+.button:active { background-color: #777; }
+
+/* Modules */
+
+#dPad {
+	width: 6em;
+	float: left;
+	margin-right: 8em;
+}
+
+#dPad .button {
+	line-height: 1.8em;
+}
+
+#up { margin: 0 auto; }
+#left {	float: left; }
+#right { float: right; }
+#down { margin: 0 auto; }
+
+
+
+#buttonGrid {
+	width: 5em;
+}
+
+#red { 
+	color: red;
+	float: left; 
+}
+
+#blue { 
+	color: blue;
+	float: right; 
+}
+
+/* Log */
+
+#log {
+	height: 5em;
+	width: 20em;
+	padding: 0.3em;
+	border: 1px solid black;
+	overflow-y: scroll;
+}
+
+#log ol li {
+	line-height: 1.2em;
+	font-size: 0.8em;
+}
+
+#log ol li.event {
+	color: black;
+}
+
+#log ol li.warning {
+	color: orange;
+}
+
+#log ol li.error {
+	color: red;
+}
