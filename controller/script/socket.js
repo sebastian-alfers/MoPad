@@ -19,7 +19,7 @@ $(document).ready(function () {
 				log('Socket Status: ' + socket.readyState,'event');
 				socket.onopen = function () {
 					log('Socket Status: ' + socket.readyState + ' (open)','event');
-					socket.send(JSON.stringify({'type':'identify', 'data':'controller'}));
+					socket.send(JSON.stringify({'type':'identify', 'data': {'type':'controller','publicKey':'123456'}}));
 				}
 				socket.onmessage = function (msg) {
 					log('Received: ' + msg.data, 'message');
@@ -54,7 +54,7 @@ $(document).ready(function () {
 				}
 			});
 			
-			$('.button.continuous').mouseup(function () { //When button is released
+			$('.button.continuous').mouseup(function () { //When button is released TODO doesn't clear if button is released outside of the button scope
 				var id = this.id;
 				window.clearInterval(intervalTriggers[id]);
 				delete intervalTriggers[id];

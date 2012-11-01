@@ -17,7 +17,7 @@ $(document).ready(function(){
 				log('Socket Status: ' + socket.readyState,'event');
 				socket.onopen = function () {
 					log('Socket Status: ' + socket.readyState + ' (open)','event');
-					socket.send(JSON.stringify({'type':'identify', 'data':'application'}));
+					socket.send(JSON.stringify({'type':'identify', 'data': {'type':'application','publicKey':'123456'}}));
 				}
 				socket.onmessage = function (message) {
 					
