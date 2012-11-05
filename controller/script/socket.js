@@ -1,11 +1,8 @@
 // modified from: http://net.tutsplus.com/tutorials/javascript-ajax/start-using-html5-websockets-today/
 
-$(document).ready(function () {
-
-	var intervalTriggers = new Array();
-
+window.loadSocket = function(){
 	if (!("WebSocket" in window)) {
-		$('.controlModule').fadeOut("fast");
+		$('.controller').fadeOut("fast");
 		$('<p>Whoops, you need a browser that supports WebSockets.</p>').appendTo('body');
 	} else {
 		//The browser supports WebSockets  
@@ -16,57 +13,34 @@ $(document).ready(function () {
 			var host = "ws://localhost:8081/";
 			try {
 				var socket = new WebSocket(host);
-				log('Socket Status: ' + socket.readyState,'event');
+				console.log('Websocket: Status: ' + socket.readyState);
 				socket.onopen = function () {
-					log('Socket Status: ' + socket.readyState + ' (open)','event');
+					console.log('Websocket: Status ' + socket.readyState + ' (open)');
 					socket.send(JSON.stringify({'type':'identify', 'data': {'type':'controller','publicKey':'123456'}}));
 				}
 				socket.onmessage = function (msg) {
-					log('Received: ' + msg.data, 'message');
+					console.log('Websocket: Received ' + msg.data);
 				}
 				socket.onclose = function () {
-					log('Socket Status: ' + socket.readyState + ' (Closed)','event');
+					console.log('Websocket: Status: ' + socket.readyState + ' (Closed)');
 				}
 			} catch (exception) {
-				log('Error' + exception, 'error');
+				console.log('Websocket: Error ' + exception);
 			}
 
-			function send(buttonId) {
+			window.send = function(buttonId) {
 				if (buttonId == "" || buttonId == undefined) {
-					log('No buttonId set','warning');
+					console.log('Websocket: No buttonId set');
 					return;
 				}
 				try {
 					socket.send(JSON.stringify({'type':'buttonClick', 'data': buttonId}));
-					log('Sent: ' + buttonId,'event')
+					console.log('Websocket: Sent ' + buttonId)
 				} catch (exception) {
-					log('Error '+exception, 'warning');
+					console.log('Websocket: Error '+exception);
 				}
-			}
-
-			$('.button').mousedown(function () { //When button is pressed
-				var id = this.id;
-				send(id);
-				if($(this).hasClass('continuous')){ //TODO: Fires twice if only pressed shortly
-					intervalTriggers[id] = setInterval(function(){
-					  send(id);
-					}, 50);
-				}
-			});
-			
-			$('.button.continuous').mouseup(function () { //When button is released TODO doesn't clear if button is released outside of the button scope
-				var id = this.id;
-				window.clearInterval(intervalTriggers[id]);
-				delete intervalTriggers[id];
-			});
-
-			function log(msg, type) {
-				if(type==undefined) type = 'message';
-				$('#log ol').append('<li class="' + type + '">' + new Date().toString().substring(16,24) + ' - ' + msg + '</li>');
-				$('#log').scrollTop($('#log').prop("scrollHeight"));
 			}
 					
 		} //End connect  
 	} //End else
-
-});
+}

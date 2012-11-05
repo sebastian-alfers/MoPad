@@ -1,14 +1,18 @@
 /* Stylesheet */
 
-* { box-sizing: border-box; }
+* { 
+	box-sizing: border-box; 
+	font-family: Arial, sans-serif;
+	font-size: 100%;		
+}
 
 body {
-	margin: 2em;
+	margin: 1em;
 	font-family: Arial, sans-serif;
 }
 
 #controller {
-	margin: 2em;
+	position: relative;
 }
 
 h2 {
@@ -19,64 +23,6 @@ h2 {
 	clear: both;
 }
 
-
-/* General */
-
-.controlModule {
-	/* disable selection of text, when clicked/dragged/etc. */
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-.button {
-	height: 2em;
-	width: 2em;
-	text-align: center;
-	line-height: 2em;
-	
-	border: 1px solid #000;
-	border-radius: 50%;
-}
-
-.button:hover { background-color: #ddd; }
-.button:active { background-color: #777; }
-
-/* Modules */
-
-#dPad {
-	width: 6em;
-	float: left;
-	margin-right: 8em;
-}
-
-#dPad .button {
-	line-height: 1.8em;
-}
-
-#up { margin: 0 auto; }
-#left {	float: left; }
-#right { float: right; }
-#down { margin: 0 auto; }
-
-
-
-#buttonGrid {
-	width: 5em;
-}
-
-#red { 
-	color: red;
-	float: left; 
-}
-
-#blue { 
-	color: blue;
-	float: right; 
-}
 
 /* Log */
 
