@@ -46,6 +46,10 @@
 
 .controlmodule.joypad .buttonGrid {
 	width: 5em;
+<<<<<<< HEAD
+=======
+	float: right;
+>>>>>>> Removed vendors, renamed "application" to "game"
 }
 
 .controlmodule.joypad .button.red { 

@@ -1,10 +1,19 @@
 // modified from: http://net.tutsplus.com/tutorials/javascript-ajax/start-using-html5-websockets-today/
+<<<<<<< HEAD
 
 window.loadSocket = function(){
 	if (!("WebSocket" in window)) {
 		$('.controller').fadeOut("fast");
+=======
+//
+window.loadSocket = function(){
+	if (!("WebSocket" in window)) {
+		$('#controller').fadeOut("fast");
+>>>>>>> Removed vendors, renamed "application" to "game"
 		$('<p>Whoops, you need a browser that supports WebSockets.</p>').appendTo('body');
 	} else {
+		//$('<p>Websockets supported!</p>').appendTo('body');
+
 		//The browser supports WebSockets  
 		connect();
 
