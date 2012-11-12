@@ -2,11 +2,16 @@
 
 $(document).ready(function(){
 
+	var gameName = 'Move the box';
+	var gameId = '123456';
+	var publicKey = '123456';
+
   if (!("WebSocket" in window)) {
 		$('.controlModule').fadeOut("fast");
 		$('<p>Whoops, you need a browser that supports WebSockets.</p>').appendTo('body');
 	} else {
 		//The browser supports WebSockets  
+		//$('<p>Websockets supported!</p>').appendTo('body');
 		connect();
 
 		function connect() {
@@ -17,7 +22,7 @@ $(document).ready(function(){
 				log('Socket Status: ' + socket.readyState,'event');
 				socket.onopen = function () {
 					log('Socket Status: ' + socket.readyState + ' (open)','event');
-					socket.send(JSON.stringify({'type':'identify', 'data': {'type':'application','publicKey':'123456'}}));
+					socket.send(JSON.stringify({'type':'identify', 'data': {'type': 'game', 'gameId': gameId, 'publicKey': publicKey}}));
 				}
 				socket.onmessage = function (message) {
 					

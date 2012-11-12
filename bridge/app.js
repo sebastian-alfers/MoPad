@@ -10,29 +10,24 @@ wsServer = new WebSocketServer({
     httpServer: server
 });
 
-var application;
+var game;
 var controller;
 
-var vendors = [];
-var applications = [];
-var connections = []; //id (pin), connectionApplication, connectionController, timestamp
+var games = [];
+var connections = []; //id (pin), connectiongame, connectionController, timestamp
 
-vendors.push({id: 1, vendorName: 'vendor1', publicKey: '123456', ip: '127.0.0.1'});
-vendors.push({id: 2, vendorName: 'vendor2', publicKey: '123457', ip: '127.0.0.1'});
-vendors.push({id: 3, vendorName: 'vendor2', publicKey: '123458', ip: '127.0.0.1'});
-
-applications.push({id: 1, applicationName: "application1", vendorId: 1});
+games.push({id: 1, gameName: "Move the box", publicKey: '123456', ip: '127.0.0.1'});
 
 function originIsAllowed(peername){
-	for(var i = 0; i < vendors.length; i++){
-	  if(vendors[i].ip == peername.address) return true;
+	for(var i = 0; i < games.length; i++){
+	  if(games[i].ip == peername.address) return true;
 	  else return false;
 	}
 }
 
 function keyIsAllowed(key){
-	for(var i = 0; i < vendors.length; i++){
-	  if(vendors[i].publicKey == key) return true;
+	for(var i = 0; i < games.length; i++){
+	  if(games[i].publicKey == key) return true;
 	  else return false;
 	}
 }
@@ -69,11 +64,12 @@ wsServer.on('request', function(request) {
         	
             // process WebSocket message
            if (json.type == 'identify'){ // First message identifies the websocket type (game/controller) TODO First message has to be identify, otherwise reject connection
-            	if(json.data.type == 'application'){
+            	if(json.data.type == 'game'){
+            	console.log('received');
             		if(keyIsAllowed(json.data.publicKey)){
-            		application = connection;
-	           		connection.verified = true;
-            		console.log('Game registered ('+request.socket._peername.address+')');
+            			game = connection;
+	           			connection.verified = true;
+            			console.log('Game registered ('+request.socket._peername.address+')');
             		} else { 
 	           			console.log(time() + 'Invalid identifier for '+request.socket._peername.address+'. Connection closed.');
             			connection.close();
@@ -85,8 +81,8 @@ wsServer.on('request', function(request) {
             		console.log(time() + 'Controller registered  ('+request.socket._peername.address+')');
             	}
             } else if(json.type == 'buttonClick' && connection.verified){
-	            application.sendUTF(JSON.stringify(json)); //Redirect TODO check if application exists
-	            console.log(time() + 'Sent to application: '+JSON.stringify(json));
+	            game.sendUTF(JSON.stringify(json)); //Redirect TODO check if game exists
+	            console.log(time() + 'Sent to game: '+JSON.stringify(json));
             } else { console.log(time() + 'Invalid message type '+JSON.stringify(json)); }
         } else {
         	console.log(time() + 'Invalid message format');
