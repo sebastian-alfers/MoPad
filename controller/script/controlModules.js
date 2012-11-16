@@ -28,6 +28,7 @@ window.Joystick = function(){
 	var joystickTop = null;
 	
 	$('#joystickField').bind('touchstart', function(e){
+		e.preventDefault(); // Bugfix; compare https://code.google.com/p/android/issues/detail?id=19827
 		$('#helpOverlay').hide();
 	
 		var touch = e.originalEvent.touches[0];
@@ -42,6 +43,7 @@ window.Joystick = function(){
 	});
 	
 	$('#joystickField').bind('touchmove', function(e){
+		e.preventDefault();
         if (dragging) {
         	
         	var touch = e.originalEvent.touches[0];
@@ -67,6 +69,7 @@ window.Joystick = function(){
 	});
 	
 	$('#joystickField').bind('touchend', function(e){
+		e.preventDefault();
 		dragging = false;
 		$('#joystickNub').css({left: '0', top: '0'})
 		$('#joystickWrapper').css('visibility', 'hidden');
@@ -83,7 +86,7 @@ window.Joypad = function(){
 
 	var intervalTriggers = new Array();
 
-	$('.controlmodule.joypad .button').bind('touchstart', function () { //When button is pressed
+	$('.controlModule.joypad .button').bind('touchstart', function () { //When button is pressed
 		var id = this.id;
 		send(id);
 		if($(this).hasClass('continuous')){
@@ -93,7 +96,7 @@ window.Joypad = function(){
 		}
 	});
 	
-	$('.controlmodule.joypad .button.continuous').bind('touchend', function () { //When button is released
+	$('.controlModule.joypad .button.continuous').bind('touchend', function () { //When button is released
 		var id = this.id;
 		window.clearInterval(intervalTriggers[id]);
 		delete intervalTriggers[id];

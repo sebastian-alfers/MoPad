@@ -6,12 +6,16 @@
 	font-size: 100%;		
 }
 
+html { height: 100%; }
+
 body {
-	margin: 1em;
+	height: 100%;
+	padding: 1em;
 	font-family: Arial, sans-serif;
 }
 
 #controller {
+	height: 100%;
 	position: relative;
 }
 

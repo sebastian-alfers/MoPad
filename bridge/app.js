@@ -3,7 +3,10 @@ var http = require('http');
 var port = 8081;
 
 // Websocket server will be bound to a http server
-var server = http.createServer(function (req, res) {}).listen(port, function() { console.log('Listening on port '+port) });
+var server = http.createServer(function (req, res) { 
+	res.writeHead(200, {'Content-Type': 'text/plain'});
+  	res.end('Placeholder\n'); 
+}).listen(port, function() { console.log('Listening on port '+port) });
 
 // create the server
 wsServer = new WebSocketServer({
@@ -13,10 +16,14 @@ wsServer = new WebSocketServer({
 var game;
 var controller;
 
+// Registered Games
 var games = [];
-var connections = []; //id (pin), connectiongame, connectionController, timestamp
-
 games.push({id: 1, gameName: "Move the box", publicKey: '123456', ip: '127.0.0.1'});
+
+
+// Current connections
+var connections = []; //id, connectiongame, connectionController, timestamp, gameId
+
 
 function originIsAllowed(peername){
 	for(var i = 0; i < games.length; i++){
@@ -49,7 +56,9 @@ wsServer.on('request', function(request) {
     }
 
 	var connection = request.accept(null, null);
-	connection.verified = false;
+	// console.log(connection); // Log connection object
+	connection.verified = false; // Connection accepted, but not verified/identified
+	connection.id = '123456'; // https://github.com/Worlize/WebSocket-Node/wiki
 	console.log(time() + 'WebSocket connection from origin ' + request.socket._peername.address + ' accepted.');
 
 	// Incoming message
@@ -65,7 +74,6 @@ wsServer.on('request', function(request) {
             // process WebSocket message
            if (json.type == 'identify'){ // First message identifies the websocket type (game/controller) TODO First message has to be identify, otherwise reject connection
             	if(json.data.type == 'game'){
-            	console.log('received');
             		if(keyIsAllowed(json.data.publicKey)){
             			game = connection;
 	           			connection.verified = true;

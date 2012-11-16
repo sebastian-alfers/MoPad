@@ -28,36 +28,33 @@
 
 /* Joypad */
 
-.controlmodule.joypad .dPad{
+.controlModule.joypad .dPad{
 	width: 6em;
 	float: left;
 	margin-right: 8em;
 }
 
-.controlmodule.joypad .dPad .button {
+.controlModule.joypad .dPad .button {
 	line-height: 1.8em;
 }
 
-.controlmodule.joypad .dPad .up { margin: 0 auto; }
-.controlmodule.joypad .dPad .left {	float: left; }
-.controlmodule.joypad .dPad .right { float: right; }
-.controlmodule.joypad .dPad .down { margin: 0 auto; }
+.controlModule.joypad .dPad .up { margin: 0 auto; }
+.controlModule.joypad .dPad .left {	float: left; }
+.controlModule.joypad .dPad .right { float: right; }
+.controlModule.joypad .dPad .down { margin: 0 auto; }
 
 
-.controlmodule.joypad .buttonGrid {
+.controlModule.joypad .buttonGrid {
 	width: 5em;
-<<<<<<< HEAD
-=======
 	float: right;
->>>>>>> Removed vendors, renamed "application" to "game"
 }
 
-.controlmodule.joypad .button.red { 
+.controlModule.joypad .button.red { 
 	color: red;
 	float: left; 
 }
 
-.controlmodule.joypad .button.blue { 
+.controlModule.joypad .button.blue { 
 	color: blue;
 	float: right; 
 }
@@ -65,7 +62,11 @@
 
 /* Joystick - unique! */
 
-.controlmodule.joystick #helpOverlay {
+.controlModule.joystick {
+	height: 100%;
+}
+
+.controlModule.joystick #helpOverlay {
 	position: absolute;
 	top: 50%;
 	width: 100%;
@@ -74,14 +75,14 @@
 	color: #ccc;
 }
 
-.controlmodule.joystick #joystickField {
+.controlModule.joystick #joystickField {
 	position: relative;
 	border: 0.1em solid #ccc;
 	width: 100%;
 	height: 100%;
 }
 	
-.controlmodule.joystick #joystickWrapper {
+.controlModule.joystick #joystickWrapper {
 	position: absolute;
 	width: 5em;
 	height: 5em;
@@ -90,12 +91,12 @@
 	/*background-image: -webkit-radial-gradient(50% 50%, circle contain, #ccc, #999 100%);*/
 }
 	
-.controlmodule.joystick #joystickNub {
+.controlModule.joystick #joystickNub {
 	position: absolute;
 	width: 2em;
 	height: 2em;
 	margin-top: 1.5em;
 	margin-left: 1.5em;
 	border-radius: 1em;
-	background-color: #ddd;
+	background-color: #ddd; 
 }
