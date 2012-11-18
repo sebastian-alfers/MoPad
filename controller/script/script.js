@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	$('#controller').html('<ul><li>- <a href="javascript:void(0)">Joystick</a></li><li>- <a href="javascript:void(0)">Joypad</a></li></ul>');
+	$('#controller').html('<ul><li>- <a href="javascript:void(0)">Joystick</a></li><li>- <a href="javascript:void(0)">Joypad</a></li><li>- <a href="javascript:void(0)">Accelerometer</a></li></ul>');
 	
 	$('a').click(function(e){
 	
@@ -10,6 +10,9 @@ $(document).ready(function() {
 		} else if ($(this).text()=='Joypad'){
 			$('#controller').html('');
 			Joypad();
+		} else if ($(this).text()=='Accelerometer'){
+			$('#controller').html('');
+			Accelerometer();
 		}
 		
 		loadSocket();
