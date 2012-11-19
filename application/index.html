@@ -69,11 +69,68 @@
       </div>
     </div>
 
-    <div class="container">
-        <div id="wizzard">
 
-        </div>
-      <hr>
+
+    <script type="text/template" id="template_list_games_li">
+        <li><a href="#" data-id="<%= id %>"><%= name %></a></li>
+    </script>
+
+    <script type="text/template" id="template_player_slider">
+        <input id="defaultSlider" type="range" min="1" max="10" />
+    </script>
+
+    <script type="text/template" id="template_input_username">
+        <li>
+            <label>Player <%= i %>:</label>
+            <input type="text" class="span2 username">
+        </li>
+    </script>
+
+    <script type="text/template" id="template_submit_username">
+        <li>
+            <div class="btn-group">
+              <button class="btn">Start game for <%= sum %> Player</button>
+            </div>
+        </li>
+    </script>
+
+    <script type="text/template" id="template_pending_player">
+        <li>
+            <div class="btn-group">
+                <div class="progress progress-striped active" style="width: 200px;">
+                  <div class="bar" style="width: 100%;">Waiting for pin <%= pin %></div>
+                </div>
+            </div>
+        </li>
+    </script>
+
+
+
+
+
+    <div class="container">
+        <div class="row">
+                <div class="span4" style="border-right:1px solid; width: 349px; padding:0 20px 0 0">
+                  <h2>Games</h2>
+                    <div>
+                        <ul class="nav nav-tabs nav-stacked" id="list_games_li"></ul>
+                    </div>
+                </div>
+                <div class="span4" style="border-right:1px solid; width: 369px">
+                  <h2 id="player_headline">Player</h2>
+                  <div id="player_slider"></div>
+                  <div id="player_chooser">
+                      <ul class="nav nav-tabs nav-stacked" id="list_player_li"></ul>
+                  </div>
+               </div>
+                <div class="span4">
+                  <h2>Pins</h2>
+                  <div>
+                      <ul id="pins" style="list-style-type: none;">
+                      </ul>
+                  </div>
+                </div>
+              </div>
 
       <footer>
         <p>&copy; Company 2012</p>
