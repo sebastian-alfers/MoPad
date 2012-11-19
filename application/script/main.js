@@ -227,16 +227,23 @@
     var GameCenterView = Backbone.View.extend({
 
         defaults:{
-            games:null
+            games:null,
+            publicKey: null
         },
 
         initialize:function () {
+            //connect to bridge
+            loadSocket('game');
+
+            send({type: 'identitfy', data: {type: 'game', publicKey: this.publicKey}});
+
             this.games = new GameListView({ el:$('#list_games_li') });
             this.player = new PlayerListView({el:$('#player_slider'), games:this.games});
+
         }
     });
 
-    var gc = new GameCenterView({ el:$('#tab_content') });
+    var gc = new GameCenterView({ el:$('#tab_content'), publicKey: 123456 });
 
 
     /*

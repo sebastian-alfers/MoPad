@@ -72,6 +72,8 @@ wsServer.on('request', function(request) {
         	}
         	
             // process WebSocket message
+            console.log(json);
+            console.log('-------------');
            if (json.type == 'identify'){ // First message identifies the websocket type (game/controller) TODO First message has to be identify, otherwise reject connection
             	if(json.data.type == 'game'){
             		if(keyIsAllowed(json.data.publicKey)){
@@ -91,6 +93,8 @@ wsServer.on('request', function(request) {
             } else if(json.type == 'buttonClick' && connection.verified){
 	            game.sendUTF(JSON.stringify(json)); //Redirect TODO check if game exists
 	            console.log(time() + 'Sent to game: '+JSON.stringify(json));
+           } else if(json.type == 'verifyController' && connection.verified){
+               console.log(json);
             } else { console.log(time() + 'Invalid message type '+JSON.stringify(json)); }
         } else {
         	console.log(time() + 'Invalid message format');

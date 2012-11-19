@@ -1,11 +1,18 @@
 // modified from: http://net.tutsplus.com/tutorials/javascript-ajax/start-using-html5-websockets-today/
 
-window.loadSocket = function(){
+window.loadSocket = function(type){
 	if (!("WebSocket" in window)) {
 		$('#controller').fadeOut("fast");
 		$('<p>Whoops, you need a browser that supports WebSockets.</p>').appendTo('body');
 	} else {
 		//$('<p>Websockets supported!</p>').appendTo('body');
+
+        // :(
+        // oop would be better
+        console.log(type);
+        if (type == "" || type == undefined) {
+            type = 'controller';
+        }
 
 		//The browser supports WebSockets  
 		connect();
@@ -18,7 +25,7 @@ window.loadSocket = function(){
 				console.log('Websocket: Status: ' + socket.readyState);
 				socket.onopen = function () {
 					console.log('Websocket: Status ' + socket.readyState + ' (open)');
-					socket.send(JSON.stringify({'type':'identify', 'data': {'type':'controller','publicKey':'123456'}}));
+					socket.send(JSON.stringify({'type':'identify', 'data': {type:type, publicKey:'123456'}}));
 				}
 				socket.onmessage = function (msg) {
 					console.log('Websocket: Received ' + msg.data);
@@ -35,8 +42,15 @@ window.loadSocket = function(){
 					console.log('Websocket: No buttonId set');
 					return;
 				}
+
+                // :(
+                // oop better
+                if(buttonId.type == "" || buttonId.type == undefined){
+                    buttonId = {type: 'buttonClick', data: buttonId.data}
+                }
+
 				try {
-					socket.send(JSON.stringify({'type':'buttonClick', 'data': buttonId}));
+					socket.send(JSON.stringify({'type':buttonId.type, 'data': buttonId}));
 					console.log('Websocket: Sent ' + buttonId)
 				} catch (exception) {
 					console.log('Websocket: Error '+exception);
