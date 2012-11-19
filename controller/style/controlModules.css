@@ -11,31 +11,32 @@
 }
 
 .button {
-	height: 2em;
-	width: 2em;
+	height: 4em;
+	width: 4em;
 	text-align: center;
-	line-height: 2em;
+	line-height: 4em;
 	
 	border: 1px solid #000;
 	border-radius: 50%;
 }
 
 /*.button:hover { background-color: #ddd; }*/
-.button:active { background-color: #777; }
+.button.active { background-color: #777; }
 
 
 /* Modules */
 
 /* Joypad */
 
-.controlModule.joypad .dPad{
-	width: 6em;
+.controlModule.joypad { margin-top: 1em; }
+
+.controlModule.joypad .dPad {
+	width: 12em;
 	float: left;
-	margin-right: 8em;
 }
 
 .controlModule.joypad .dPad .button {
-	line-height: 1.8em;
+	/*line-height: 2.4em;*/
 }
 
 .controlModule.joypad .dPad .up { margin: 0 auto; }
@@ -45,7 +46,7 @@
 
 
 .controlModule.joypad .buttonGrid {
-	width: 5em;
+	width: 9em;
 	float: right;
 }
 

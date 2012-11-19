@@ -86,7 +86,9 @@ window.Joypad = function(){
 
 	var intervalTriggers = new Array();
 
-	$('.controlModule.joypad .button').bind('touchstart', function () { //When button is pressed
+	$('.controlModule.joypad .button').bind('touchstart', function (e) { //When button is pressed
+		e.preventDefault();
+		$(this).addClass('active');
 		var id = this.id;
 		send(id);
 		if($(this).hasClass('continuous')){
@@ -96,10 +98,43 @@ window.Joypad = function(){
 		}
 	});
 	
-	$('.controlModule.joypad .button.continuous').bind('touchend', function () { //When button is released
+	$('.controlModule.joypad .button').bind('touchend', function (e) { //When button is pressed
+		e.preventDefault();
+		$(this).removeClass('active');
+	});
+	
+	$('.controlModule.joypad .button.continuous').bind('touchend', function (e) { //When button is released
+		e.preventDefault();
 		var id = this.id;
 		window.clearInterval(intervalTriggers[id]);
 		delete intervalTriggers[id];
 	});
+
+}
+
+
+// Accelerometer
+
+window.Accelerometer = function(){
+
+	if(!window.DeviceOrientationEvent) { 
+		$('#controller').fadeOut("fast");
+		$('<p>Whoops, your device doesn\'t seem to have an accelerometer.</p>').appendTo('body');
+	}
+	
+	$(window).bind("deviceorientation", function(e){
+					// compare: http://www.html5rocks.com/en/tutorials/device/orientation/?redirect_from_locale=de
+					console.log('Device moves!',e);
+					var orientation = e.originalEvent;
+                    var x = orientation.gamma;
+                    var y = orientation.beta;
+                    var z = orientation.alpha;
+ 
+                    $("body").html(
+                        "x = <b>" + x + "</b><br/>" +
+                        "y = <b>" + y + "</b><br/>" +
+                        "z = <b>" + z + "</b>"
+                    );
+                });
 
 }
