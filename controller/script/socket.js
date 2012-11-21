@@ -11,21 +11,29 @@ window.loadSocket = function(type){
         // oop would be better
         console.log(type);
         if (type == "" || type == undefined) {
-            type = 'controller';
+            type = {type: 'controller'};
         }
+
+        console.log(type);
 
 		//The browser supports WebSockets  
 		connect();
 
 		function connect() {
 			var socket;
+
+            /**
+             * make this configurable
+             *
+             * @type {String}
+             */
 			var host = "ws://localhost:8081/";
 			try {
 				var socket = new WebSocket(host);
 				console.log('Websocket: Status: ' + socket.readyState);
 				socket.onopen = function () {
 					console.log('Websocket: Status ' + socket.readyState + ' (open)');
-					socket.send(JSON.stringify({'type':'identify', 'data': {type:type, publicKey:'123456'}}));
+					socket.send(JSON.stringify({'type':'identify', 'data': {type:type.type, publicKey:'123456'}}));
 				}
 				socket.onmessage = function (msg) {
 					console.log('Websocket: Received ' + msg.data);

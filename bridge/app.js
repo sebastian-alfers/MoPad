@@ -23,7 +23,7 @@ games.push({id: 1, gameName: "Move the box", publicKey: '123456', ip: '127.0.0.1
 
 // Current connections
 var connections = []; //id, connectiongame, connectionController, timestamp, gameId
-
+var connectionIDCounter = 0;
 
 function originIsAllowed(peername){
 	for(var i = 0; i < games.length; i++){
@@ -58,8 +58,13 @@ wsServer.on('request', function(request) {
 	var connection = request.accept(null, null);
 	// console.log(connection); // Log connection object
 	connection.verified = false; // Connection accepted, but not verified/identified
-	connection.id = '123456'; // https://github.com/Worlize/WebSocket-Node/wiki
-	console.log(time() + 'WebSocket connection from origin ' + request.socket._peername.address + ' accepted.');
+
+    connectionIDCounter ++;
+    connection.id = connectionIDCounter; // https://github.com/Worlize/WebSocket-Node/wiki
+
+    console.log(time() + 'WebSocket connection from origin ' + request.socket._peername.address + ' accepted.');
+
+    connections[connection.id] = connection;
 
 	// Incoming message
     connection.on('message', function(message) {
@@ -75,7 +80,9 @@ wsServer.on('request', function(request) {
             console.log(json);
             console.log('-------------');
            if (json.type == 'identify'){ // First message identifies the websocket type (game/controller) TODO First message has to be identify, otherwise reject connection
-            	if(json.data.type == 'game'){
+                console.log('got a identify msg');
+            	if(json.data.type.t == 'game'){
+                    console.log('for controller');
             		if(keyIsAllowed(json.data.publicKey)){
             			game = connection;
 	           			connection.verified = true;
@@ -85,21 +92,44 @@ wsServer.on('request', function(request) {
             			connection.close();
             		}
             	}
-            	else if(json.data.type == 'controller'){ 
+            	else if(json.data.type == 'controller'){
+                    console.log('for controller');
             		controller = connection;
             		connection.verified = true;
             		console.log(time() + 'Controller registered  ('+request.socket._peername.address+')');
             	}
-            } else if(json.type == 'buttonClick' && connection.verified){
+            }
+
+            //check if conection is ok
+            if(connection.verified != true){
+                console.log('not allowed. please "identify" before');
+                return;
+            }
+
+            if(json.type == 'buttonClick'){
 	            game.sendUTF(JSON.stringify(json)); //Redirect TODO check if game exists
 	            console.log(time() + 'Sent to game: '+JSON.stringify(json));
-           } else if(json.type == 'verifyController' && connection.verified){
-               console.log(json);
+           } else if(json.type == 'verifyController'){
+
+               console.log('********************');
+               console.log(getConnectionForPin(connections[key].id));
+               console.log('********************');
+
             } else { console.log(time() + 'Invalid message type '+JSON.stringify(json)); }
         } else {
         	console.log(time() + 'Invalid message format');
         }
     });
+
+    function getConnectionForPin(pin){
+        for(key in connections){
+
+        }
+        console.log('jipp jipp');
+        return pin;
+    }
+
+
 
     connection.on('close', function(connection) {
         // close user connection
