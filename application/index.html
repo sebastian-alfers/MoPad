@@ -72,7 +72,7 @@
 
 
     <script type="text/template" id="template_list_games_li">
-        <li><a href="#" data-id="<%= id %>"><%= name %></a></li>
+        <li><a href="#" data-id="<%= id %>" class="game_link"><%= name %></a></li>
     </script>
 
     <script type="text/template" id="template_player_slider">
@@ -82,53 +82,74 @@
     <script type="text/template" id="template_input_username">
         <li>
             <label>Player <%= i %>:</label>
-            <input type="text" class="span2 username">
+            <input type="text" class="span2 username" style="width: 200px;">
         </li>
     </script>
 
     <script type="text/template" id="template_submit_username">
         <li>
             <div class="btn-group">
-              <button class="btn">Start game for <%= sum %> Player</button>
+              <button class="btn" id="start_game">Start game for <%= sum %> Player</button>
             </div>
         </li>
+    </script>
+
+    <script type="text/template" id="template_error">
+        <div class="alert alert-error">
+          <ul id="error_messages"></ul>
+        </div>
     </script>
 
     <script type="text/template" id="template_pending_player">
         <li>
             <div class="btn-group">
                 <div class="progress progress-striped active" style="width: 200px;">
-                  <div class="bar" style="width: 100%;">Waiting for pin <%= pin %></div>
+                  <div class="bar" style="width: 100%;">Waiting for pin <%= pin %> for <%= userName %></div>
                 </div>
             </div>
         </li>
     </script>
 
 
+<div class="row-fluid show-grid">
+     <div class="span4">
+         <h2>Games</h2>
+         <div>
+               <ul class="nav nav-tabs nav-stacked" id="list_games_li"></ul>
+         </div>
+     </div>
+     <div class="span4">
+
+         <h2 id="player_headline">Player</h2>
+         <div id="player_slider"></div>
+         <div id="player_chooser">
+             <ul class="nav nav-tabs nav-stacked" id="list_player_li"></ul>
+         </div>
+
+     </div>
+     <div class="span4">
+
+         <h2>Pins</h2>
+            <button type="submit" class="btn" id="cancel_pending_player" style="display: none; margin: 25px">cancel pending game</button>
+         <div>
+             <ul id="pins" style="list-style-type: none;">
+             </ul>
+         </div>
+
+     </div>
+</div>
 
 
+    <div class="container" id="main_content">
+        <div class="fluid">
+                <div class="span4">
 
-    <div class="container">
-        <div class="row">
-                <div class="span4" style="border-right:1px solid; width: 349px; padding:0 20px 0 0">
-                  <h2>Games</h2>
-                    <div>
-                        <ul class="nav nav-tabs nav-stacked" id="list_games_li"></ul>
-                    </div>
                 </div>
-                <div class="span4" style="border-right:1px solid; width: 369px">
-                  <h2 id="player_headline">Player</h2>
-                  <div id="player_slider"></div>
-                  <div id="player_chooser">
-                      <ul class="nav nav-tabs nav-stacked" id="list_player_li"></ul>
-                  </div>
+                <div class="span4">
+
                </div>
                 <div class="span4">
-                  <h2>Pins</h2>
-                  <div>
-                      <ul id="pins" style="list-style-type: none;">
-                      </ul>
-                  </div>
+
                 </div>
               </div>
 
