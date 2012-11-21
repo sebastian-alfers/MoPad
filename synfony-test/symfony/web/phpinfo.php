@@ -1,7 +1,7 @@
 <html>
 <body>
 <?php 
-	phpinfo();
+	echo "sdkjbp";
 ?>
 </body>
 </html>
