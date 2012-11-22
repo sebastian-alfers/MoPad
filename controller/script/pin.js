@@ -4,7 +4,8 @@ $(document).ready(function() {
 	
 	$('#button').click(function(e){
 
-        send({type: 'verifyController', data: { pin: $('#pin').val()}});
+
+        send({type: 'getConnectionForPin', data: { pin: $('#pin').val()}});
 	})
 
 });

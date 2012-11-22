@@ -124,10 +124,23 @@
 
             console.log(this.$el);
 
+
+            var pins = new Array()
+            var i = 0;
             this.options.playerCollection.each(function(player){
+
+                //generate associative array like [player0] =123, [player1] =456
+                pins.push(player.toJSON());
+
+                i++;
+
                 var template = _.template( $('#template_pending_player').html(), player.toJSON());
                 this.$el.append(template);
             }, this);
+
+
+            //register the pins on the bridge for this game instance
+            send({type: 'registerPinsForGameInstance', data : pins });
 
             $('#cancel_pending_player').click(function(){
 
@@ -184,7 +197,12 @@
             }
             else{
                 fetched = 0;
+                console.log('fetch for ' + playerCollection.length);
+
                 playerCollection.forEach(function(player){
+
+
+
                     player.fetch({
                             //data: {userName: user.get('userName')},  NOT REQUIRED
                             success: function(player){
@@ -198,7 +216,9 @@
                             }
                         }
                     );
+
                 });
+
             }
         },
         parse:function (data) {
@@ -268,6 +288,12 @@
 
                 //console.log(this.options.publicKey);
                 //console.log(this.options.uniqueAppIdForBridge);
+
+                $('#get_controller_for_pins').click(function(){
+                    send({type: 'getControllersForGame'});
+                    console.log('jea did');
+                });
+
             });
             this.options.bootstrap.on('errorOnGenerateUnidqueAppId', function(data){
                 //more error logic if needed
@@ -350,7 +376,6 @@
 
     var bootstrap = new GameCenterBootstrapModel({publicKey: 123456});
     var gc = new GameCenterView({ el:$('#tab_content'), bootstrap: bootstrap});
-
 
 
 })(jQuery);

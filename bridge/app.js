@@ -81,8 +81,8 @@ wsServer.on('request', function(request) {
             console.log('-------------');
            if (json.type == 'identify'){ // First message identifies the websocket type (game/controller) TODO First message has to be identify, otherwise reject connection
                 console.log('got a identify msg');
-            	if(json.data.type.t == 'game'){
-                    console.log('for controller');
+            	if(json.data.type == 'game'){
+                    console.log('for game');
             		if(keyIsAllowed(json.data.publicKey)){
             			game = connection;
 	           			connection.verified = true;
@@ -91,12 +91,20 @@ wsServer.on('request', function(request) {
 	           			console.log(time() + 'Invalid identifier for '+request.socket._peername.address+'. Connection closed.');
             			connection.close();
             		}
+
+                    console.log('now ' + connections.length + ' conns');
+
+                    return;
             	}
             	else if(json.data.type == 'controller'){
                     console.log('for controller');
             		controller = connection;
             		connection.verified = true;
             		console.log(time() + 'Controller registered  ('+request.socket._peername.address+')');
+
+
+                    console.log('now ' + connections.length + ' conns');
+                    return;
             	}
             }
 
@@ -106,14 +114,70 @@ wsServer.on('request', function(request) {
                 return;
             }
 
-            if(json.type == 'buttonClick'){
+            console.log('gag');
+            console.log(json.type);
+
+            if(json.type == 'getControllersForGame'){
+                console.log(connection.id);
+                // Send all the existing canvas commands to the new client
+                connection.sendUTF(JSON.stringify({
+                    msg: "initCommands",
+                    id: connection.id
+                }));
+                console.log(connection.pins.data);
+
+
+                console.log('---- 666');
+
+                connection.pins.data.forEach(function(player){
+                    console.log(player.pin);
+                });
+            }
+            else if(json.type == 'registerPinsForGameInstance'){
+                console.log('---- jea neue pins');
+                console.log(json);
+
+                connection.pins = json.data;
+
+                console.log('---- schnack');
+                console.log(json.data.data);
+                json.data.data.forEach(function(player){
+                    console.log(player.pin);
+                });
+            }
+            else if(json.type == 'buttonClick'){
 	            game.sendUTF(JSON.stringify(json)); //Redirect TODO check if game exists
 	            console.log(time() + 'Sent to game: '+JSON.stringify(json));
-           } else if(json.type == 'verifyController'){
 
-               console.log('********************');
-               console.log(getConnectionForPin(connections[key].id));
-               console.log('********************');
+            }else if(json.type == 'getConnectionForPin'){
+
+
+
+                Object.keys(connections).forEach(function(key) {
+                    var connection = connections[key];
+
+                    if(connection.pins != undefined && connection.pins.data.length > 0){
+                        console.log(connection.pins.data.length);
+                        console.log(connection.pins.data);
+
+                        connection.pins.data.forEach(function(player){
+                            if(json.data.data.pin == player.pin){
+                                //jip jipp :)
+                                console.log('jipp jiopp');
+                                connection.sendUTF(JSON.stringify({
+                                    msg: "correctPinSubmit",
+                                    pin: json.data.data.pin
+                                }));
+                                return;
+                            }
+                        });
+                    }
+                });
+
+                //if we come here, this means the pin is not correct
+
+                console.log('wrong pin');
+
 
             } else { console.log(time() + 'Invalid message type '+JSON.stringify(json)); }
         } else {
