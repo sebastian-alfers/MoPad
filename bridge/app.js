@@ -149,34 +149,74 @@ wsServer.on('request', function(request) {
 	            game.sendUTF(JSON.stringify(json)); //Redirect TODO check if game exists
 	            console.log(time() + 'Sent to game: '+JSON.stringify(json));
 
+            }else if(json.type == 'sendCommandToGame'){
+
+                console.log('send to cached game instance');
+
+                connections[json.data.data.connectionId].sendUTF(JSON.stringify({
+                                                    msg: "testButtonClick",
+                                                    action: 'move the box',
+                                                    pin: json.data.data.pin
+                                                }));
+
+                //connections[json.type.]
+
             }else if(json.type == 'getConnectionForPin'){
 
+                // is set to true, if the pin from the controller
+                var successPinMatch = false;
 
 
                 Object.keys(connections).forEach(function(key) {
-                    var connection = connections[key];
+                    var gameConnection = connections[key];
 
-                    if(connection.pins != undefined && connection.pins.data.length > 0){
-                        console.log(connection.pins.data.length);
-                        console.log(connection.pins.data);
+                    if(gameConnection.pins != undefined && gameConnection.pins.data.length > 0){
+                        console.log(gameConnection.pins.data.length);
+                        console.log(gameConnection.pins.data);
 
-                        connection.pins.data.forEach(function(player){
+                        gameConnection.pins.data.forEach(function(player){
                             if(json.data.data.pin == player.pin){
                                 //jip jipp :)
                                 console.log('jipp jiopp');
+
+                                //send back the connection-id to the controller to cache it
+                                connection.sendUTF(JSON.stringify({
+                                    msg: "cacheConnectionIdOnController",
+                                    pin: gameConnection.id,
+                                    userName: player.userName
+                                }));
+
+                                //tell the game instance that this pin has been activated by a conroller
+                                connections[gameConnection.id].sendUTF(JSON.stringify({
+                                    msg: "activateController",
+                                    pin: json.data.data.pin,
+                                    userName: player.userName
+                                }));
+
+                                successPinMatch = true;
+                                /*
+
+                                pass the action to the game instance
+
                                 connection.sendUTF(JSON.stringify({
                                     msg: "correctPinSubmit",
                                     pin: json.data.data.pin
                                 }));
-                                return;
+                                */
+
                             }
                         });
                     }
                 });
 
                 //if we come here, this means the pin is not correct
+                if(successPinMatch == true){
+                    console.log('correct pin');
+                }
+                else{
+                    console.log('wrong pin');
+                }
 
-                console.log('wrong pin');
 
 
             } else { console.log(time() + 'Invalid message type '+JSON.stringify(json)); }
