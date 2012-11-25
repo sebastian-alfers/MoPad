@@ -60,6 +60,8 @@ window.loadSocket = function(type){
                         console.log(json);
                         $('#pending_bar_'+json.pin).html("<strong>" +json.userName + "</strong> ist am start mit pin <strong>" + json.pin + "</strong> :) ");
 
+
+
                         //console.log();
                     }
 

@@ -127,8 +127,6 @@ wsServer.on('request', function(request) {
                 console.log(connection.pins.data);
 
 
-                console.log('---- 666');
-
                 connection.pins.data.forEach(function(player){
                     console.log(player.pin);
                 });
@@ -139,8 +137,6 @@ wsServer.on('request', function(request) {
 
                 connection.pins = json.data;
 
-                console.log('---- schnack');
-                console.log(json.data.data);
                 json.data.data.forEach(function(player){
                     console.log(player.pin);
                 });
