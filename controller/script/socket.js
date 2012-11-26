@@ -36,7 +36,42 @@ window.loadSocket = function(type){
 					socket.send(JSON.stringify({'type':'identify', 'data': {type:type.type, publicKey:'123456'}}));
 				}
 				socket.onmessage = function (msg) {
-					console.log('Websocket: Received ' + msg.data);
+
+                    var json = JSON.parse(msg.data);
+
+                    console.log(json);
+
+                    //this code is only for controller -> should be triggered by an event (Backbone?)
+                    if(json.msg == 'cacheConnectionIdOnController'){
+                        console.log('+++++++');
+                        window.gameConnectionId = json.pin;
+
+                        console.log(json);
+                        $('#username').html(json.userName);
+
+                        console.log(window.gameConnectionId);
+                        console.log('+++++++');
+                    }
+
+                    //this code is only for controller -> should be triggered by an event (Backbone?)
+                    if(json.msg == 'activateController'){
+
+                        console.log('remove pending bar');
+                        console.log(json);
+                        $('#pending_bar_'+json.pin).html("<strong>" +json.userName + "</strong> ist am start mit pin <strong>" + json.pin + "</strong> :) ");
+
+
+
+                        //console.log();
+                    }
+
+                    //this code is only for controller -> should be triggered by an event (Backbone?)
+                    if(json.msg == 'testButtonClick'){
+                        alert('react to the controller input form pin ' + json.pin + ' for action ' + json.action)
+                        //console.log();
+                    }
+
+
 				}
 				socket.onclose = function () {
 					console.log('Websocket: Status: ' + socket.readyState + ' (Closed)');

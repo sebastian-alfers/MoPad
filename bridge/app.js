@@ -81,8 +81,11 @@ wsServer.on('request', function(request) {
             console.log('-------------');
            if (json.type == 'identify'){ // First message identifies the websocket type (game/controller) TODO First message has to be identify, otherwise reject connection
                 console.log('got a identify msg');
-            	if(json.data.type.t == 'game'){
-                    console.log('for controller');
+            	if(json.vendor == 'game'){
+
+                    //identify a controller
+
+                    console.log('for game');
             		if(keyIsAllowed(json.data.publicKey)){
             			game = connection;
 	           			connection.verified = true;
@@ -91,12 +94,23 @@ wsServer.on('request', function(request) {
 	           			console.log(time() + 'Invalid identifier for '+request.socket._peername.address+'. Connection closed.');
             			connection.close();
             		}
+
+                    console.log('now ' + connections.length + ' conns');
+
+                    return;
             	}
-            	else if(json.data.type == 'controller'){
+            	else if(json.vendor == 'controller'){
+
+                    //identify a controller
+
                     console.log('for controller');
             		controller = connection;
             		connection.verified = true;
             		console.log(time() + 'Controller registered  ('+request.socket._peername.address+')');
+
+
+                    console.log('now ' + connections.length + ' conns');
+                    return;
             	}
             }
 
@@ -106,14 +120,106 @@ wsServer.on('request', function(request) {
                 return;
             }
 
-            if(json.type == 'buttonClick'){
+            console.log('gag');
+            console.log(json.type);
+
+            if(json.type == 'getControllersForGame'){
+                console.log(connection.id);
+                // Send all the existing canvas commands to the new client
+                connection.sendUTF(JSON.stringify({
+                    msg: "initCommands",
+                    id: connection.id
+                }));
+                console.log(connection.pins.data);
+
+
+                connection.pins.data.forEach(function(player){
+                    console.log(player.pin);
+                });
+            }
+            else if(json.type == 'registerPinsForGameInstance'){
+                console.log('---- jea neue pins');
+                console.log(json);
+
+                connection.pins = json.data;
+
+                json.data.forEach(function(player){
+                    console.log(player.pin);
+                });
+            }
+            else if(json.type == 'buttonClick'){
 	            game.sendUTF(JSON.stringify(json)); //Redirect TODO check if game exists
 	            console.log(time() + 'Sent to game: '+JSON.stringify(json));
-           } else if(json.type == 'verifyController'){
 
-               console.log('********************');
-               console.log(getConnectionForPin(connections[key].id));
-               console.log('********************');
+            }else if(json.type == 'sendCommandToGame'){
+
+                console.log('send to cached game instance');
+
+                connections[json.data.data.connectionId].sendUTF(JSON.stringify({
+                                                    msg: "testButtonClick",
+                                                    action: 'move the box',
+                                                    pin: json.data.data.pin
+                                                }));
+
+                //connections[json.type.]
+
+            }else if(json.type == 'getConnectionForPin'){
+
+                // is set to true, if the pin from the controller
+                var successPinMatch = false;
+
+
+                Object.keys(connections).forEach(function(key) {
+                    var gameConnection = connections[key];
+
+                    if(gameConnection.pins != undefined && gameConnection.pins.data.length > 0){
+                        console.log(gameConnection.pins.data.length);
+                        console.log(gameConnection.pins.data);
+
+                        gameConnection.pins.data.forEach(function(player){
+                            if(json.data.data.pin == player.pin){
+                                //jip jipp :)
+                                console.log('jipp jiopp');
+
+                                //send back the connection-id to the controller to cache it
+                                connection.sendUTF(JSON.stringify({
+                                    msg: "cacheConnectionIdOnController",
+                                    pin: gameConnection.id,
+                                    userName: player.userName
+                                }));
+
+                                //tell the game instance that this pin has been activated by a conroller
+                                connections[gameConnection.id].sendUTF(JSON.stringify({
+                                    msg: "activateController",
+                                    pin: json.data.data.pin,
+                                    userName: player.userName
+                                }));
+
+                                successPinMatch = true;
+                                /*
+
+                                pass the action to the game instance
+
+                                connection.sendUTF(JSON.stringify({
+                                    msg: "correctPinSubmit",
+                                    pin: json.data.data.pin
+                                }));
+                                */
+
+                            }
+                        });
+                    }
+                });
+
+                //if we come here, this means the pin is not correct
+                if(successPinMatch == true){
+                    console.log('correct pin');
+                }
+                else{
+                    console.log('wrong pin');
+                }
+
+
 
             } else { console.log(time() + 'Invalid message type '+JSON.stringify(json)); }
         } else {

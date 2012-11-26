@@ -2,16 +2,102 @@
 
 window.Joystick = function(){
 
-	//init
+	init();
 	
-	$('#controller').append('<div class="controlModule joystick" id="joystick1"><div id="joystickField"><div id="helpOverlay">Tap anywhere to reveal the joystick</div><div id="joystickWrapper"><div id="joystickNub" /></div></div></div>');
+	//init
+	function init(){
+		$('#controller').append('<div class="controlModule joystick" id="joystick1"><div id="joystickField"><div id="helpOverlay">Tap anywhere to reveal the joystick</div><div id="joystickWrapper"><div id="joystickNub" /></div></div></div>');
+		$('#joystickWrapper').css('visibility', 'hidden');
+		
+		// Source: http://stackoverflow.com/questions/8569095/draggable-div-without-jquery-ui
+		var dragging = null;
+		
+		// Initial coordinates of the nub relative to the page
+		var joystickLeft = null;
+		var joystickTop = null;
+		
+		// Current coordinates of the nub relative to the page
+		var offsetLeft = null;
+		var offsetTop = null;
+		
+		// Coordinates within wrapper
+		var x = null;
+		var y = null;
+		
+		
+		$('#joystickField').bind('touchstart', function(e){
+			e.preventDefault(); // Bugfix; compare https://code.google.com/p/android/issues/detail?id=19827
+			$('#helpOverlay').hide();
+		
+			var touch = e.originalEvent.touches[0];
+			
+			//Display joystickWrapper at tap position
+			$('#joystickWrapper').offset({left: touch.pageX-($('#joystickWrapper').width()/2), top: touch.pageY-($('#joystickWrapper').width()/2)})
+			var joystickNubOffset = $('#joystickNub').offset();
+			joystickLeft = joystickNubOffset.left;
+			joystickTop = joystickNubOffset.top;
+			$('#joystickWrapper').css('visibility', 'visible');
+			dragging = true;
+		});
+		
+		$('#joystickField').bind('touchmove', function(e){
+			e.preventDefault();
+			if (dragging) {
+				
+				var touch = e.originalEvent.touches[0];
+				
+				// Position of the nub on the page
+				var joystickNubOffset = {'left':touch.pageX-($('#joystickNub').width()/2),'top':touch.pageY-($('#joystickNub').width()/2)};
+				
+				// Nub distance and angle relative to wrapper center
+				var distance = calcDistance(joystickNubOffset.left,joystickLeft,joystickNubOffset.top,joystickTop);								
+
+				var joystickRadius = $('#joystickWrapper').width()/2-$('#joystickNub').width()/2;
+						
+				if(distance>joystickRadius){ // Out of bounds
+					var coordinates = calcCoordinates(joystickRadius, distance, joystickNubOffset.left-joystickLeft, joystickNubOffset.top-joystickTop);
+					offsetLeft = joystickLeft+coordinates.opposite;
+					offsetTop = joystickTop+coordinates.adjacent;
+					x = (joystickNubOffset.left-joystickLeft);
+					y = ((joystickNubOffset.top-joystickTop)*-1);
+					distance = 1;
+					
+				} else { // Nub is within joystick
+					offsetLeft = joystickNubOffset.left;
+					offsetTop = joystickNubOffset.top;
+					x = (joystickNubOffset.left-joystickLeft);
+					y = ((joystickNubOffset.top-joystickTop)*-1);
+					distance = distance/joystickRadius;
+				}
+				
+				angle = calcAngle(x,y);
+				console.log('x '+x+' y '+y+' angle '+angle.toFixed(2)+' distance '+distance.toFixed(2)); // X+Y-koordinaten, müssen auf 1 normiert werden
+				
+				$('#joystickNub').offset({left: offsetLeft, top: offsetTop})
+			}
+		});
+		
+		$('#joystickField').bind('touchend', function(e){
+			e.preventDefault();
+			dragging = false;
+			$('#joystickNub').css({left: '0', top: '0'})
+			$('#joystickWrapper').css('visibility', 'hidden');
+		});
+	
+	}
 
 	function calcDistance(x1,x2,y1,y2){ // Pythagoras
 		return Math.sqrt(Math.pow(y2-y1, 2)+Math.pow(x2-x1, 2));
 	}
 	
+	function calcAngle(opposite, adjacent){
+		if(opposite == 0) opposite == 1;
+		if(adjacent == 0) adjacent == 1;
+		return 180/Math.atan(opposite*10/adjacent*10);
+	}
+		
 	function calcCoordinates(new_hypotenuse, old_hypotenuse, old_opposite, old_adjacent){
-		// Calculate the coordinates
+		// Calculate the coordinates if out of bounds
 		
 		var sinA = old_opposite / old_hypotenuse;
 		var tanA = old_opposite / old_adjacent;
@@ -20,61 +106,6 @@ window.Joystick = function(){
 		return {'opposite': opposite, 'adjacent': (opposite/tanA)};
 	}
 
-	$('#joystickWrapper').css('visibility', 'hidden');
-	
-	// Source: http://stackoverflow.com/questions/8569095/draggable-div-without-jquery-ui
-	var dragging = null;
-	var joystickLeft = null;
-	var joystickTop = null;
-	
-	$('#joystickField').bind('touchstart', function(e){
-		e.preventDefault(); // Bugfix; compare https://code.google.com/p/android/issues/detail?id=19827
-		$('#helpOverlay').hide();
-	
-		var touch = e.originalEvent.touches[0];
-		
-		//Display joystickWrapper at tapposition
-		$('#joystickWrapper').offset({left: touch.pageX-($('#joystickWrapper').width()/2), top: touch.pageY-($('#joystickWrapper').width()/2)})
-		var joystickOffset = $('#joystickNub').offset();
-		joystickLeft = joystickOffset.left;
-		joystickTop = joystickOffset.top;
-		$('#joystickWrapper').css('visibility', 'visible');
-		dragging = true;
-	});
-	
-	$('#joystickField').bind('touchmove', function(e){
-		e.preventDefault();
-        if (dragging) {
-        	
-        	var touch = e.originalEvent.touches[0];
-        	
-   			var joystickOffset = {'left':touch.pageX-($('#joystickNub').width()/2),'top':touch.pageY-($('#joystickNub').width()/2)};
-        	var distance = calcDistance(joystickOffset.left,joystickLeft,joystickOffset.top,joystickTop);
-        	
-        	var joystickRadius = $('#joystickWrapper').width()/2-$('#joystickNub').width()/2;
-
-        	if(distance>joystickRadius){
-        		var coordinates = calcCoordinates(joystickRadius, distance, joystickOffset.left-joystickLeft, joystickOffset.top-joystickTop);
-        		var offsetLeft = joystickLeft+(coordinates.opposite);
-	        	var offsetTop = joystickTop+(coordinates.adjacent);
-        		console.log(Math.round(distance)+' (Out of bounds)');
-        	} else { // Nub is within joystick
-    	    	var offsetLeft = touch.pageX-($('#joystickNub').width()/2);
-	        	var offsetTop = touch.pageY-($('#joystickNub').width()/2);
-        		console.log(Math.round(distance));
-        	}
-        	
-        	$('#joystickNub').offset({left: offsetLeft, top: offsetTop})
-        }
-	});
-	
-	$('#joystickField').bind('touchend', function(e){
-		e.preventDefault();
-		dragging = false;
-		$('#joystickNub').css({left: '0', top: '0'})
-		$('#joystickWrapper').css('visibility', 'hidden');
-	});
-	
 }
 
 
