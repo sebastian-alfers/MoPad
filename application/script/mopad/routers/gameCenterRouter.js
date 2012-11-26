@@ -20,7 +20,7 @@ define(["jquery","backbone", "models/WebSocketModel", "views/GameCenterView"], f
         home: function() {
 
             $webSocketModel = new WebSocketModel({vendorType: 'game'});
-            gameCenterView = new GameCenterView({ el:$('#tab_content'), webSocketModel: $webSocketModel});
+            gameCenterView = new GameCenterView({ el:$('#template_register_controller'), webSocketModel: $webSocketModel});
 
         }
     });

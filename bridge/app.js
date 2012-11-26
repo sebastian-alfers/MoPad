@@ -172,11 +172,15 @@ wsServer.on('request', function(request) {
                 Object.keys(connections).forEach(function(key) {
                     var gameConnection = connections[key];
 
-                    if(gameConnection.pins != undefined && gameConnection.pins.data.length > 0){
-                        console.log(gameConnection.pins.data.length);
-                        console.log(gameConnection.pins.data);
+                    console.log('++++++++++++++');
+                    console.log(gameConnection.pins);
 
-                        gameConnection.pins.data.forEach(function(player){
+
+                    if(gameConnection.pins != undefined && gameConnection.pins.length > 0){
+                        console.log(gameConnection.pins.length);
+                        console.log(gameConnection.pins);
+
+                        gameConnection.pins.forEach(function(player){
                             if(json.data.data.pin == player.pin){
                                 //jip jipp :)
                                 console.log('jipp jiopp');
