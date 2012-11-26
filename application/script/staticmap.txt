@@ -1,1 +1,0 @@
-The Google Maps API server rejected your request. The "sensor" parameter specified in the request must be set to either "true" or "false".
