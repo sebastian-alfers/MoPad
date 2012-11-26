@@ -1,0 +1,3 @@
+* { box-sizing: border-box; }
+
+#example { height: 400px; width: 400px; border: 1px solid black; }
