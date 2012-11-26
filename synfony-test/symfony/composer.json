@@ -18,7 +18,12 @@
         "sensio/generator-bundle": "2.1.*",
         "jms/security-extra-bundle": "1.2.*",
         "jms/di-extra-bundle": "1.1.*",
-        "kriswallsmith/assetic": "1.1.*@dev"
+        "kriswallsmith/assetic": "1.1.*@dev",
+		
+		"sonata-project/admin-bundle": "dev-master",
+		"sonata-project/doctrine-orm-admin-bundle": "dev-master",
+        "sonata-project/user-bundle": "dev-master",
+        "sonata-project/page-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
@@ -34,7 +39,8 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ]
     },
-    "extra": {
+	"minimum-stability": "dev",
+	"extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web"
     }
