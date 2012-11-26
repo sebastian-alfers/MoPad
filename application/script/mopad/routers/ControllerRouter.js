@@ -1,4 +1,4 @@
-define(["jquery","backbone", "models/WebSocketModel", "views/GameCenterView"], function($, Backbone, WebSocketModel, GameCenterView){
+define(["jquery","backbone", "models/WebSocketModel", "views/ControllerView"], function($, Backbone, WebSocketModel, ControllerView){
 
     var Router = Backbone.Router.extend({
 
@@ -19,8 +19,11 @@ define(["jquery","backbone", "models/WebSocketModel", "views/GameCenterView"], f
 
         home: function() {
 
-            $webSocketModel = new WebSocketModel({vendorType: 'game'});
-            gameCenterView = new GameCenterView({ el:$('#tab_content'), webSocketModel: $webSocketModel});
+            //$webSocketModel = new WebSocketModel();
+            //gameCenterView = new GameCenterView({ el:$('#tab_content'), webSocketModel: $webSocketModel});
+
+            $webSocketModel = new WebSocketModel({vendorType: 'controller'});
+            controllerView = new ControllerView({el: $('#content')});
 
         }
     });

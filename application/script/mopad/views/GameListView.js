@@ -6,9 +6,12 @@ define(['jquery', 'backbone', 'models/GameListModel'], function($, Backbone, Gam
         },
 
         initialize:function () {
+
+            console.log('game liist model');
+
             this.model = new GameListModel({ el:this.$el });
             this.render();
-            this.model.bind('afterLoadGameListCollection', this.drawGameMenu, this);
+            this.model.bind('afterLoadGameCollection', this.drawGameMenu, this);
         },
 
         events:{
@@ -16,6 +19,8 @@ define(['jquery', 'backbone', 'models/GameListModel'], function($, Backbone, Gam
         },
 
         drawGameMenu:function (games) {
+
+            console.log(games);
 
             var el = $(this.el);
             games.each(function (game) {
@@ -30,7 +35,7 @@ define(['jquery', 'backbone', 'models/GameListModel'], function($, Backbone, Gam
 
             event.preventDefault();
             var id = $(event.currentTarget).data("id");
-            this.model.set({currentGame:this.model.gameListCollection.get(id)});
+            this.model.set({currentGame:this.model.gameCollection.get(id)});
         },
 
         render:function () {

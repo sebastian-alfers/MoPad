@@ -1,4 +1,4 @@
-define(['jquery', 'backbone'], function($, Backbone){
+define(['jquery', 'backbone', 'views/PlayerChooserView'], function($, Backbone, PlayerChooserView){
 
     var PlayerListView = Backbone.View.extend({
         defaults:{
@@ -9,6 +9,9 @@ define(['jquery', 'backbone'], function($, Backbone){
             'change input':'changeNumberPlayer'
         },
         initialize:function () {
+
+            console.log('playyyer');
+
             this.options.games.model.on("change:currentGame", function (gameListModel) {
                 game = gameListModel.get('currentGame');
 

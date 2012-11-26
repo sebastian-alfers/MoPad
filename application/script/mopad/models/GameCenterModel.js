@@ -5,8 +5,7 @@ define(["jquery", "backbone"], function($, Backbone) {
             publicKey: null
         },
         initialize: function(){
-
-            /*
+             /*
              * set up the gamecenter
              * - generate the unique key for the game instance as an identifier for the bridge
              */
@@ -21,9 +20,6 @@ define(["jquery", "backbone"], function($, Backbone) {
                     $that.trigger('successOnGenerateUnidqueAppId', data);
             }).error(
                 function(data){
-
-                    console.log(data);
-
                     //throw error
                     $that.trigger('errorOnGenerateUnidqueAppId', data);
 

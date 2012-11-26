@@ -81,7 +81,10 @@ wsServer.on('request', function(request) {
             console.log('-------------');
            if (json.type == 'identify'){ // First message identifies the websocket type (game/controller) TODO First message has to be identify, otherwise reject connection
                 console.log('got a identify msg');
-            	if(json.data.type == 'game'){
+            	if(json.vendor == 'game'){
+
+                    //identify a controller
+
                     console.log('for game');
             		if(keyIsAllowed(json.data.publicKey)){
             			game = connection;
@@ -96,7 +99,10 @@ wsServer.on('request', function(request) {
 
                     return;
             	}
-            	else if(json.data.type == 'controller'){
+            	else if(json.vendor == 'controller'){
+
+                    //identify a controller
+
                     console.log('for controller');
             		controller = connection;
             		connection.verified = true;
@@ -137,7 +143,7 @@ wsServer.on('request', function(request) {
 
                 connection.pins = json.data;
 
-                json.data.data.forEach(function(player){
+                json.data.forEach(function(player){
                     console.log(player.pin);
                 });
             }

@@ -10,7 +10,9 @@ define(['jquery', 'backbone','models/GameCenterModel', 'views/GameListView', 'vi
 
         initialize:function () {
 
-            this.options.gameCenterModel.on('successOnGenerateUnidqueAppId', function(data){
+            gameCenterModel = new GameCenterModel({publicKey: 123456});
+
+            gameCenterModel.on('successOnGenerateUnidqueAppId', function(data){
 
 
                 this.games = new GameListView({ el:$('#list_games_li') });
@@ -25,10 +27,9 @@ define(['jquery', 'backbone','models/GameCenterModel', 'views/GameListView', 'vi
                 });
 
             });
-            this.options.gameCenterModel.on('errorOnGenerateUnidqueAppId', function(data){
-                //more error logic if needed
+            gameCenterModel.on('errorOnGenerateUnidqueAppId', function(data){
+                console.log('Event errorOnGenerateUnidqueAppId: ' + data);
             });
-
         }
     });
 

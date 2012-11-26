@@ -1,4 +1,4 @@
-define(["jquery", "backbone", 'collections/GameCollection'], function($, Backbone, GameCollection) {
+define(['jquery', 'backbone', 'collections/GameCollection', 'models/GameModel'], function($, Backbone, GameCollection, GameModel) {
 
     var GameListModel = Backbone.Model.extend({
         defaults:{
@@ -7,16 +7,22 @@ define(["jquery", "backbone", 'collections/GameCollection'], function($, Backbon
         },
         url:'/application/games-json.php',
         parse:function (data) {
-            gameCollection = new GameCollection();
+
+            console.log(data);
+
+            var gameCollection = new GameCollection();
 
             _.each(data.games, function (game) {
-                gameCollection.add(new Game(game));
+                gameCollection.add(new GameModel(game));
             });
+
+            console.log(gameCollection);
 
             this.gameCollection = gameCollection;
             this.trigger('afterLoadGameCollection', this.gameCollection);
         },
         initialize:function () {
+            console.log('iiiinit');
             this.fetch({
                 success:function (games) {
                     //console.log(games);

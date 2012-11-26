@@ -10,29 +10,8 @@ define(["jquery", "backbone"], function($, Backbone) {
             host: 'ws://localhost:8081/', //can be overloaded while construct this model
             socket: null,
             model: null, // the game or the controller
-            socketMsgTypeIdentify: 'identify'
-        },
-
-        initialize:function () {
-
-            if (!("WebSocket" in window)) {
-                this.trigger('errorWebSocketAvailable', data);
-            }
-            else{
-                //jea, we support web sockets
-                //this.trigger('successWebSocketAvailable', data);
-                $that = this;
-                $socket = new WebSocket(this.defaults.host);
-                $socket.onopen = function () {
-                console.log('Websocket: Status ' + $socket.readyState + ' (open)');
-
-                    //put this to an custom function
-                    $that.send({type:$that.defaults.socketMsgTypeIdentify, data: {publicKey:'123456'}});
-                }
-                this.defaults.socket = $socket;
-                //loadSocket( {type: 'game', gameInstanceId: data.uniqueAppIdForBridge} );
-            }
-
+            socketMsgTypeIdentify: 'identify',
+            vendorType: null //identify as a game or controller
         },
 
         send: function(data){
@@ -48,11 +27,35 @@ define(["jquery", "backbone"], function($, Backbone) {
             }
 
             try {
-                this.defaults.socket.send(JSON.stringify({'type':buttonId.type, 'data': buttonId}));
-                console.log('Websocket: Sent ' + data)
+                this.defaults.socket.send(JSON.stringify(data));
+                console.log('Websocket: Sent ')
+                console.log(data);
             } catch (exception) {
-                console.log('Websocket: Error '+data);
+                console.log('Websocket: Error '+ exception);
             }
+        },
+
+        initialize:function () {
+
+            if (!("WebSocket" in window)) {
+                this.trigger('errorWebSocketAvailable', data);
+            }
+            else{
+
+                //jea, we support web sockets
+                //this.trigger('successWebSocketAvailable', data);
+                $webSocketModel = this;
+                $socket = new WebSocket(this.defaults.host);
+
+                $socket.onopen = function() {
+                    console.log('Websocket: Status ' + $socket.readyState + ' (open)');
+
+                    $webSocketModel.send({type:$webSocketModel.defaults.socketMsgTypeIdentify, vendor: $webSocketModel.attributes.vendorType, data: {publicKey:'123456'}});
+                }
+                this.defaults.socket = $socket;
+                //loadSocket( {type: 'game', gameInstanceId: data.uniqueAppIdForBridge} );
+            }
+
         }
     });
 
