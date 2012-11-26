@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
-	//$('#controller').html('<ul><li>- <a href="javascript:void(0)">Joystick</a></li><li>- <a href="javascript:void(0)">Joypad</a></li><li>- <a href="javascript:void(0)">Accelerometer</a></li></ul>');
-	Joystick();
+	$('#controller').html('<ul><li>- <a href="javascript:void(0)">Joystick</a></li><li>- <a href="javascript:void(0)">Joypad</a></li><li>- <a href="javascript:void(0)">Accelerometer</a></li></ul>');
 	
 	$('a').click(function(e){
 	
