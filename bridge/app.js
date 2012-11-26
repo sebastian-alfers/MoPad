@@ -155,10 +155,10 @@ wsServer.on('request', function(request) {
 
                 console.log('send to cached game instance');
 
-                connections[json.data.data.connectionId].sendUTF(JSON.stringify({
+                connections[json.data.connectionId].sendUTF(JSON.stringify({
                                                     msg: "testButtonClick",
                                                     action: 'move the box',
-                                                    pin: json.data.data.pin
+                                                    pin: json.data.pin
                                                 }));
 
                 //connections[json.type.]
@@ -181,7 +181,10 @@ wsServer.on('request', function(request) {
                         console.log(gameConnection.pins);
 
                         gameConnection.pins.forEach(function(player){
-                            if(json.data.data.pin == player.pin){
+
+                            console.log(json);
+
+                            if(json.data.pin == player.pin){
                                 //jip jipp :)
                                 console.log('jipp jiopp');
 
@@ -195,7 +198,7 @@ wsServer.on('request', function(request) {
                                 //tell the game instance that this pin has been activated by a conroller
                                 connections[gameConnection.id].sendUTF(JSON.stringify({
                                     msg: "activateController",
-                                    pin: json.data.data.pin,
+                                    pin: json.data.pin,
                                     userName: player.userName
                                 }));
 

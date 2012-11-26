@@ -25,6 +25,7 @@ define(["jquery","backbone", "models/WebSocketModel", "views/ControllerView"], f
             $webSocketModel = new WebSocketModel({vendorType: 'controller'});
             controllerView = new ControllerView({el: $('#content')});
 
+
         }
     });
 
