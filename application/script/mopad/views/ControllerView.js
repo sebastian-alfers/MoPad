@@ -2,10 +2,6 @@ define(['jquery', 'backbone', 'models/GameListModel'], function($, Backbone, Gam
 
     var ControllerView = Backbone.View.extend({
 
-        defaults:{
-            gameConnectionId: null
-        },
-
         events:{
             'click #button': 'registerController',
             'click #free_button': 'freeButton'
@@ -21,13 +17,26 @@ define(['jquery', 'backbone', 'models/GameListModel'], function($, Backbone, Gam
 
             $('#button').attr("value", "send command to game");
 
-            console.log(this.defaults.gameConnectionId);
-            if(this.defaults.gameConnectionId != null){
-                $webSocketModel.send({type: 'sendCommandToGame', data: { connectionId: this.defaults.gameConnectionId, pin: $('#pin').val()}});
+            console.log('####');
+            console.log(this);
+            console.log('####');
+
+
+
+            if(this.options.gameConnectionId != null){
+                $webSocketModel.send({type: 'sendCommandToGame', data: { connectionId: this.options.gameConnectionId, pin: $('#pin').val()}});
             }
             else{
                 $webSocketModel.send({type: 'getConnectionForPin', data: { pin: $('#pin').val()}});
             }
+
+            $webSocketModel.on('cacheConnectionIdOnController', function(json){
+
+                alert('cache pin ' + json.pin);
+
+                this.options.gameConnectionId = json.pin;
+                $('#username').html(json.userName);
+            }, this);
         },
 
         freeButton: function(){

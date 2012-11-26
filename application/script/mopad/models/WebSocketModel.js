@@ -52,6 +52,17 @@ define(["jquery", "backbone"], function($, Backbone) {
 
                     $webSocketModel.send({type:$webSocketModel.defaults.socketMsgTypeIdentify, vendor: $webSocketModel.attributes.vendorType, data: {publicKey:'123456'}});
                 }
+                $socket.onmessage = function (msg) {
+
+                    var json = JSON.parse(msg.data);
+
+                    console.log(json);
+
+                    //just pass the message type (from node) as an event to be subscribed to
+                    $webSocketModel.trigger(json.msg, json);
+
+   				}
+
                 this.defaults.socket = $socket;
                 //loadSocket( {type: 'game', gameInstanceId: data.uniqueAppIdForBridge} );
             }
