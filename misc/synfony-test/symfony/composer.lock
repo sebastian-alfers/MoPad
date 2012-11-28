@@ -1,5 +1,5 @@
 {
-    "hash": "7280ae715198524aa862cc680515c58a",
+    "hash": "ab2667ddd0cefd6c00a8eac6ef86dfdb",
     "packages": [
         {
             "name": "doctrine/common",
@@ -208,12 +208,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/doctrine/doctrine2.git",
-                "reference": "a3fea32e0e655a1c3e6bd56d3d2147d2c7d27cbd"
+                "reference": "287b29aeaada588923a47e677d6974b023f88fd4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/doctrine/doctrine2/archive/a3fea32e0e655a1c3e6bd56d3d2147d2c7d27cbd.zip",
-                "reference": "a3fea32e0e655a1c3e6bd56d3d2147d2c7d27cbd",
+                "url": "https://github.com/doctrine/doctrine2/archive/287b29aeaada588923a47e677d6974b023f88fd4.zip",
+                "reference": "287b29aeaada588923a47e677d6974b023f88fd4",
                 "shasum": ""
             },
             "require": {
@@ -225,7 +225,7 @@
             "suggest": {
                 "symfony/yaml": "If you want to use YAML Metadata Mapping Driver"
             },
-            "time": "2012-11-25 19:16:21",
+            "time": "2012-11-27 21:26:17",
             "bin": [
                 "bin/doctrine",
                 "bin/doctrine.php"
@@ -279,12 +279,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle",
-                "reference": "1dd6822175c17c8e2b1e900422833335a9d88587"
+                "reference": "b43b9ffd9c62bbe82ad9113e8b14edf7e8ce1ab1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/FriendsOfSymfony/FOSUserBundle/archive/1dd6822175c17c8e2b1e900422833335a9d88587.zip",
-                "reference": "1dd6822175c17c8e2b1e900422833335a9d88587",
+                "url": "https://github.com/FriendsOfSymfony/FOSUserBundle/archive/b43b9ffd9c62bbe82ad9113e8b14edf7e8ce1ab1.zip",
+                "reference": "b43b9ffd9c62bbe82ad9113e8b14edf7e8ce1ab1",
                 "shasum": ""
             },
             "require": {
@@ -305,7 +305,7 @@
                 "doctrine/doctrine-bundle": "*",
                 "doctrine/mongodb-odm-bundle": "*"
             },
-            "time": "2012-11-23 22:45:00",
+            "time": "2012-11-27 16:33:17",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
@@ -763,12 +763,12 @@
             "source": {
                 "type": "git",
                 "url": "http://github.com/kriswallsmith/assetic.git",
-                "reference": "d6203098559cf9fc90e2890c10533d0adad33bd0"
+                "reference": "deed96bb7ba009d8e05aaeeb1b73c1d67a8f3719"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/kriswallsmith/assetic/archive/d6203098559cf9fc90e2890c10533d0adad33bd0.zip",
-                "reference": "d6203098559cf9fc90e2890c10533d0adad33bd0",
+                "url": "https://github.com/kriswallsmith/assetic/archive/deed96bb7ba009d8e05aaeeb1b73c1d67a8f3719.zip",
+                "reference": "deed96bb7ba009d8e05aaeeb1b73c1d67a8f3719",
                 "shasum": ""
             },
             "require": {
@@ -789,7 +789,7 @@
                 "ptachoire/cssembed": "Assetic provides the integration with phpcssembed to embed data uris",
                 "leafo/scssphp-compass": "Assetic provides the integration with the SCSS compass plugin"
             },
-            "time": "2012-11-07 10:47:32",
+            "time": "2012-11-27 13:27:38",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1027,12 +1027,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "1f2459c1e8ca2a683cabc958775b428dfd917559"
+                "reference": "8f742e9c412aac261928954e9719552086ca7caf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sonata-project/SonataAdminBundle/archive/1f2459c1e8ca2a683cabc958775b428dfd917559.zip",
-                "reference": "1f2459c1e8ca2a683cabc958775b428dfd917559",
+                "url": "https://github.com/sonata-project/SonataAdminBundle/archive/8f742e9c412aac261928954e9719552086ca7caf.zip",
+                "reference": "8f742e9c412aac261928954e9719552086ca7caf",
                 "shasum": ""
             },
             "require": {
@@ -1057,7 +1057,7 @@
                 "sonata-project/doctrine-orm-admin-bundle": "dev-master",
                 "sonata-project/intl-bundle": "dev-master"
             },
-            "time": "2012-11-25 20:30:05",
+            "time": "2012-11-26 16:53:10",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -1311,12 +1311,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/sonata-project/SonataEasyExtendsBundle.git",
-                "reference": "290b64d6a3693e36737a32b585d4f40973f12e82"
+                "reference": "779a64aa342f2d9b599ea03511064a2913195181"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sonata-project/SonataEasyExtendsBundle/archive/290b64d6a3693e36737a32b585d4f40973f12e82.zip",
-                "reference": "290b64d6a3693e36737a32b585d4f40973f12e82",
+                "url": "https://github.com/sonata-project/SonataEasyExtendsBundle/archive/779a64aa342f2d9b599ea03511064a2913195181.zip",
+                "reference": "779a64aa342f2d9b599ea03511064a2913195181",
                 "shasum": ""
             },
             "require": {
@@ -1325,7 +1325,7 @@
                 "symfony/console": "2.*",
                 "symfony/finder": "2.*"
             },
-            "time": "2012-08-30 23:11:44",
+            "time": "2012-11-26 23:12:18",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -1564,12 +1564,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataPageBundle",
-                "reference": "9fd26aa2fa935029bba43aa478aad74b398d72be"
+                "reference": "6567c9100d8063d330f557a7d5317e84773213c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sonata-project/SonataPageBundle/archive/9fd26aa2fa935029bba43aa478aad74b398d72be.zip",
-                "reference": "9fd26aa2fa935029bba43aa478aad74b398d72be",
+                "url": "https://github.com/sonata-project/SonataPageBundle/archive/6567c9100d8063d330f557a7d5317e84773213c6.zip",
+                "reference": "6567c9100d8063d330f557a7d5317e84773213c6",
                 "shasum": ""
             },
             "require": {
@@ -1583,7 +1583,7 @@
             "suggest": {
                 "sonata-project/doctrine-orm-admin-bundle": "dev-master"
             },
-            "time": "2012-11-25 18:53:35",
+            "time": "2012-11-27 18:34:22",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -1776,12 +1776,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony-cmf/Routing",
-                "reference": "5a0e9a5a6d84f0aaed9651e0af75925b1a1427a4"
+                "reference": "82d408ad47b7219cebf3736cc8a1016701da5960"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony-cmf/Routing/archive/5a0e9a5a6d84f0aaed9651e0af75925b1a1427a4.zip",
-                "reference": "5a0e9a5a6d84f0aaed9651e0af75925b1a1427a4",
+                "url": "https://github.com/symfony-cmf/Routing/archive/82d408ad47b7219cebf3736cc8a1016701da5960.zip",
+                "reference": "82d408ad47b7219cebf3736cc8a1016701da5960",
                 "shasum": ""
             },
             "require": {
@@ -1789,7 +1789,7 @@
                 "symfony/routing": ">=2.1,<2.3-dev",
                 "symfony/http-kernel": ">=2.1,<2.3-dev"
             },
-            "time": "2012-11-18 10:27:50",
+            "time": "2012-11-27 12:26:05",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1825,12 +1825,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/symfony-cmf/RoutingExtraBundle.git",
-                "reference": "bf6f0fd8e9d63d7bc0a713a12a776375228bc9e7"
+                "reference": "2ad3adc483120d72ea8439022f33f417e0fbd89f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony-cmf/RoutingExtraBundle/archive/bf6f0fd8e9d63d7bc0a713a12a776375228bc9e7.zip",
-                "reference": "bf6f0fd8e9d63d7bc0a713a12a776375228bc9e7",
+                "url": "https://github.com/symfony-cmf/RoutingExtraBundle/archive/2ad3adc483120d72ea8439022f33f417e0fbd89f.zip",
+                "reference": "2ad3adc483120d72ea8439022f33f417e0fbd89f",
                 "shasum": ""
             },
             "require": {
@@ -1855,7 +1855,7 @@
                 "symfony-cmf/content-bundle": "To optionally use the configured value for 'content_basepath' from the CoreBundle",
                 "sonata-project/doctrine-phpcr-admin-bundle": "To provide an admin interface for the PHPCR ODM documents"
             },
-            "time": "2012-11-23 14:50:15",
+            "time": "2012-11-26 13:55:23",
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
