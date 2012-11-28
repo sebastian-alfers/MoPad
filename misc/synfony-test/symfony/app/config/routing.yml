@@ -3,7 +3,12 @@
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #    prefix:   /_internal
 
-#_sonata_admin:
-#    resource: .
-#    type: sonata_admin
-#    prefix: /admin
+# AdminBundle http://mopad-symfony.de/web/app_dev.php/admin/dashboard
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin

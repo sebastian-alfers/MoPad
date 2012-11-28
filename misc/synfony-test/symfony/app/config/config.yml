@@ -64,11 +64,3 @@ sonata_block:
     blocks:
         sonata.admin.block.admin_list:
             contexts:   [admin]
-
-        sonata.block.service.text:
-        sonata.block.service.action:
-        sonata.block.service.rss:
-
-#sonata_admin:
-#    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
-#    prefix: /admin
