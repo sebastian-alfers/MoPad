@@ -1,3 +1,11 @@
+# Nina: a simple test bundle
+_test:
+    resource: "@NinaTestBundle/Controller/TestController.php"
+    type:     annotation
+    prefix:   /test
+
+
+# default settings
 _welcome:
     pattern:  /
     defaults: { _controller: AcmeDemoBundle:Welcome:index }
