@@ -3,12 +3,5 @@
 {% block title "Hello " ~ name %}
 
 {% block content %}
-    {# Kommentar #}
-    <h1>{#{ page_title }#}</h1>
-    
-	{#<ul id="navigation">
-        {% for item in navigation %}
-            <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
-        {% endfor %}
-    </ul>#}
+	<h1>Hello {{ name }}!</h1>
 {% endblock %}

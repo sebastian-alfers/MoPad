@@ -8,6 +8,11 @@ _test2:
     resource: "@NinaTestBundle/Controller/Test2Controller.php"
     type:     annotation
     prefix:   /test2
+    
+_test_secured:
+    resource: "@NinaTestBundle/Controller/TestSecuredController.php"
+    type:     annotation
+
 
 # default settings
 _welcome:
