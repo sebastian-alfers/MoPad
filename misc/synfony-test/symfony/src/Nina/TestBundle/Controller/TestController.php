@@ -38,4 +38,13 @@ class TestController extends Controller
 	{
 		$this->render('NinaTestBundle:Test:testpage.html.twig', array('name' => $name));
 	}
+	
+	
+	public function fancyAction($name, $color)
+    {
+        // create some object, based on the $color variable
+        $object = $color;
+
+        return $this->render('NinaTestBundle:Test:fancy.html.twig', array('name' => $name, 'object' => $object));
+    }
 }

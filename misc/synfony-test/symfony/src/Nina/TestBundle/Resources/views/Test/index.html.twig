@@ -5,9 +5,12 @@
 {% block content_header '' %}
 
 {% block content %}
-    <h1>Available demos</h1>
+    <h1>Available test pages</h1>
     <ul id="demo-list">
         <li><a href="{{ path('_test_blub', {'name': 'Blub'}) }}">blub</a></li>
         <li><a href="{{ path('_test_testpage', {'name': 'World'}) }}">testpage</a></li>
+        <li><a href="{{ url('_test_testpage', {'name': 'World'}) }}">testpage</a></li>
     </ul>
+	
+	{% render "NinaTestBundle:Test:fancy" with {'name': 'fancy', 'color': 'green'} %}
 {% endblock %}
