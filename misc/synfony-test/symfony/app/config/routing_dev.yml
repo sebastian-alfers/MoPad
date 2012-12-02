@@ -3,7 +3,7 @@ _test:
     resource: "@NinaTestBundle/Controller/TestController.php"
     type:     annotation
     prefix:   /test
-
+ 
 
 # default settings
 _welcome:

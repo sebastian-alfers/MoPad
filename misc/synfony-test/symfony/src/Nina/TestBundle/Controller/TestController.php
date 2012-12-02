@@ -12,6 +12,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class TestController extends Controller
 {
+	/**
+     * @Route("/", name="_test")
+     * @Template()
+     */
+    public function indexAction()
+    {
+        return array();
+    }
+	
     /**
      * @Route("/blub/{name}", name="_test_blub")
      * @Template()
@@ -20,5 +29,13 @@ class TestController extends Controller
     {
         return array('name' => $name);
     }
-
+	
+	/**
+	 * @Route("/testpage/{name}", name="_test_testpage")
+	 * @Template()
+	 */
+	public function testpageAction($name)
+	{
+		$this->render('NinaTestBundle:Test:testpage.html.twig', array('name' => $name));
+	}
 }
