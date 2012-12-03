@@ -1,0 +1,103 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+
+
+  <title>Mobile Game Pad - GameCenter</title>
+  <meta name="description" content="">
+
+  <!-- Mobile viewport optimized: h5bp.com/viewport -->
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+  
+  <!-- Include your site specific stylesheets -->
+  <link rel="stylesheet" href="/application/bootstrap/css/bootstrap.css">
+
+
+</head>
+<body>
+    <header class="navbar nav navbar-inner">
+        <h1>GameCenter</h1>
+    </header>
+    <div class="description">
+    <h3>Ready to play?</h3>
+    </div>
+    <section id="main"class="container">
+
+        <div class="row-fluid show-grid">
+             <div class="span4">
+                 <h2>Games</h2>
+                 <div>
+                       <ul class="nav nav-tabs nav-stacked" id="list_games_li"></ul>
+                 </div>
+             </div>
+             <div class="span4">
+
+                 <h2 id="player_headline">Player</h2>
+                 <div id="player_slider"></div>
+                 <div id="player_chooser">
+                     <ul class="nav nav-tabs nav-stacked" id="list_player_li"></ul>
+                 </div>
+
+             </div>
+             <div class="span4">
+
+                 <h2>Pins</h2>
+                    <button type="submit" class="btn" id="cancel_pending_player" style="display: none; margin: 25px">cancel pending game</button>
+                 <div>
+                     <ul id="pins" style="list-style-type: none;">
+                     </ul>
+                 </div>
+
+             </div>
+        </div>
+
+
+        <script type="text/template" id="template_list_games_li">
+            <li><a href="#" data-id="<%= id %>" class="game_link"><%= name %></a></li>
+        </script>
+
+        <script type="text/template" id="template_player_slider">
+            <input id="defaultSlider" type="range" min="1" max="10" />
+        </script>
+
+        <script type="text/template" id="template_input_username">
+            <li>
+                <label>Player <%= i %>:</label>
+                <input type="text" class="span2 username" style="width: 200px;">
+            </li>
+        </script>
+
+        <script type="text/template" id="template_submit_username">
+            <li>
+                <div class="btn-group">
+                  <button class="btn" id="start_game">Start game for <%= sum %> Player</button>
+                </div>
+            </li>
+        </script>
+
+        <script type="text/template" id="template_error">
+            <div class="alert alert-error">
+              <ul id="error_messages"></ul>
+            </div>
+        </script>
+
+        <script type="text/template" id="template_pending_player">
+            <li id="pending_bar_<%= pin %>">
+                <div class="btn-group">
+                    <div class="progress progress-striped active" style="width: 200px;">
+                      <div class="bar" style="width: 100%;">Waiting for pin <%= pin %> for <%= userName %></div>
+                    </div>
+                </div>
+            </li>
+        </script>
+
+    </section>
+    <hr />
+    <ul id="userLog"></ul>
+    <footer class="footer navbar navbar-fixed-bottom">
+    </footer>
+
+	<script data-main="script/gameCenter" src="script/libs/require.js"></script>
+
+</body>
+</html>
