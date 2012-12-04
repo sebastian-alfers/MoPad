@@ -5,7 +5,7 @@ define(['jquery', 'backbone', 'collections/GameCollection', 'models/GameModel'],
             gameCollection:null,
             currentGame:null
         },
-        url:'/application/games-json.php',
+        url:'games-json.php',
         parse:function (data) {
 
             console.log(data);

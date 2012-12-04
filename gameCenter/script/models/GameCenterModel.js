@@ -13,7 +13,7 @@ define(["jquery", "backbone"], function($, Backbone) {
             //save the scope to make it available in the AJAX-callback to throw events
             $that = this;
 
-            $.get('/application/generateUniqueAppId.php', {publicKey: this.get('publicKey')},
+            $.get('generateUniqueAppId.php', {publicKey: this.get('publicKey')},
                 function(data) {
 
                     //throw success

@@ -1,7 +1,7 @@
 define(["jquery", "backbone"], function($, Backbone) {
 
     PlayerModel = Backbone.Model.extend({
-        urlRoot: '/application/getPinForUser.php',
+        urlRoot: 'getPinForUser.php',
         idAttribute: 'userName',
         defaults:{
             userName: null,

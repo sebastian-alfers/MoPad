@@ -19,12 +19,8 @@ define(["jquery","backbone", "models/WebSocketModel", "views/ControllerView"], f
 
         home: function() {
 
-            //$webSocketModel = new WebSocketModel();
-            //gameCenterView = new GameCenterView({ el:$('#tab_content'), webSocketModel: $webSocketModel});
-
-            $webSocketModel = new WebSocketModel({vendorType: 'controller'});
+            $webSocketModel = new WebSocketModel();
             controllerView = new ControllerView({el: $('#content')});
-
 
         }
     });

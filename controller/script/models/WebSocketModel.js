@@ -11,7 +11,7 @@ define(["jquery", "backbone"], function($, Backbone) {
             socket: null,
             model: null, // the game or the controller
             socketMsgTypeIdentify: 'identify',
-            vendorType: null //identify as a game or controller
+            vendorType: 'controller' // identify as a game or controller
         },
 
         send: function(data){
