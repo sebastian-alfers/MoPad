@@ -5,12 +5,12 @@ require.config({
   paths: {
 
       // Core Libraries
-      "modernizr": "../libs/modernizr",
-      "jquery": "../libs/jquery-1.8.2.min",
-      "bootstrap": "../../bootstrap/js/bootstrap",
-      "underscore": "../libs/lodash",
-      "backbone": "../libs/backbone-min",
-      "backbone.validateAll": "../libs/Backbone.validateAll"
+      "modernizr": "libs/modernizr",
+      "jquery": "libs/jquery-1.8.2.min",
+      "bootstrap": "../bootstrap/js/bootstrap",
+      "underscore": "libs/lodash",
+      "backbone": "libs/backbone-min",
+      "backbone.validateAll": "libs/Backbone.validateAll"
 
   },
 

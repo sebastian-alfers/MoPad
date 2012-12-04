@@ -1,4 +1,4 @@
-define(['jquery', 'backbone', 'models/GameListModel'], function($, Backbone, GameListModel){
+define(['jquery', 'backbone'], function($, Backbone){
 
     var ControllerView = Backbone.View.extend({
 

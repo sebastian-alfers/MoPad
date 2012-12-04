@@ -2,7 +2,7 @@ define(['jquery', 'backbone'], function($, Backbone){
 
     var PendingPlayerView = Backbone.View.extend({
         defaults:{
-            playerCollection:null
+            playerCollection: null
         },
         initialize: function(){
             this.render();
