@@ -77,16 +77,13 @@ wsServer.on('request', function(request) {
         	}
         	
             // process WebSocket message
-            console.log(json);
-            console.log('-------------');
            if (json.type == 'identify'){ // First message identifies the websocket type (game/controller) TODO First message has to be identify, otherwise reject connection
-                console.log('got a identify msg');
             	if(json.vendor == 'game'){
 
                     //identify a controller
 
-                    console.log('for game');
-            		if(keyIsAllowed(json.data.publicKey)){
+					console.log('Got a game identify msg');
+	           		if(keyIsAllowed(json.data.publicKey)){
             			game = connection;
 	           			connection.verified = true;
             			console.log('Game registered ('+request.socket._peername.address+')');
@@ -103,25 +100,23 @@ wsServer.on('request', function(request) {
 
                     //identify a controller
 
-                    console.log('for controller');
+                    console.log('Got a controller identify msg');
             		controller = connection;
             		connection.verified = true;
             		console.log(time() + 'Controller registered  ('+request.socket._peername.address+')');
 
 
-                    console.log('now ' + connections.length + ' conns');
+                    console.log('Now ' + connections.length + ' connections');
                     return;
             	}
             }
 
             //check if conection is ok
             if(connection.verified != true){
-                console.log('not allowed. please "identify" before');
+                console.log('Not allowed. please "identify" before');
                 return;
             }
 
-            console.log('gag');
-            console.log(json.type);
 
             if(json.type == 'getControllersForGame'){
                 console.log(connection.id);
@@ -220,10 +215,10 @@ wsServer.on('request', function(request) {
 
                 //if we come here, this means the pin is not correct
                 if(successPinMatch == true){
-                    console.log('correct pin');
+                    console.log('Correct pin');
                 }
                 else{
-                    console.log('wrong pin');
+                    console.log('Wrong pin');
                 }
 
 
