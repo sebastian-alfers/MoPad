@@ -19,6 +19,8 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+
+            new \FOS\UserBundle\FOSUserBundle(),
             
             new Sonata\BlockBundle\SonataBlockBundle(),
 	        new Sonata\CacheBundle\SonataCacheBundle(),
@@ -30,7 +32,7 @@ class AppKernel extends Kernel
 			new MoPad\AdminBundle\MoPadAdminBundle(),
 			
 	        new Nina\TestBundle\NinaTestBundle(),
-            new Acme\StoreBundle\AcmeStoreBundle(),
+            //new Acme\StoreBundle\AcmeStoreBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -1,3 +1,4 @@
 # Can ignore specific files
 .DS_Store
 .project
+misc/synfony-test/symfony/app/config/parameters.yml

@@ -66,22 +66,8 @@ sonata_block:
             contexts:   [admin]
 
 sonata_admin:
-    security:
-        handler: sonata.admin.security.handler.role
-
     title:      Sonata Project
     title_logo: /bundles/sonataadmin/logo_title.png
-    templates:
-        # default global templates
-        layout:    SonataAdminBundle::standard_layout.html.twig
-        ajax:      SonataAdminBundle::ajax_layout.html.twig
-        dashboard: SonataAdminBundle:Core:dashboard.html.twig
-
-        # default actions templates, should extend a global templates
-        list:    SonataAdminBundle:CRUD:list.html.twig
-        show:    SonataAdminBundle:CRUD:show.html.twig
-        edit:    SonataAdminBundle:CRUD:edit.html.twig
-
     dashboard:
         blocks:
             # display a dashboard block
@@ -136,3 +122,12 @@ sonata_doctrine_orm_admin:
                 bigint:     SonataAdminBundle:CRUD:base_show_field.html.twig
                 integer:    SonataAdminBundle:CRUD:base_show_field.html.twig
                 decimal:    SonataAdminBundle:CRUD:base_show_field.html.twig
+
+fos_user:
+    db_driver: orm
+    firewall_name: admin
+    user_class:     MoPad\AdminBundle\Entity\User
+    group:
+        group_class: MoPad\AdminBundle\Entity\Group
+
+

@@ -42,6 +42,13 @@ class GameAdmin extends Admin
         $formMapper
             ->add('name')
             ->add('activated', null, array('required' => true))
+            ->add('description')
+            ->add('apiKey')
+            ->add('vendor')
+            ->add('minPlayer')
+            ->add('maxPlayer')
+            ->add('acceptedGamePads')
+
         ;
     }
 
