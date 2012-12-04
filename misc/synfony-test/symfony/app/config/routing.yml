@@ -1,6 +1,10 @@
+mopad_admin:
+    resource: "@MoPadAdminBundle/Resources/config/routing.yml"
+    prefix:   /mopad
+
 acme_store:
     resource: "@AcmeStoreBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /store
 
 # Internal routing configuration to handle ESI
 #_internal:

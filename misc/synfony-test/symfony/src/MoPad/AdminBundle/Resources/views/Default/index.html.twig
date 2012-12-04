@@ -1,0 +1,11 @@
+{% extends "MoPadAdminBundle::mopadlayout.html.twig" %}
+
+{% block title "MoPad - Admin" %}
+
+{% block content %}
+	<h1>MoPad</h1>
+	Hello {{ name }}!<br />
+	<br />
+	<a href="{{ path('_mopad_admin_create', {})}}">create game</a> <br />
+	<a href="{{ path('_mopad_admin_show', {'id': '1'})}}">show game id:1</a> <br />
+{% endblock %}

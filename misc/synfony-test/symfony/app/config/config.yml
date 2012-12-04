@@ -1,7 +1,6 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    #- { resource: services.xml }
 
 framework:
     #esi:             ~
@@ -66,7 +65,6 @@ sonata_block:
         sonata.admin.block.admin_list:
             contexts:   [admin]
 
-
 sonata_admin:
     security:
         handler: sonata.admin.security.handler.role
@@ -75,8 +73,8 @@ sonata_admin:
     title_logo: /bundles/sonataadmin/logo_title.png
     templates:
         # default global templates
-        layout:  SonataAdminBundle::standard_layout.html.twig
-        ajax:    SonataAdminBundle::ajax_layout.html.twig
+        layout:    SonataAdminBundle::standard_layout.html.twig
+        ajax:      SonataAdminBundle::ajax_layout.html.twig
         dashboard: SonataAdminBundle:Core:dashboard.html.twig
 
         # default actions templates, should extend a global templates
@@ -92,6 +90,9 @@ sonata_admin:
             # Customize this part to add new block configuration
             #- { position: right, type: sonata.block.service.text, settings: { content: "<h2>Welcome to the Sonata Admin</h2> <p>This is a <code>sonata.block.service.text</code> from the Block Bundle, you can create and add new block in these area by configuring the <code>sonata_admin</code> section.</p> <br /> For instance, here a RSS feed parser (<code>sonata.block.service.rss</code>):"} }
             #- { position: right, type: sonata.block.service.rss, settings: { title: Sonata Project's Feeds, url: http://sonata-project.org/blog/archive.rss }}
+        
+        groups:
+            sonata_page: ~
 
     # set to true to persist filter settings per admin module in the user's session
     persist_filters: true
