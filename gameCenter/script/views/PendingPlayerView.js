@@ -17,13 +17,22 @@ define(['jquery', 'backbone'], function($, Backbone){
             var i = 0;
             this.options.playerCollection.each(function(player){
 
-                //generate associative array like [player0] =123, [player1] =456
-                pins.push(player.toJSON());
+                if(player.get('pin') == undefined || player.get('pin') == ''){
+                    alert('error. player ' + player.get('userName') + ' has no pin');
+                }
+                else{
 
-                i++;
+                    //generate associative array like [player0] =123, [player1] =456
+                    pins.push(player.toJSON());
 
-                var template = _.template( $('#template_pending_player').html(), player.toJSON());
-                this.$el.append(template);
+                    i++;
+
+                    var template = _.template( $('#template_pending_player').html(), player.toJSON());
+                    this.$el.append(template);
+
+                }
+
+
             }, this);
 
 

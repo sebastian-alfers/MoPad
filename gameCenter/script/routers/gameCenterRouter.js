@@ -31,6 +31,8 @@ define(["jquery","backbone", "models/WebSocketModel", "views/GameCenterView"], f
                 $('#userLog').append('<li>'+json.pin+' did a click</li>');
             });
 
+
+
         }
     });
 

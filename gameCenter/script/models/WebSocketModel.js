@@ -11,6 +11,7 @@ define(["jquery", "backbone"], function($, Backbone) {
             socket: null,
             model: null, // the game or the controller
             socketMsgTypeIdentify: 'identify',
+            socketMsgTypePinForUser: 'getPinForUser',
             vendorType: null //identify as a game or controller
         },
 
@@ -67,6 +68,10 @@ define(["jquery", "backbone"], function($, Backbone) {
                 //loadSocket( {type: 'game', gameInstanceId: data.uniqueAppIdForBridge} );
             }
 
+        },
+
+        getPinForPlayer: function(player){
+            $webSocketModel.send({type:this.defaults.socketMsgTypePinForUser, vendor: $webSocketModel.attributes.vendorType, data : {username: player.get('userName')}});
         }
     });
 

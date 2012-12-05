@@ -142,6 +142,23 @@ wsServer.on('request', function(request) {
                     console.log(player.pin);
                 });
             }
+
+            else if(json.type == 'getPinForUser'){
+                console.log('---- generate new pin');
+                console.log(json);
+
+                connection.sendUTF(JSON.stringify({
+                                                    msg: "getPinForUser",
+                                                    action: 'new pin',
+                                                    data: {
+                                                        pin: Math.floor(Math.random()*1001),
+                                                        username: json.data.username}
+                                                    }
+                                                ));
+
+
+            }
+
             else if(json.type == 'buttonClick'){
 	            game.sendUTF(JSON.stringify(json)); //Redirect TODO check if game exists
 	            console.log(time() + 'Sent to game: '+JSON.stringify(json));

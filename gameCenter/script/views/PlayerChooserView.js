@@ -9,6 +9,40 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
         events:{
             'click button':'startGame'
         },
+        initialize:function(){
+            $that = this;
+
+            fetched = 0;
+
+            // listen for new pins
+            $webSocketModel.on($webSocketModel.defaults.socketMsgTypePinForUser, function(json){
+
+                console.log('???????????????????????????????????????????');
+
+                //update the player with the id
+                $that.defaults.playerCollection.forEach(function(player){
+
+                    console.log(player);
+                    console.log($that.defaults.playerCollection);
+
+                    if(player.get('userName') == json.data.username){
+                        fetched++;
+                        player.set('pin', json.data.pin);
+                    }
+                });
+
+                console.log(fetched);
+                console.log($that.defaults.playerCollection.length);
+
+                if(fetched == $that.defaults.playerCollection.length){
+                    console.log('jeaaa++++++++++++++++++');
+                    this.pendingPlayer = new PendingPlayerView( {el: $('#pins'), playerCollection: $that.defaults.playerCollection});
+                }
+
+                //$('#pending_bar_'+json.pin).html("<strong>" +json.userName + "</strong> ist am start mit pin <strong>" + json.pin + "</strong> :) ");
+            });
+
+        },
         drawPlayer: function(numberPlayer){
             this.$el.html("");
             for (i = 0; i < numberPlayer; i++) {
@@ -32,40 +66,47 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
             $('.username').each(function(el){
                 var userName = $(this).val();
                 if(userName != ''){
+                    console.log('player');
                     var player = new PlayerModel({userName: userName});
                     valid++;
                     playerCollection.add(player);
                 }
             });
+            this.defaults.playerCollection = playerCollection;
 
             if(valid <= 0){
                 alert('At least one player');
             }
+
             else{
-                fetched = 0;
-                console.log('fetch for ' + playerCollection.length);
 
                 playerCollection.forEach(function(player){
+                    console.log('gen new pin');
+                    $webSocketModel.getPinForPlayer(player);
+                });
+
+                console.log('fetch for ' + playerCollection.length);
+                 /*
 
 
 
+
+
+                    old php pin generate
                     player.fetch({
                             //data: {userName: user.get('userName')},  NOT REQUIRED
                             success: function(player){
                                 fetched++;
                                 //player.pending(fetched, playerCollection.length);
 
-                                if(fetched == playerCollection.length){
-                                    console.log('jeaaa');
-                                    this.pendingPlayer = new PendingPlayerView( {el: $('#pins'), playerCollection: playerCollection});
-                                }
-                            }
-                        }
-                    );
 
-                });
+                            }
+                        });
+
+                            */
 
             }
+
         },
         parse:function (data) {
             console.log(data);
