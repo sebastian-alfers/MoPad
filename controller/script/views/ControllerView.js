@@ -25,7 +25,7 @@ define(['jquery', 'backbone'], function($, Backbone) {
 
 			$webSocketModel.on('cacheConnectionIdOnController', function(json) {
 
-				alert('cache pin ' + json.pin);
+				console.log('Cache pin ' + json.pin);
 
 				this.options.gameConnectionId = json.pin;
 				$('#username').html(json.userName);

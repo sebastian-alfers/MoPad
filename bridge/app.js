@@ -1,3 +1,14 @@
+/************************************/
+/*                                  */
+/*  MoPad - Mobile Game Controller  */
+/*                                  */
+/*        by Janina Trost           */
+/*           Sebastian Alfers       */
+/*           Jonas Hartweg          */
+/*                                  */
+/************************************/
+
+
 var WebSocketServer = require('websocket').server;
 var http = require('http');
 var port = 8081;
@@ -9,7 +20,7 @@ var server = http.createServer(function(req, res) {
 	});
 	res.end('Placeholder\n');
 }).listen(port, function() {
-	console.log('Listening on port ' + port)
+	console.log(time() + 'Listening on port ' + port)
 });
 
 // create the server
@@ -61,7 +72,7 @@ function arraySize(obj) {
 }
 
 function time() {
-	return '[' + new Date().toString().substr(0, 21) + '] ';
+	return '[' + new Date().toString().substring(4, 21) + '] ';
 }
 
 // WebSocket server
@@ -99,80 +110,65 @@ wsServer.on('request', function(request) {
 
 					//identify a controller
 
-					console.log('Got a game identify msg');
 					if (keyIsAllowed(json.data.publicKey)) {
 						game = connection;
 						connection.verified = true;
 						connections[connectionId] = connection;
-						console.log('Game registered (' + request.socket._peername.address + ')');
+						console.log(time() + 'Game registered (' + request.socket._peername.address + ')');
 					} else {
 						console.log(time() + 'Invalid identifier for ' + request.socket._peername.address + '. Connection closed.');
 						connection.close();
 					}
 
-					console.log('Now ' + arraySize(connections) + ' connections');
+					console.log(time() + 'Now ' + arraySize(connections) + ' connections');
 
 					return;
 				} else if (json.vendor == 'controller') {
-					console.log(connections.length);
 
 					//identify a controller
-
-					console.log('Got a controller identify msg');
 					controller = connection;
 					connection.verified = true;
 					connections[connectionId] = connection;
-					console.log(time() + 'Controller registered  (' + request.socket._peername.address + ')');
-
-					console.log('Now ' + arraySize(connections) + ' connections');
+					console.log(time() + 'Controller (' + request.socket._peername.address + ') indentified/registered.  (' + arraySize(connections) + ' connections)');
 
 					return;
 				}
 			}
 
-			//check if connection is ok // TODO Might not work!!!
+			//check if connection is ok
 			if (connection.verified != true) {
-				console.log('Not allowed. please "identify" before');
+				console.log(time() + 'Unidentified connection tried to send data [Warning]');
 				return;
 			}
 
 			if (json.type == 'getControllersForGame') {
-				console.log(connectionId);
 				// Send all the existing canvas commands to the new client
 				connection.sendUTF(JSON.stringify({
 					msg : "initCommands",
 					id : connectionId
 				}));
-				console.log(connection.pins.data);
+				console.log(time()+ ' ' +connection.pins.data);
 
 				connection.pins.data.forEach(function(player) {
-					console.log(player.pin);
+					console.log(time() + player.pin);
 				});
 			} else if (json.type == 'registerPinsForGameInstance') {
-				console.log('---- jea neue pins');
-				console.log(json);
+				console.log(time() + 'Received new pins:');
 
 				connection.pins = json.data;
 
 				json.data.forEach(function(player) {
-					console.log(player.pin);
+					console.log('Pin: ' + player.pin);
 				});
-			} else if (json.type == 'buttonClick') {
-				game.sendUTF(JSON.stringify(json));
-				//Redirect TODO check if game exists
-				console.log(time() + 'Sent to game: ' + JSON.stringify(json));
+			}  else if (json.type == 'sendCommandToGame') {
 
-			} else if (json.type == 'sendCommandToGame') {
-
-				console.log('send to cached game instance');
+				console.log(time() + 'Sent command to game instance');
 
 				connections[json.data.connectionId].sendUTF(JSON.stringify({
 					msg : "testButtonClick",
 					action : 'move the box',
 					pin : json.data.pin
 				}));
-
-				//connections[json.type.]
 
 			} else if (json.type == 'getConnectionForPin') {
 
@@ -229,9 +225,9 @@ wsServer.on('request', function(request) {
 
 				//if we come here, this means the pin is not correct
 				if (successPinMatch == true) {
-					console.log('Correct pin');
+					console.log(time()+'Correct pin (id connectionId)');
 				} else {
-					console.log('Wrong pin');
+					console.log('Wrong pin (id connectionId)');
 				}
 
 			} else {
@@ -246,16 +242,15 @@ wsServer.on('request', function(request) {
 		for (key in connections) {
 
 		}
-		console.log('jipp jipp');
 		return pin;
 	}
 
 
 	connection.on('close', function(connection) {
 		if (connectionId != undefined) {
-			console.log('Id "' + connectionId + '" disconnected');
+			console.log(time()+'Id "' + connectionId + '" disconnected');
 			delete connections[connectionId];
-			console.log('Now ' + arraySize(connections) + ' connections');
+			console.log(time()+'Now ' + arraySize(connections) + ' connections');
 		}
 	});
 });
