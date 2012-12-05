@@ -17,10 +17,11 @@ class ApiController extends Controller
 		$games = $this->getDoctrine()->getRepository('MoPadAdminBundle:Game')->findAll();
 		
 		$serializer = $this->get('jms_serializer');
-		$gamestr = $serializer->serialize($games, 'json');
+		$gamestr = $serializer->serialize(array('games' => $games), 'json');
 		
 		$response = new Response($gamestr);
 		$response->headers->set('Content-Type', 'application/json', 'charset=utf-8');
+		$response->headers->set('Access-Control-Allow-Origin', '*');
 		
 		return $response;
 	}

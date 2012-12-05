@@ -68,9 +68,16 @@ NameVirtualHost 127.0.0.1
 
 
 <VirtualHost mopad.loc:80>
-    DocumentRoot "D:/Projekt/MoPad"
+	DocumentRoot "D:/Projekte/MoPad"
 
-   	ServerName mopad.loc
-  	ServerAlias local.mopad.loc
-   	ServerAdmin webmaster@mopad.loc
+    ServerName mopad.loc
+    ServerAlias local.mopad.loc
+    ServerAdmin webmaster@mopad.loc
+	
+	<Directory "D:/Projekte/MoPad">
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride All
+        Order allow,deny
+        Allow from All
+    </Directory>
 </VirtualHost>

@@ -5,7 +5,7 @@ define(['jquery', 'backbone', 'collections/GameCollection', 'models/GameModel'],
             gameCollection:null,
             currentGame:null
         },
-        url:'games-json.php',
+        url:'http://mopad-symfony.de/mopad/api/getgames',
         parse:function (data) {
 
             console.log(data);
