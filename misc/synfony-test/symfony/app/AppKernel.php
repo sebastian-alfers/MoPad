@@ -34,6 +34,8 @@ class AppKernel extends Kernel
 			
 	        new Nina\TestBundle\NinaTestBundle(),
             //new Acme\StoreBundle\AcmeStoreBundle(),
+            
+            new JMS\SerializerBundle\JMSSerializerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

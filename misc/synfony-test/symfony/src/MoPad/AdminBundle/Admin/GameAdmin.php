@@ -41,14 +41,20 @@ class GameAdmin extends Admin
     {
         $formMapper
             ->add('name')
-            ->add('activated', null, array('required' => true))
+            ->add('activated', null, array('required' => false))
             ->add('description')
             ->add('apiKey')
             ->add('vendor')
             ->add('minPlayer')
             ->add('maxPlayer')
-            ->add('acceptedGamePads')
-
+            ->add('acceptedGamePads', 'choice', array(
+				    'choices' => array(
+				        'joystick' => 'joystick',
+				        'joypad' => 'joypad',
+				    ),
+				    'required' => true,
+				    'multiple' => false,
+				))
         ;
     }
 
@@ -56,6 +62,7 @@ class GameAdmin extends Admin
     {
         $datagridMapper
             ->add('name')
+            ->add('activated')
         ;
     }
 

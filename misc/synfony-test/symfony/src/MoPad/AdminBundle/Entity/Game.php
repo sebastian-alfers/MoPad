@@ -67,10 +67,14 @@ class Game
 	private $maxPlayer = 10;
 	
 	/**
-     * @var array<string>
-	 * @ORM\Column(type="array")
+     * @var string
+	 * @ORM\Column(type="string")
      */
     private $acceptedGamePads;
+	
+	/**
+	 * TODO: GameFile
+	 */
 
 
     /**

@@ -2,6 +2,11 @@ mopad_admin:
     resource: "@MoPadAdminBundle/Resources/config/routing.yml"
     prefix:   /mopad
 
+mopad_api:
+    resource: "@MoPadAdminBundle/Controller/ApiController.php"
+    type:     annotation
+    prefix:   /mopad/api
+
 #acme_store:
 #    resource: "@AcmeStoreBundle/Resources/config/routing.yml"
 #    prefix:   /store
