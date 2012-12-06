@@ -22,9 +22,9 @@ define(["jquery","backbone", "models/WebSocketModel", "views/GameCenterView"], f
             gameCenterView = new GameCenterView({ el:$('#template_register_controller'), webSocketModel: $webSocketModel});
 
 
-            $webSocketModel.on('testButtonClick', function(json){
+            $webSocketModel.on('sendCommandToGame', function(json){
                 console.log(json);
-                $('#userLog').append('<li>'+json.pin+' did a click</li>');
+                //$('#userLog').append('<li>'+json.pin+' did a click</li>');
             });
 
 

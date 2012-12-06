@@ -53,6 +53,7 @@ define(['jquery', 'backbone'], function($, Backbone){
 
 
             $webSocketModel.on('activateController', function(json){
+                alert('on activateController');
                 console.log(json);
                 console.log(this);
 
@@ -61,10 +62,15 @@ define(['jquery', 'backbone'], function($, Backbone){
                     if(player.get('pin') == json.pin){
                         $('#pending_bar_'+player.get('pin')).html("<strong>" +player.get('userName') + "</strong> ist am start mit pin <strong>" + player.get('pin') + "</strong> :) ");
                     }
+
                 });
 
-
-
+                $.getScript("game/game.js", function(data, textStatus, jqxhr) {
+                   //console.log(data); //data returned
+                   //console.log(textStatus); //success
+                   //console.log(jqxhr.status); //200
+                   //console.log('Load was performed.');
+                });
 
             }, this);
 

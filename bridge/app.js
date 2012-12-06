@@ -37,6 +37,14 @@ games.push({
 	ip : '127.0.0.1'
 });
 
+//for controller
+games.push({
+	id : 1,
+	gameName : "Move the box",
+	publicKey : '123456',
+	ip : '192.168.1.36'
+});
+
 // Current connections
 var connections = new Array();
 
@@ -45,11 +53,13 @@ var connectionIDCounter = 0;
 
 function originIsAllowed(peername) {
 	for (var i = 0; i < games.length; i++) {
+        console.log(games[i].ip);
+        console.log(peername.address);
+        console.log('+++++++++++');
 		if (games[i].ip == peername.address)
 			return true;
-		else
-			return false;
 	}
+    return false;
 }
 
 function keyIsAllowed(key) {
@@ -77,6 +87,7 @@ function time() {
 
 // WebSocket server
 wsServer.on('request', function(request) {
+
 
 	// Check if connection is allowed
 	if (!originIsAllowed(request.socket._peername)) {
@@ -181,8 +192,10 @@ wsServer.on('request', function(request) {
 
 				console.log(time() + 'Sent command to game instance');
 
+                console.log(json);
+
 				connections[json.data.connectionId].sendUTF(JSON.stringify({
-					msg : "testButtonClick",
+					msg : "sendCommandToGame",
 					action : 'move the box',
 					pin : json.data.pin
 				}));
@@ -203,6 +216,8 @@ wsServer.on('request', function(request) {
 
 						gameConnection.pins.forEach(function(pin) {
 
+                            console.log(gameConnection.id);
+                            console.log(gameConnection.connectionId);
 							console.log(json);
 
 							if (json.data.pin == pin) {
@@ -214,7 +229,7 @@ wsServer.on('request', function(request) {
                                 console.log('cache controller');
 								connection.sendUTF(JSON.stringify({
 									msg : "cacheConnectionIdOnController",
-									pin : connectionId
+									pin : key
 								}));
 
 								//tell the game instance that this pin has been activated by a controller

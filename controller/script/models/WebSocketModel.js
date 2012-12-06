@@ -7,7 +7,6 @@ define(["jquery", "backbone"], function($, Backbone) {
 	var WebSocketModel = Backbone.Model.extend({
 
 		defaults : {
-			host : 'ws://localhost:8081/', //can be overloaded while construct this model
 			socket : null,
 			model : null, // the game or the controller
 			socketMsgTypeIdentify : 'identify',
@@ -37,6 +36,8 @@ define(["jquery", "backbone"], function($, Backbone) {
 
 		initialize : function() {
 
+
+
 			if (!("WebSocket" in window)) {
 				this.trigger('errorWebSocketAvailable', data);
 			} else {
@@ -44,9 +45,10 @@ define(["jquery", "backbone"], function($, Backbone) {
 				//jea, we support web sockets
 				//this.trigger('successWebSocketAvailable', data);
 				$webSocketModel = this;
-				$socket = new WebSocket(this.defaults.host);
+				$socket = new WebSocket(this.get('host'));
 
 				$socket.onopen = function() {
+
 					console.log('Websocket: Status ' + $socket.readyState + ' (open)');
 
 					$webSocketModel.send({

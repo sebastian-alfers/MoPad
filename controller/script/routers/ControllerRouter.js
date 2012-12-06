@@ -18,8 +18,14 @@ define(["jquery", "backbone", "models/WebSocketModel", "views/ControllerView"], 
 		},
 
 		home : function() {
+            if(window.location.search.substring(1) != undefined && window.location.search.substring(1) != ''){
+                alert(window.location.search.substring(1));
+                $webSocketModel = new WebSocketModel({host: 'ws://' + window.location.search.substring(1) + ':8081/'});
+            }
+            else{
+                $webSocketModel = new WebSocketModel({host: 'ws://localhost:8081/'});
+            }
 
-			$webSocketModel = new WebSocketModel();
 			controllerView = new ControllerView({
 				el : $('#content')
 			});
