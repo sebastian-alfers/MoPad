@@ -22,10 +22,6 @@ define(["jquery","backbone", "models/WebSocketModel", "views/GameCenterView"], f
             gameCenterView = new GameCenterView({ el:$('#template_register_controller'), webSocketModel: $webSocketModel});
 
 
-            // move this out of this router
-            $webSocketModel.on('activateController', function(json){
-                $('#pending_bar_'+json.pin).html("<strong>" +json.userName + "</strong> ist am start mit pin <strong>" + json.pin + "</strong> :) ");
-            });
             $webSocketModel.on('testButtonClick', function(json){
                 console.log(json);
                 $('#userLog').append('<li>'+json.pin+' did a click</li>');

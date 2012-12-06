@@ -23,7 +23,9 @@ define(['jquery', 'backbone'], function($, Backbone){
                 else{
 
                     //generate associative array like [player0] =123, [player1] =456
-                    pins.push(player.toJSON());
+
+                    //pins.push(player.toJSON()); //push the player
+                    pins.push(player.get('pin')); //push only the pin
 
                     i++;
 
@@ -48,6 +50,24 @@ define(['jquery', 'backbone'], function($, Backbone){
                 $('#start_game').removeAttr('disabled');
                 $('.username').removeAttr('disabled');
             });
+
+
+            $webSocketModel.on('activateController', function(json){
+                console.log(json);
+                console.log(this);
+
+                this.options.playerCollection.each(function(player){
+                    console.log(player);
+                    if(player.get('pin') == json.pin){
+                        $('#pending_bar_'+player.get('pin')).html("<strong>" +player.get('userName') + "</strong> ist am start mit pin <strong>" + player.get('pin') + "</strong> :) ");
+                    }
+                });
+
+
+
+
+            }, this);
+
         }
     });
 

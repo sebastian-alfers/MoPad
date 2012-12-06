@@ -149,8 +149,8 @@ wsServer.on('request', function(request) {
 				}));
 				console.log(time()+ ' ' +connection.pins.data);
 
-				connection.pins.data.forEach(function(player) {
-					console.log(time() + player.pin);
+				connection.pins.data.forEach(function(pin) {
+					console.log(time() + pin);
 				});
             }
             else if(json.type == 'getPinForUser'){
@@ -174,8 +174,8 @@ wsServer.on('request', function(request) {
 
 				connection.pins = json.data;
 
-				json.data.forEach(function(player) {
-					console.log('Pin: ' + player.pin);
+				json.data.forEach(function(pin) {
+					console.log('Pin: ' + pin);
 				});
 			}  else if (json.type == 'sendCommandToGame') {
 
@@ -195,33 +195,33 @@ wsServer.on('request', function(request) {
 				Object.keys(connections).forEach(function(key) {
 					var gameConnection = connections[key];
 
-					console.log('++++++++++++++');
-					console.log(gameConnection.pins);
 
 					if (gameConnection.pins != undefined && gameConnection.pins.length > 0) {
 						console.log(gameConnection.pins.length);
 						console.log(gameConnection.pins);
 
-						gameConnection.pins.forEach(function(player) {
+
+						gameConnection.pins.forEach(function(pin) {
 
 							console.log(json);
 
-							if (json.data.pin == player.pin) {
+							if (json.data.pin == pin) {
 								//jip jipp :)
 								console.log('jipp jiopp');
 
 								//send back the connection-id to the controller to cache it
+                                //risk?
+                                console.log('cache controller');
 								connection.sendUTF(JSON.stringify({
 									msg : "cacheConnectionIdOnController",
-									pin : connectionId,
-									userName : player.userName
+									pin : connectionId
 								}));
 
 								//tell the game instance that this pin has been activated by a controller
-								connections[connectionId].sendUTF(JSON.stringify({
+                                console.log('activate pin ' + json.data.pin);
+                                gameConnection.sendUTF(JSON.stringify({
 									msg : "activateController",
-									pin : json.data.pin,
-									userName : player.userName
+									pin : json.data.pin
 								}));
 
 								successPinMatch = true;
