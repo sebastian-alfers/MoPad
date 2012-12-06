@@ -2,8 +2,8 @@ define(['jquery', 'backbone', 'views/PlayerChooserView'], function($, Backbone, 
 
     var PlayerListView = Backbone.View.extend({
         defaults:{
-            games:null,
-            playerChooser:null
+            games: null,
+            playerChooser: null
         },
         events:{
             'change input':'changeNumberPlayer'
@@ -20,16 +20,18 @@ define(['jquery', 'backbone', 'views/PlayerChooserView'], function($, Backbone, 
 
                 var template = _.template($('#template_player_slider').html(), {});
                 this.$el.html(template);
+                
+                this.drawPlayerChooser(1);
+
             }, this);
         },
 
         changeNumberPlayer:function (event) {
-            $('#pins').html('');
+            $('#pins').html(''); // TODO Delete pins
 
             event.preventDefault();
             var el = $(event.currentTarget);
             this.drawPlayerChooser(el.context.value);
-
         },
         drawPlayerChooser:function (numberPlayer) {
             if(this.playerChooser == null){
