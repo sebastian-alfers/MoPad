@@ -7,7 +7,7 @@ define(['jquery', 'backbone', 'models/GameListModel'], function($, Backbone, Gam
 
         initialize:function () {
 
-            console.log('game liist model');
+            console.log('GameListModel init');
 
             this.model = new GameListModel({ el:this.$el });
             this.render();

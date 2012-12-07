@@ -42,8 +42,10 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 				//$('#pending_bar_'+json.pin).html("<strong>" +json.userName + "</strong> ist am start mit pin <strong>" + json.pin + "</strong> :) ");
 			});
 
+			this.$el.append('<ul class="nav nav-tabs nav-stacked" id="list_player_li"></ul>');
+
 			var template = _.template($('#template_input_username').html(), {i : 1});
-			this.$el.append(template);
+			$('#list_player_li').append(template);
 
 			var template = _.template($('#template_submit_username').html());
 			this.$el.append(template);
@@ -52,14 +54,12 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 		drawPlayer : function(newNumberPlayer) {
 			if(newNumberPlayer>this.numberPlayer){
 				var template = _.template($('#template_input_username').html(), {i : newNumberPlayer});
-				this.$el.append(template);
-			} else if (newNumberPlayer>this.numberPlayer){
-				// TODO add code for player removal
+				this.$('ul').append(template);
+			} else if (newNumberPlayer<this.numberPlayer){
+				this.$('ul li:last-child').remove(); // TODO funktioniert nicht, wenn zu schnell gezogen wird
 			}
 			
-			this.numberPlayer = newNumberPlayer;
-			// TODO check if correct amount of players is displayed/requested			
-
+			this.numberPlayer = newNumberPlayer;		
 		},
 
 		startGame : function() {

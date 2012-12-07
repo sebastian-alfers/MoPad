@@ -2,6 +2,15 @@
 
 /* Templates */
 
+#player_slider {
+	font-weight: bold;
+}
+
+#player_slider input {
+	margin: 1em;
+}
+
 #list_player_li {
 	list-style-type: none;
+	margin-bottom: 0em;
 }

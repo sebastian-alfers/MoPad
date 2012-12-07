@@ -26,22 +26,22 @@
     <section id="main"class="container">
 
         <div class="row-fluid show-grid">
-             <div class="span4">
+             <div class="span4" id="gameListWrapper">
                  <h2>Games</h2>
                  <div>
                        <ul class="nav nav-tabs nav-stacked" id="list_games_li"></ul>
                  </div>
              </div>
-             <div class="span4">
+             <div class="span4" id="playerChooserWrapper">
 
                  <h2 id="player_headline">Player</h2>
                  <div id="player_slider"></div>
                  <div id="player_chooser">
-                     <ul class="nav nav-tabs nav-stacked" id="list_player_li"></ul>
+					<!-- Gets filled with PlayerChooserView -->
                  </div>
 
              </div>
-             <div class="span4">
+             <div class="span4" id="pinWrapper">
 
                  <h2>Pins</h2>
                     <button type="submit" class="btn" id="cancel_pending_player" style="display: none; margin: 25px">cancel pending game</button>

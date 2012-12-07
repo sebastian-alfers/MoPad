@@ -23,7 +23,7 @@ define(['jquery', 'backbone', 'collections/GameCollection', 'models/GameModel'],
             this.trigger('afterLoadGameCollection', this.gameCollection);
         },
         initialize:function () {
-            console.log('iiiinit');
+            console.log('GameListModel init');
             this.fetch({
                 success:function (games) {
                     //console.log(games);

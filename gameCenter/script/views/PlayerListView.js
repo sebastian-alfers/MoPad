@@ -10,7 +10,7 @@ define(['jquery', 'backbone', 'views/PlayerChooserView'], function($, Backbone, 
         },
         initialize:function () {
 
-            console.log('playyyer');
+            console.log('PlayerList');
 
             this.options.games.model.on("change:currentGame", function (gameListModel) {
                 game = gameListModel.get('currentGame');

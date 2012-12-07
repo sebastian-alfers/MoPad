@@ -3,6 +3,7 @@ define(["jquery", "backbone"], function($, Backbone) {
     var GameCenterModel = Backbone.Model.extend({
         defaults:{
             publicKey: null
+            // TODO Aktuell kennt der view die games. das muss hier hin
         },
         initialize: function(){
              /*

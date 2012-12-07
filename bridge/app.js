@@ -225,7 +225,7 @@ wsServer.on('request', function(request) {
 								console.log('jipp jiopp');
 
 								//send back the connection-id to the controller to cache it
-                                //risk?
+                                //TODO risk?
                                 console.log('cache controller');
 								connection.sendUTF(JSON.stringify({
 									msg : "cacheConnectionIdOnController",
