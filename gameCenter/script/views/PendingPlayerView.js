@@ -49,6 +49,7 @@ define(['jquery', 'backbone'], function($, Backbone){
 
                 $('#start_game').removeAttr('disabled');
                 $('.username').removeAttr('disabled');
+                $('#playerSlider').removeAttr('disabled');
             });
 
 

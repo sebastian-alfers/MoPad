@@ -39,7 +39,7 @@ games.push({
 
 //for controller
 games.push({
-	id : 1,
+	id : 2,
 	gameName : "Move the box",
 	publicKey : '123456',
 	ip : '192.168.1.36'
@@ -53,9 +53,7 @@ var connectionIDCounter = 0;
 
 function originIsAllowed(peername) {
 	for (var i = 0; i < games.length; i++) {
-        console.log(games[i].ip);
-        console.log(peername.address);
-        console.log('+++++++++++');
+
 		if (games[i].ip == peername.address)
 			return true;
 	}
@@ -165,14 +163,14 @@ wsServer.on('request', function(request) {
 				});
             }
             else if(json.type == 'getPinForUser'){
-                console.log('---- generate new pin');
+                console.log('Generate new pin');
                 console.log(json);
 
                 connection.sendUTF(JSON.stringify({
                                                     msg: "getPinForUser",
                                                     action: 'new pin',
                                                     data: {
-                                                        pin: Math.floor(Math.random()*1001),
+                                                        pin: Math.floor(Math.random()*1001), // TODO check whether pin exists already
                                                         username: json.data.username}
                                                     }
                                                 ));

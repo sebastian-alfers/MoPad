@@ -76,7 +76,7 @@ $(document).ready(function() {
 	var joystickLeft = null;
 	var joystickTop = null;
 	
-	$('#joystickField').bind('touchstart', function(e){ // TODO: Also on touchstart
+	$('#joystickField').bind('touchstart', function(e){
 		$('#helpOverlay').hide();
 	
 		var touch = e.originalEvent.touches[0];
@@ -89,7 +89,7 @@ $(document).ready(function() {
 		dragging = true;
 	});
 	
-	$('#joystickField').bind('touchmove', function(e){ // TODO: Also on touchstart
+	$('#joystickField').bind('touchmove', function(e){
         if (dragging) {
         	
    			var joystickOffset = {'left':e.pageX-($('#joystickNub').width()/2),'top':e.pageY-($('#joystickNub').width()/2)};
@@ -114,7 +114,7 @@ $(document).ready(function() {
         }
 	});
 	
-	$('#joystickField').bind('touchend', function(e){ // TODO: Also on touchend
+	$('#joystickField').bind('touchend', function(e){
 		dragging = false;
 		$('#joystickNub').css({left: '0px', top: '0px'})
 		$('#joystick').css('visibility', 'hidden');
@@ -128,7 +128,7 @@ $(document).ready(function() {
 
 	<div id="joystickField">
 		<div id="helpOverlay">Tap anywhere to reveal the joystick</div>
-		<div id="joystick"><div id="joystickNub" /></div>
+		<div id="joystick"><div id="joystickNub"></div></div>
 	</div>
 	
 </body>

@@ -23,7 +23,7 @@ define(["jquery", "backbone"], function($, Backbone) {
         	}
 
             if(data.type == "" || data.type == undefined){
-                console.log('Websocket: no type set for web socket message');
+                console.log('Websocket: No type set for web socket message');
         		return;
             }
 

@@ -65,6 +65,7 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 		startGame : function() {
 			$('#start_game').attr("disabled", "disabled");
 			$('.username').attr("disabled", "disabled");
+			$('#playerSlider').attr("disabled", "disabled");
 			$('#game_link').click(function(e) {
 				e.preventDefault();
 				//do other stuff when a click happens
@@ -90,24 +91,11 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 			} else {
 
 				playerCollection.forEach(function(player) {
-					console.log('gen new pin');
+					console.log('Get new pin');
 					$webSocketModel.getPinForPlayer(player);
 				});
 
 				console.log('fetch for ' + playerCollection.length);
-				/*
-
-				 old php pin generate
-				 player.fetch({
-				 //data: {userName: user.get('userName')},  NOT REQUIRED
-				 success: function(player){
-				 fetched++;
-				 //player.pending(fetched, playerCollection.length);
-
-				 }
-				 });
-
-				 */
 
 			}
 
