@@ -2,9 +2,13 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext" >
         <body>
-            <trans-unit id="mopad_gameadmin">
-                <source>mopad_gameadmin</source>
+            <trans-unit id="label.mopad_gameadmin">
+                <source>label.mopad_gameadmin</source>
                 <target>MoPad User Group</target>
+            </trans-unit>
+            <trans-unit id="label.game_name">
+                <source>label.game_name</source>
+                <target>Game name</target>
             </trans-unit>
         </body>
     </file>

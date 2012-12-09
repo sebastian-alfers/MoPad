@@ -40,7 +40,7 @@ class GameAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name', null, array('help' => 'Set the name of the game.'))
+            ->add('name', null, array('help' => 'Set the name of the game.', 'label' => 'label.game_name'))
             ->add('activated', null, array('required' => false, 'help' => 'Should the game activated?'))
             ->add('description', null, array('help' => 'Set the description of the game.'))
             ->add('apiKey', null, array('help' => 'Set the apiKey of the game.'))

@@ -6,6 +6,10 @@
                 <source>mopad_gameadmin</source>
                 <target>MoPad User Group</target>
             </trans-unit>
+            <trans-unit id="label.game_name">
+                <source>label.game_name</source>
+                <target>Game name</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
