@@ -1,6 +1,6 @@
 mopad_admin_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: MoPadAdminBundle:Default:index, name: defaultname }
+    pattern:  /
+    defaults: { _controller: MoPadAdminBundle:Default:index }
 
 _mopad_admin_create:
     pattern:  /create

@@ -20,12 +20,14 @@
     
 	<services>
 	   	<service id="sonata.admin.game" class="MoPad\AdminBundle\Admin\GameAdmin">
-	      	<tag name="sonata.admin" manager_type="orm" group="sonata_page" label="Game"/>
+	      	<tag name="sonata.admin" manager_type="orm" group="mopad_gameadmin" label="Game"/>
 	      	<argument />
 	      	<argument>MoPad\AdminBundle\Entity\Game</argument>
 	      	<argument>SonataAdminBundle:CRUD</argument>
 	      	<call method="setTranslationDomain">
-				<argument>MoPadAdminBundle</argument>
+				<argument>messages</argument>
+				<!--<argument>MoPadAdminBundle</argument>
+				<argument>SonataPageBundle</argument>-->
 			</call>
 		</service>
 	</services>

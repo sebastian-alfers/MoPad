@@ -1,0 +1,8 @@
+{% extends "NinaTestBundle::admin-layout.html.twig" %}
+
+
+{% block title "Hello " ~ name %}
+
+{% block content %}
+    <h1>{% include "NinaTestBundle:Test:embedded.html.twig" %}</h1>
+{% endblock %}

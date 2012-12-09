@@ -32,7 +32,7 @@ class AppKernel extends Kernel
 	        
 			new MoPad\AdminBundle\MoPadAdminBundle(),
 			
-	        new Nina\TestBundle\NinaTestBundle(),
+	        //new Nina\TestBundle\NinaTestBundle(),
             //new Acme\StoreBundle\AcmeStoreBundle(),
             
             new JMS\SerializerBundle\JMSSerializerBundle(),

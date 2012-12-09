@@ -1,0 +1,38 @@
+{% extends "NinaTestBundle::admin-layout.html.twig" %}
+
+{% block title "MoPad - Demos" %}
+
+{% block content_header '' %}
+
+{% block content %}
+	<a href="{{ path('_test_login', {}) }}">Login</a>
+	<a href="{{ path('_test_secured_hello', {'name': 'World'}) }}">Secured Hello</a>
+
+    <h1>Available test pages</h1>
+    <ul id="demo-list">
+        <li><a href="{{ path('_test_blub', {'name': 'Blub'}) }}">blub</a></li>
+        <li><a href="{{ path('_test_testpage', {'name': 'World'}) }}">testpage</a></li>
+        <li><a href="{{ url('_test_testpage', {'name': 'World'}) }}">testpage</a></li>
+    </ul>
+	
+	{% render "NinaTestBundle:Test:fancy" with {'name': 'fancy', 'color': 'green'} %}
+	<br />
+	<h1>Controller Test2</h1>
+	<ul>
+    	<li><a href="{{ path('_test2_hello',  {'name': 'default'})}}">default Format</a></li>
+	 	<li><a href="{{ path('_test2_hello',  {'name': 'xml', '_format': 'xml'}) }}">XML Format</a></li>
+	 	<li><a href="{{ path('_test2_hello',  {'name': 'html', '_format': 'html'}) }}">HTML Format</a></li>
+	 	<li><a href="{{ path('_test2_redirect',  {}) }}">Redirect</a></li>
+	 	<li><a href="{{ path('_test2_forwardPage', {}) }}">Forward</a></li>
+    </ul>
+    <br />
+    
+    <h1>Request</h1>
+    <ul>
+    	<li><a href="{{ path('_test2_request',  {})}}">request</a></li>
+    	<li><a href="{{ path('_test2_session',  {})}}">session</a></li>
+    </ul>
+    
+    _GET parameter: {{ app.request.query.get('page') }}
+	_POST parameter:  {{ app.request.request.get('page') }}
+{% endblock %}

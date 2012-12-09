@@ -40,20 +40,21 @@ class GameAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name')
-            ->add('activated', null, array('required' => false))
-            ->add('description')
-            ->add('apiKey')
-            ->add('vendor')
-            ->add('minPlayer')
-            ->add('maxPlayer')
-            ->add('acceptedGamePads', 'choice', array(
+            ->add('name', null, array('help' => 'Set the name of the game.'))
+            ->add('activated', null, array('required' => false, 'help' => 'Should the game activated?'))
+            ->add('description', null, array('help' => 'Set the description of the game.'))
+            ->add('apiKey', null, array('help' => 'Set the apiKey of the game.'))
+            ->add('vendor', null, array('help' => 'Set the name of the game vendor.'))
+            ->add('minPlayer', null, array('help' => 'How many players minimal?'))
+            ->add('maxPlayer', null, array('help' => 'How many players maximal?'))
+            ->add('acceptedGamepads', 'choice', array(
 				    'choices' => array(
 				        'joystick' => 'joystick',
 				        'joypad' => 'joypad',
 				    ),
 				    'required' => true,
 				    'multiple' => false,
+				    'help' => 'Choose the GamePad.'
 				))
         ;
     }
@@ -78,6 +79,7 @@ class GameAdmin extends Admin
     {
         $errorElement
             ->with('name')
+				->assertMinLength(array('limit' => 4))
                 ->assertMaxLength(array('limit' => 32))
             ->end()
         ;

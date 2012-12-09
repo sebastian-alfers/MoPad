@@ -5,6 +5,7 @@ imports:
 framework:
     #esi:             ~
     #translator:      { fallback: "%locale%" }
+    translator:      { fallback: en }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -66,8 +67,10 @@ sonata_block:
             contexts:   [admin]
 
 sonata_admin:
-    title:      Sonata Project
-    title_logo: /bundles/sonataadmin/logo_title.png
+    #title:      Sonata Project
+    title:      MoPad GameAdmin
+    #title_logo: /bundles/sonataadmin/logo_title.png
+    title_logo: /bundles/mopadadmin/images/mopadlogo_small.png
     dashboard:
         blocks:
             # display a dashboard block
@@ -79,6 +82,7 @@ sonata_admin:
         
         groups:
             sonata_page: ~
+            mopad_gameadmin: ~
 
     # set to true to persist filter settings per admin module in the user's session
     persist_filters: true

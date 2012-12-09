@@ -11,12 +11,12 @@ use MoPad\AdminBundle\Entity\Game;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/hello/{name}", name="_mopad_hello")
+     * @Route("/}", name="_mopad")
      * @Template()
      */
-    public function indexAction($name)
+    public function indexAction()
     {
-        return array('name' => $name);
+        return array();
     }
 	
 	/**
@@ -33,11 +33,12 @@ class DefaultController extends Controller
     	$game->setActivated(false);
 		$game->setMinPlayer(1);
 		$game->setMaxPlayer(2);
-    	$game->setAcceptedGamePads('JoyStick', 'JoyPad');
+    	$game->setAcceptedGamePads('JoyPad');
 	
 	    $em = $this->getDoctrine()->getManager();
-	    $em->persist($game);
-	    $em->flush();
+		// TODO Nina: create ausgeschaltent
+	    //$em->persist($game);
+	    //$em->flush();
 	
 	    return new Response('Created product id '.$game->toString());
 	}
