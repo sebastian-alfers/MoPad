@@ -1,0 +1,103 @@
+/* General */
+
+.controlModule {
+	/* disable selection of text, when clicked/dragged/etc. */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.button {
+	height: 4em;
+	width: 4em;
+	text-align: center;
+	line-height: 4em;
+	
+	border: 1px solid #000;
+	border-radius: 50%;
+}
+
+/*.button:hover { background-color: #ddd; }*/
+.button.active { background-color: #777; }
+
+
+/* Modules */
+
+/* Joypad */
+
+.controlModule.joypad { margin-top: 1em; }
+
+.controlModule.joypad .dPad {
+	width: 12em;
+	float: left;
+}
+
+.controlModule.joypad .dPad .button {
+	/*line-height: 2.4em;*/
+}
+
+.controlModule.joypad .dPad .up { margin: 0 auto; }
+.controlModule.joypad .dPad .left {	float: left; }
+.controlModule.joypad .dPad .right { float: right; }
+.controlModule.joypad .dPad .down { margin: 0 auto; }
+
+
+.controlModule.joypad .buttonGrid {
+	width: 9em;
+	float: right;
+}
+
+.controlModule.joypad .button.red { 
+	color: red;
+	float: left; 
+}
+
+.controlModule.joypad .button.blue { 
+	color: blue;
+	float: right; 
+}
+
+
+/* Joystick - unique! */
+
+.controlModule.joystick {
+	height: 100%;
+}
+
+.controlModule.joystick #helpOverlay {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	
+	text-align: center;
+	color: #ccc;
+}
+
+.controlModule.joystick #joystickField {
+	position: relative;
+	border: 0.1em solid #ccc;
+	width: 100%;
+	height: 100%;
+}
+	
+.controlModule.joystick #joystickWrapper {
+	position: absolute;
+	width: 5em;
+	height: 5em;
+	border-radius: 2.5em;
+	background-color: #999;
+	/*background-image: -webkit-radial-gradient(50% 50%, circle contain, #ccc, #999 100%);*/
+}
+	
+.controlModule.joystick #joystickNub {
+	position: absolute;
+	width: 2em;
+	height: 2em;
+	margin-top: 1.5em;
+	margin-left: 1.5em;
+	border-radius: 1em;
+	background-color: #ddd; 
+}

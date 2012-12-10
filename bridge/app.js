@@ -141,7 +141,7 @@ wsServer.on('request', function(request) {
 
 			// process WebSocket message
 			if (json.type == 'identify') {// First message identifies the websocket type (game/controller) TODO First message has to be identify, otherwise reject connection
-				if (json.vendor == 'game') {
+				if (json.vendor == 'game') { // TODO different naming; vendor!=connection type
 
 					//identify a controller
 
@@ -176,19 +176,8 @@ wsServer.on('request', function(request) {
 				return;
 			}
 
-			if (json.type == 'getControllersForGame') {
-				// Send all the existing canvas commands to the new client
-				connection.sendUTF(JSON.stringify({
-					msg : "initCommands",
-					id : connectionId
-				}));
-				console.log(time()+ ' ' +connection.pins.data);
-
-				connection.pins.data.forEach(function(pin) {
-					console.log(time() + pin);
-				});
-            }
-            else if(json.type == 'getPinForUser'){
+			
+			if(json.type == 'getPinForUser'){
                 console.log('Generate new pin');
                 console.log(json);
                 
@@ -199,7 +188,7 @@ wsServer.on('request', function(request) {
 				
                 connection.sendUTF(JSON.stringify({
                                                     msg: "getPinForUser",
-                                                    action: 'new pin',
+                                                    action: 'new pin', //TODO rename to 'type'
                                                     data: {
                                                         pin: pin,
                                                         username: json.data.username}
@@ -224,8 +213,9 @@ wsServer.on('request', function(request) {
                 console.log(json);
 
 				connections[json.data.connectionId].sendUTF(JSON.stringify({
-					msg : "sendCommandToGame",
+					msg : 'sendCommandToGame',
 					action : 'move the box',
+					keycode: json.data.keycode,
 					pin : json.data.pin
 				}));
 
@@ -286,7 +276,7 @@ wsServer.on('request', function(request) {
 
 				//if we come here, this means the pin is not correct
 				if (successPinMatch == true) {
-					console.log(time()+'Correct pin (id connectionId)');
+					console.log(time()+'Correct pin (id '+connectionId+')');
 				} else {
 					console.log('Wrong pin (id connectionId)');
 				}

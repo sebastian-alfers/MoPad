@@ -13,37 +13,14 @@ define(["jquery", "backbone"], function($, Backbone) {
 			vendorType : 'controller' // identify as a game or controller
 		},
 
-		send : function(data) {
-
-			if (data == "" || data == undefined) {
-				console.log('Websocket: No data set');
-				return;
-			}
-
-			if (data.type == "" || data.type == undefined) {
-				console.log('Websocket: no type set for web socket message');
-				return;
-			}
-
-			try {
-				this.defaults.socket.send(JSON.stringify(data));
-				console.log('Websocket: Sent ')
-				console.log(data);
-			} catch (exception) {
-				console.log('Websocket: Error ' + exception);
-			}
-		},
-
 		initialize : function() {
-
-
 
 			if (!("WebSocket" in window)) {
 				this.trigger('errorWebSocketAvailable', data);
 			} else {
 
-				//jea, we support web sockets
-				//this.trigger('successWebSocketAvailable', data);
+				// Websockets supported
+
 				$webSocketModel = this;
 				$socket = new WebSocket(this.get('host'));
 
@@ -55,7 +32,7 @@ define(["jquery", "backbone"], function($, Backbone) {
 						type : $webSocketModel.defaults.socketMsgTypeIdentify,
 						vendor : $webSocketModel.attributes.vendorType,
 						data : {
-							publicKey : '123456'
+							publicKey : '123456' // TODO maybe unnecessary for controllers
 						}
 					});
 				}
@@ -74,7 +51,27 @@ define(["jquery", "backbone"], function($, Backbone) {
 				//loadSocket( {type: 'game', gameInstanceId: data.uniqueAppIdForBridge} );
 			}
 
+		},	send : function(data) {
+
+			if (data == "" || data == undefined) {
+				console.log('Websocket: No data set');
+				return;
+			}
+
+			if (data.type == "" || data.type == undefined) {
+				console.log('Websocket: no type set for web socket message');
+				return;
+			}
+
+			try {
+				this.defaults.socket.send(JSON.stringify(data));
+				console.log('Websocket: Sent ')
+				console.log(data);
+			} catch (exception) {
+				console.log('Websocket: Error ' + exception);
+			}
 		}
+
 	});
 
 	// Returns the Model class

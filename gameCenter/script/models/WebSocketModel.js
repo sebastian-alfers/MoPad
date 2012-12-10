@@ -71,7 +71,7 @@ define(["jquery", "backbone"], function($, Backbone) {
         },
 
         getPinForPlayer: function(player){
-            $webSocketModel.send({type:this.defaults.socketMsgTypePinForUser, vendor: $webSocketModel.attributes.vendorType, data : {username: player.get('userName')}});
+            $webSocketModel.send({type:this.defaults.socketMsgTypePinForUser, vendor: $webSocketModel.attributes.vendorType, data : {username: player.get('username')}});
         }
     });
 

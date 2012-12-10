@@ -23,7 +23,7 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 					console.log(player);
 					console.log($that.defaults.playerCollection);
 
-					if (player.get('userName') == json.data.username) {
+					if (player.get('username') == json.data.username) {
 						fetched++;
 						player.set('pin', json.data.pin);
 					}
@@ -39,7 +39,7 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 					});
 				}
 
-				//$('#pending_bar_'+json.pin).html("<strong>" +json.userName + "</strong> ist am start mit pin <strong>" + json.pin + "</strong> :) ");
+				//$('#pending_bar_'+json.pin).html("<strong>" +json.username + "</strong> ist am start mit pin <strong>" + json.pin + "</strong> :) ");
 			});
 
 			this.$el.append('<ul class="nav nav-tabs nav-stacked" id="list_player_li"></ul>');
@@ -74,11 +74,11 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 			var valid = 0;
 			playerCollection = new PlayerCollection();
 			$('.username').each(function(el) {
-				var userName = $(this).val();
-				if (userName != '') {
+				var username = $(this).val();
+				if (username != '') {
 					console.log('player');
 					var player = new PlayerModel({
-						userName : userName
+						username : username
 					});
 					valid++;
 					playerCollection.add(player);

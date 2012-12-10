@@ -10,7 +10,9 @@
 	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
 
 	<!-- Include your site specific stylesheets -->
+	<link rel="stylesheet" href="style/reset.css">
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="style/controlModules.css">
 
 </head>
 <body>
@@ -27,7 +29,10 @@
 			<input type="button" id="sendCommand" value="Send command" style="display: none;" />
 		</script>
 	</div>
+	
+	<div id="controller"></div>
 
 	<script data-main="script/controller" src="script/libs/require.js"></script>
+	<script type="text/javascript" src="script/controlModules.js"></script> <!-- TODO load via require JS -->
 </body>
 </html>

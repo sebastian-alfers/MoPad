@@ -207,21 +207,23 @@ var REFRESH_RATE		= 15;
 
 
 
-//$socket = new WebSocket('ws://localhost:8081/');
-
-console.log($webSocketModel);
-
-
-
-
-
-console.log('Websocket: Status ' + $socket.readyState + ' (open)');
-
-    $webSocketModel.on('sendCommandToGame', function(json){
+$webSocketModel.on('sendCommandToGame', function(json){ // TODO move to central event handler
 
 	console.log(json);
 	//just pass the message type (from node) as an event to be subscribed to
-        jQuery.gameQuery.keyTracker[68] = !jQuery.gameQuery.keyTracker[68];
+	
+	switch(json.keycode){
+		case 'up': jQuery.gameQuery.keyTracker[87] = !jQuery.gameQuery.keyTracker[87];
+					break;
+		case 'down': jQuery.gameQuery.keyTracker[83] = !jQuery.gameQuery.keyTracker[83];
+					break;
+		case 'left': jQuery.gameQuery.keyTracker[65] = !jQuery.gameQuery.keyTracker[65];
+					break;
+		case 'right': jQuery.gameQuery.keyTracker[68] = !jQuery.gameQuery.keyTracker[68];
+					break;
+		default: console.log('Unkown key command');
+	}
+
 
 });
 

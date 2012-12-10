@@ -18,7 +18,7 @@ define(['jquery', 'backbone'], function($, Backbone){
             this.options.playerCollection.each(function(player){
 
                 if(player.get('pin') == undefined || player.get('pin') == ''){
-                    alert('error. player ' + player.get('userName') + ' has no pin');
+                    alert('error. player ' + player.get('username') + ' has no pin');
                 }
                 else{
 
@@ -55,13 +55,11 @@ define(['jquery', 'backbone'], function($, Backbone){
 
             $webSocketModel.on('activateController', function(json){
                 console.log('Connection established');
-                console.log(json);
-                console.log(this);
 
                 this.options.playerCollection.each(function(player){
                     console.log(player);
                     if(player.get('pin') == json.pin){
-                        $('#pending_bar_'+player.get('pin')).html("<strong>" +player.get('userName') + "</strong> ist am start mit pin <strong>" + player.get('pin') + "</strong> :) ");
+                        $('#pending_bar_'+player.get('pin')).html("<strong>" +player.get('username') + "</strong> ist am start mit pin <strong>" + player.get('pin') + "</strong> :) ");
                     }
 
                 });

@@ -13,7 +13,7 @@ define(['jquery', 'backbone'], function($, Backbone) {
 
 		registerController : function() {
 			$('#sendPin').hide();
-			$('#sendCommand').show();
+			$('#sendCommand').show(); // TODO wait with this until connection is actually established
 			$('#pinInput').attr("disabled", "disabled");
 
 			$webSocketModel.send({
@@ -28,7 +28,11 @@ define(['jquery', 'backbone'], function($, Backbone) {
 				console.log('Cache pin ' + json.pin);
 
 				this.options.gameConnectionId = json.pin;
-				$('#username').html(json.userName);
+				$('#username').html(json.username);
+				
+				// Initialize controller, when ready
+				connId = this.options.gameConnectionId; // TODO remove!! hilfsvariable
+				new Joypad();
 			}, this);
 		},
 
@@ -38,7 +42,8 @@ define(['jquery', 'backbone'], function($, Backbone) {
 					type : 'sendCommandToGame',
 					data : {
 						connectionId : this.options.gameConnectionId,
-						pin : $('#pinInput').val()
+						keycode: 'testButton',
+						pin : $('#pinInput').val() // TODO: Automatic identification on bridge, not via pin. pin input might also be removed already
 					}
 				});
 			}

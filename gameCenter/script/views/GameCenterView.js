@@ -18,13 +18,6 @@ define(['jquery', 'backbone','models/GameCenterModel', 'views/GameListView', 'vi
                 this.games = new GameListView({ el:$('#list_games_li'),games:this.games });
                 this.player = new PlayerListView({el:$('#player_slider'), games:this.games});
 
-                //console.log(this.options.publicKey);
-                //console.log(this.options.uniqueAppIdForBridge);
-
-                $('#get_controller_for_pins').click(function(){
-                    send({type: 'getControllersForGame'});	// TODO Warum hier?
-                });
-
             });
             gameCenterModel.on('errorOnGenerateUnidqueAppId', function(data){
                 console.log('Event errorOnGenerateUnidqueAppId: ' + data);

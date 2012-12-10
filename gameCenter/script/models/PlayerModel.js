@@ -1,10 +1,9 @@
 define(["jquery", "backbone"], function($, Backbone) {
 
     PlayerModel = Backbone.Model.extend({
-        urlRoot: 'getPinForUser.php',
-        idAttribute: 'userName',
+        idAttribute: 'username',
         defaults:{
-            userName: null,
+            username: null,
             pin: null
         },
         pending: function(totalFetched, playerCount){

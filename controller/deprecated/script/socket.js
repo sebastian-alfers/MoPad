@@ -47,7 +47,7 @@ window.loadSocket = function(type){
                         window.gameConnectionId = json.pin;
 
                         console.log(json);
-                        $('#username').html(json.userName);
+                        $('#username').html(json.username);
 
                         console.log(window.gameConnectionId);
                         console.log('+++++++');
@@ -58,7 +58,7 @@ window.loadSocket = function(type){
 
                         console.log('remove pending bar');
                         console.log(json);
-                        $('#pending_bar_'+json.pin).html("<strong>" +json.userName + "</strong> ist am start mit pin <strong>" + json.pin + "</strong> :) ");
+                        $('#pending_bar_'+json.pin).html("<strong>" +json.username + "</strong> ist am start mit pin <strong>" + json.pin + "</strong> :) ");
 
 
 
