@@ -45,19 +45,43 @@ games.push({
 	ip : '192.168.1.36'
 });
 
+//for controller
+games.push({
+	id : 3,
+	gameName : "Move the box",
+	publicKey : '123456',
+	ip : '141.45.204.172'
+});
+
 // Current connections
 var connections = new Array();
 
 //id, connectiongame, connectionController, timestamp, gameId
 var connectionIDCounter = 0;
 
+var controllers = [];
+controllers.push('127.0.0.1');
+controllers.push('localhost');
+controllers.push('141.45.204.172');
+
+
 function originIsAllowed(peername) {
+	
+	// Check the accepted game origins
 	for (var i = 0; i < games.length; i++) {
 
 		if (games[i].ip == peername.address)
 			return true;
 	}
-    return false;
+	
+	// Check the accepted controller origins
+	for (var i = 0; i < controllers.length; i++) {
+
+		if (controllers[i].ip == peername.address)
+			return true;
+	}
+
+	return false;
 }
 
 function keyIsAllowed(key) {
@@ -88,12 +112,14 @@ wsServer.on('request', function(request) {
 
 
 	// Check if connection is allowed
-	if (!originIsAllowed(request.socket._peername)) {
+	if (!originIsAllowed(request.socket._peername.address)) {
 		// Make sure we only accept requests from an allowed origin
 		request.reject();
 		console.log(time() + 'WebSocket connection from origin ' + request.socket._peername.address + ' rejected.');
 		return;
 	} else {
+		//console.log(request.socket);
+		
 		var connection = request.accept(null, null);
 		connection.verified = false;
 		console.log(time() + 'WebSocket connection from origin ' + request.socket._peername.address + ' accepted.');
@@ -165,12 +191,17 @@ wsServer.on('request', function(request) {
             else if(json.type == 'getPinForUser'){
                 console.log('Generate new pin');
                 console.log(json);
+                
+                //connection.pins = json.data;
 
+				var pin = Math.floor(Math.random()*1001); // TODO check whether pin exists already
+				connection.pins = pin;
+				
                 connection.sendUTF(JSON.stringify({
                                                     msg: "getPinForUser",
                                                     action: 'new pin',
                                                     data: {
-                                                        pin: Math.floor(Math.random()*1001), // TODO check whether pin exists already
+                                                        pin: pin,
                                                         username: json.data.username}
                                                     }
                                                 ));
@@ -178,11 +209,11 @@ wsServer.on('request', function(request) {
 
 
 
-			} else if (json.type == 'registerPinsForGameInstance') {
+			} else if (json.type == 'registerPinsForGameInstance') { // TODO remove
 				console.log(time() + 'Received new pins:');
 
 				connection.pins = json.data;
-
+			
 				json.data.forEach(function(pin) {
 					console.log('Pin: ' + pin);
 				});

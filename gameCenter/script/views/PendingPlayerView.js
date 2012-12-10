@@ -54,7 +54,7 @@ define(['jquery', 'backbone'], function($, Backbone){
 
 
             $webSocketModel.on('activateController', function(json){
-                alert('on activateController');
+                console.log('Connection established');
                 console.log(json);
                 console.log(this);
 

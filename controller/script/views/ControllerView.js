@@ -4,7 +4,7 @@ define(['jquery', 'backbone'], function($, Backbone) {
 
 		events : {
 			'click #sendPin' : 'registerController',
-			'click #sendCommand' : 'sendCommand'
+			'touchstart #sendCommand' : 'sendCommand'
 		},
 
 		initialize : function() {

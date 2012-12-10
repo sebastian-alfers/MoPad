@@ -45,7 +45,7 @@ $('body').append('<br /> \
 
 
 
-var playerCount = 3;
+var playerCount = 1;
 	
 // Game state
 var bossMode = false;
@@ -139,7 +139,7 @@ var REFRESH_RATE		= 15;
 					.addGroup("actors", {width: PLAYGROUND_WIDTH, height: PLAYGROUND_HEIGHT});
 					
 	for(i = 0; i < playerCount; i++){
-						$.playground().addGroup("player"+i, {posx: PLAYGROUND_WIDTH/2 + 40*i, posy: PLAYGROUND_HEIGHT/2 + 20*i, width: 100, height: 26})
+						$.playground().addGroup("player"+i, {posx: 60 + i, posy: PLAYGROUND_HEIGHT/2 + 40*i, width: 100, height: 26})
 							.addSprite("playerBody",{animation: playerAnimation["idle"], posx: 0, posy: 0, width: 100, height: 26})
 						.end();
 	}					
@@ -221,7 +221,7 @@ console.log('Websocket: Status ' + $socket.readyState + ' (open)');
 
 	console.log(json);
 	//just pass the message type (from node) as an event to be subscribed to
-        jQuery.gameQuery.keyTracker[65] = !jQuery.gameQuery.keyTracker[65];
+        jQuery.gameQuery.keyTracker[68] = !jQuery.gameQuery.keyTracker[68];
 
 });
 
