@@ -4,8 +4,9 @@
   <meta charset="utf-8">
 
 
-  <title>Mobile Game Pad - GameCenter</title>
-  <meta name="description" content="">
+  <title>MoPad - GameCenter</title>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <meta name="description" content="A collection of games to demonstrate the MoPad mobile controller for browser games">
 
   <!-- Mobile viewport optimized: h5bp.com/viewport -->
   <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
@@ -21,16 +22,14 @@
     <header class="navbar nav navbar-inner">
         <h1>GameCenter</h1>
     </header>
-    <div class="description">
-    <h3>Ready to play?</h3>
-    </div>
-    <section id="main"class="container">
+
+    <section id="main" class="container">
 
         <div class="row-fluid show-grid">
              <div class="span4" id="gameListWrapper">
                  <h2>Games</h2>
                  <div>
-                       <ul class="nav nav-tabs nav-stacked" id="list_games_li"></ul>
+                 	<ul class="nav nav-tabs nav-stacked" id="list_games_li"></ul>
                  </div>
              </div>
              <div class="span4" id="playerChooserWrapper">
@@ -45,7 +44,7 @@
              <div class="span4" id="pinWrapper">
 
                  <h2>Pins</h2>
-                    <button type="submit" class="btn" id="cancel_pending_player" style="display: none; margin: 25px">cancel pending game</button>
+                    <button type="submit" class="btn" id="cancel_pending_game" style="display: none; margin: 25px">Cancel</button>
                  <div>
                      <ul id="pins" style="list-style-type: none;">
                      </ul>
@@ -66,7 +65,7 @@
         <script type="text/template" id="template_input_username">
             <li>
                 <label>Player <%= i %>:</label>
-                <input type="text" class="span2 username" style="width: 200px;" title="Please enter the players name">
+                <input type="text" class="span2 username" style="width: 200px;" title="Please enter the player's name">
             </li>
         </script>
 
@@ -93,9 +92,9 @@
         </script>
 
     </section>
-    <hr />
-    <ul id="userLog"></ul>
+
     <footer class="footer navbar navbar-fixed-bottom">
+    	<!-- TODO Fill me -->
     </footer>
 
 	<script data-main="script/gameCenter" src="script/libs/require.js"></script>

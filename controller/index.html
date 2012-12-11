@@ -3,8 +3,9 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>Mobile Game Pad - Controller</title>
-	<meta name="description" content="">
+	<title>MoPad - Controller</title>
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+	<meta name="description" content="A mobile controller for browser games">
 
 	<!-- Mobile viewport optimized: h5bp.com/viewport -->
 	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
@@ -12,6 +13,7 @@
 	<!-- Include your site specific stylesheets -->
 	<link rel="stylesheet" href="style/reset.css">
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+	<link rel="stylesheet" href="style/style.css">
 	<link rel="stylesheet" href="style/controlModules.css">
 
 </head>
@@ -20,17 +22,15 @@
 		<h1>Controller</h1>
 	</header>
 
-	<h2 id="username"></h2>
-
-	<div id="content">
+	<div id="main">
 		<script type="text/template" id="template_register_controller">
 			<input type="text" id="pinInput" title="Please enter the pin to connect with the game.">
 			<input type="button" id="sendPin" value="submit pin"><br />
 			<input type="button" id="sendCommand" value="Send command" style="display: none;" />
 		</script>
-	</div>
 	
-	<div id="controller"></div>
+		<div id="controller"></div>
+	</div>
 
 	<script data-main="script/controller" src="script/libs/require.js"></script>
 	<script type="text/javascript" src="script/controlModules.js"></script> <!-- TODO load via require JS -->

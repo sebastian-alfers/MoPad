@@ -24,7 +24,6 @@ define(["jquery","backbone", "models/WebSocketModel", "views/GameCenterView"], f
 
             $webSocketModel.on('sendCommandToGame', function(json){
                 console.log(json);
-                //$('#userLog').append('<li>'+json.pin+' did a click</li>');
             });
 
 

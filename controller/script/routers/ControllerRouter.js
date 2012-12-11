@@ -27,7 +27,7 @@ define(["jquery", "backbone", "models/WebSocketModel", "views/ControllerView"], 
             }
 
 			controllerView = new ControllerView({
-				el : $('#content')
+				el : $('#main')
 			});
 
 		}

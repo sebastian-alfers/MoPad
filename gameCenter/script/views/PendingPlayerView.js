@@ -8,7 +8,7 @@ define(['jquery', 'backbone'], function($, Backbone){
             this.render();
         },
         render: function(){
-            $('#cancel_pending_player').show();
+            $('#cancel_pending_game').show();
 
             console.log(this.$el);
 
@@ -41,7 +41,7 @@ define(['jquery', 'backbone'], function($, Backbone){
             //register the pins on the bridge for this game instance
             $webSocketModel.send({type: 'registerPinsForGameInstance', data : pins });
 
-            $('#cancel_pending_player').click(function(){
+            $('#cancel_pending_game').click(function(){
 
                 //sould be done via events
                 $('#pins').html('');
