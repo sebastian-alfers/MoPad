@@ -141,7 +141,7 @@ wsServer.on('request', function(request) {
 
 			// process WebSocket message
 			if (json.type == 'identify') {// First message identifies the websocket type (game/controller) TODO First message has to be identify, otherwise reject connection
-				if (json.vendor == 'game') { // TODO different naming; vendor!=connection type
+				if (json.connectionType == 'game') {
 
 					//identify a controller
 
@@ -158,7 +158,7 @@ wsServer.on('request', function(request) {
 					console.log(time() + 'Now ' + arraySize(connections) + ' connections');
 
 					return;
-				} else if (json.vendor == 'controller') {
+				} else if (json.connectionType == 'controller') {
 
 					//identify a controller
 					controller = connection;
@@ -188,7 +188,6 @@ wsServer.on('request', function(request) {
 				
                 connection.sendUTF(JSON.stringify({
                                                     type: "getPinForUser",
-                                                    action: 'new pin', //TODO rename to 'type'
                                                     data: {
                                                         pin: pin,
                                                         username: json.data.username}
@@ -214,7 +213,6 @@ wsServer.on('request', function(request) {
 
 				connections[json.data.connectionId].sendUTF(JSON.stringify({
 					type : 'sendCommandToGame',
-					action : 'move the box',
 					keycode: json.data.keycode,
 					pin : json.data.pin
 				}));

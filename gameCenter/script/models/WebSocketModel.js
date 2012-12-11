@@ -12,7 +12,7 @@ define(["jquery", "backbone"], function($, Backbone) {
             model: null, // the game or the controller
             socketMsgTypeIdentify: 'identify',
             socketMsgTypePinForUser: 'getPinForUser',
-            vendorType: null //identify as a game or controller
+            connectionType: null //identify as a game or controller
         },
 
         send: function(data){
@@ -51,7 +51,7 @@ define(["jquery", "backbone"], function($, Backbone) {
                 $socket.onopen = function() {
                     console.log('Websocket: Status ' + $socket.readyState + ' (open)');
 
-                    $webSocketModel.send({type:$webSocketModel.defaults.socketMsgTypeIdentify, vendor: $webSocketModel.attributes.vendorType, data: {publicKey:'123456'}});
+                    $webSocketModel.send({type:$webSocketModel.defaults.socketMsgTypeIdentify, connectionType: $webSocketModel.attributes.connectionType, data: {publicKey:'123456'}});
                 }
                 $socket.onmessage = function (msg) {
 
@@ -71,7 +71,7 @@ define(["jquery", "backbone"], function($, Backbone) {
         },
 
         getPinForPlayer: function(player){
-            $webSocketModel.send({type:this.defaults.socketMsgTypePinForUser, vendor: $webSocketModel.attributes.vendorType, data : {username: player.get('username')}});
+            $webSocketModel.send({type:this.defaults.socketMsgTypePinForUser, connectionType: $webSocketModel.attributes.connectionType, data : {username: player.get('username')}});
         }
     });
 

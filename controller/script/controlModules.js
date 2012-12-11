@@ -113,7 +113,10 @@ window.Joystick = function(){
 
 window.Joypad = function(){
 
-	$('#controller').append('<div class="controlModule joypad" id="joypad1"><table class="dPad"><tr><td colspan="2"><div class="button continuous up" id="up">&uarr;</div></td></tr><tr><td><div class="button continuous left" id="left">&larr;</div></td><td><div class="button continuous right" id="right">&rarr;</div></td></tr><tr><td colspan="2"><div class="button continuous down" id="down">&darr;</div></td></tr></table><table class="buttonGrid" id="buttonGrid1"><tr><td><div class="button blue" id="blue">B</div></td></tr><tr><td><div class="button red" id="red">A</div></td></tr></table></div><div class="clear"/>');
+	console.log('New joypad');
+
+	$('#main').append('<div class="controlModule joypad" id="joypad1"><table class="dPad"><tr><td colspan="2"><div class="button continuous up" id="up">&uarr;</div></td></tr><tr><td><div class="button continuous left" id="left">&larr;</div></td><td><div class="button continuous right" id="right">&rarr;</div></td></tr><tr><td colspan="2"><div class="button continuous down" id="down">&darr;</div></td></tr></table><table class="buttonGrid" id="buttonGrid1" hidden="hidden"><tr><td><div class="button blue" id="blue">B</div></td></tr><tr><td><div class="button red" id="red">A</div></td></tr></table></div><div class="clear"/>');
+	// TODO display buttongroup
 
 	var intervalTriggers = new Array();
 

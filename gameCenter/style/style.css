@@ -17,14 +17,14 @@ body {
 	margin: 3em;
 }
 
-#pins { 
-	margin: 0px !important; 
-}
 
 #cancel_pending_game {
-	margin: 0px !important;
+	margin: 0em !important;
 }
 
+#pins { 
+	margin: 1em 0em 0em 0em !important;
+}
 
 
 /* Templates */

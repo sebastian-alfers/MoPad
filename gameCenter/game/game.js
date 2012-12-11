@@ -27,11 +27,7 @@ loadjscssfile("game/jquery.gamequery-0.7.0.js", "js") //dynamically load "javasc
 setTimeout((function(){	
 
 
-
-
-$('body').append('<br /> \
-	<input type="button" id="testbtn" value="test" />\
-	\
+$('#main').append('<br /><br /> \
 	<div id="playground" style="width: 700px; height: 250px; background: black;">\
 		<div id="welcomeScreen" style="width: 700px; height: 250px; position: absolute; z-index: 100; background-image: url(game/idee6_nina.png); font-family: verdana, sans-serif;">\
 			<div style="position: absolute; top: 120px; width: 700px; color: white;">\

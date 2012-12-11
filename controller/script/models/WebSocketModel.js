@@ -10,7 +10,7 @@ define(["jquery", "backbone"], function($, Backbone) {
 			socket : null,
 			model : null, // the game or the controller
 			socketMsgTypeIdentify : 'identify',
-			vendorType : 'controller' // identify as a game or controller
+			connectionType : 'controller' // identify as a game or controller
 		},
 
 		initialize : function() {
@@ -30,9 +30,9 @@ define(["jquery", "backbone"], function($, Backbone) {
 
 					$webSocketModel.send({
 						type : $webSocketModel.defaults.socketMsgTypeIdentify,
-						vendor : $webSocketModel.attributes.vendorType,
+						connectionType : $webSocketModel.attributes.connectionType,
 						data : {
-							publicKey : '123456' // TODO maybe unnecessary for controllers
+							publicKey : '123456'
 						}
 					});
 				}
