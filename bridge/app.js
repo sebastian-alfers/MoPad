@@ -183,11 +183,11 @@ wsServer.on('request', function(request) {
                 
                 //connection.pins = json.data;
 
-				var pin = Math.floor(Math.random()*1001); // TODO check whether pin exists already
+				var pin = Math.floor(Math.random()*9000) + 1000; // TODO check whether pin exists already
 				connection.pins = pin;
 				
                 connection.sendUTF(JSON.stringify({
-                                                    msg: "getPinForUser",
+                                                    type: "getPinForUser",
                                                     action: 'new pin', //TODO rename to 'type'
                                                     data: {
                                                         pin: pin,
@@ -213,7 +213,7 @@ wsServer.on('request', function(request) {
                 console.log(json);
 
 				connections[json.data.connectionId].sendUTF(JSON.stringify({
-					msg : 'sendCommandToGame',
+					type : 'sendCommandToGame',
 					action : 'move the box',
 					keycode: json.data.keycode,
 					pin : json.data.pin
@@ -247,14 +247,14 @@ wsServer.on('request', function(request) {
                                 //TODO risk?
                                 console.log('cache controller');
 								connection.sendUTF(JSON.stringify({
-									msg : "cacheConnectionIdOnController",
+									type : "cacheConnectionIdOnController",
 									pin : key
 								}));
 
 								//tell the game instance that this pin has been activated by a controller
                                 console.log('activate pin ' + json.data.pin);
                                 gameConnection.sendUTF(JSON.stringify({
-									msg : "activateController",
+									type : "activateController",
 									pin : json.data.pin
 								}));
 
@@ -264,7 +264,7 @@ wsServer.on('request', function(request) {
 								 pass the action to the game instance
 
 								 connection.sendUTF(JSON.stringify({
-								 msg: "correctPinSubmit",
+								 type: "correctPinSubmit",
 								 pin: json.data.data.pin
 								 }));
 								 */

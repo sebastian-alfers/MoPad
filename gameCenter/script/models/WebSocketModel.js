@@ -60,7 +60,7 @@ define(["jquery", "backbone"], function($, Backbone) {
                     console.log(json);
 
                     //just pass the message type (from node) as an event to be subscribed to
-                    $webSocketModel.trigger(json.msg, json);
+                    $webSocketModel.trigger(json.type, json);
 
    				}
 
