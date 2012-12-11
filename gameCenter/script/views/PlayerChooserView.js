@@ -2,7 +2,7 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 
 	var PlayerChooserView = Backbone.View.extend({
 		defaults : {
-			numberPlayer : null,
+			numberPlayer : 1,
 			playerCollection : null,
 			pendingPlayer : null
 		},
@@ -28,7 +28,7 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 						player.set('pin', json.data.pin);
 					}
 				});
-
+				console.log('Test');
 				console.log(fetched);
 				console.log($that.defaults.playerCollection.length);
 
@@ -39,7 +39,6 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 					});
 				}
 
-				//$('#pending_bar_'+json.pin).html("<strong>" +json.username + "</strong> ist am start mit pin <strong>" + json.pin + "</strong> :) ");
 			});
 
 			this.$el.append('<ul class="nav nav-tabs nav-stacked" id="list_player_li"></ul>');

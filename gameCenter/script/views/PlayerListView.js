@@ -10,8 +10,6 @@ define(['jquery', 'backbone', 'views/PlayerChooserView'], function($, Backbone, 
         },
         initialize:function () {
 
-            console.log('PlayerList');
-
             this.options.games.model.on("change:currentGame", function (gameListModel) {
                 game = gameListModel.get('currentGame');
 
@@ -19,16 +17,14 @@ define(['jquery', 'backbone', 'views/PlayerChooserView'], function($, Backbone, 
                 $('#player_headline').html(game.get('name'));
 
                 var template = _.template($('#template_player_slider').html(), {});
-                this.$el.html(template);
                 
+                this.$el.html(template);
                 this.drawPlayerChooser(1);
 
             }, this);
         },
 
         changeNumberPlayer:function (event) {
-            $('#pins').html(''); // TODO Delete pins
-
             event.preventDefault();
             var el = $(event.currentTarget);
             this.drawPlayerChooser(el.context.value);

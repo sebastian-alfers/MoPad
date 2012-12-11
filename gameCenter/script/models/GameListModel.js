@@ -17,8 +17,6 @@ define(['jquery', 'backbone', 'collections/GameCollection', 'models/GameModel'],
                 gameCollection.add(new GameModel(game));
             });
 
-            console.log(gameCollection);
-
             this.gameCollection = gameCollection;
             this.trigger('afterLoadGameCollection', this.gameCollection);
         },
