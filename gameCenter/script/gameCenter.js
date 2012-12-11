@@ -5,7 +5,6 @@ require.config({
   paths: {
 
       // Core Libraries
-      "modernizr": "libs/modernizr",
       "jquery": "libs/jquery-1.8.2.min",
       "bootstrap": "../bootstrap/js/bootstrap",
       "underscore": "libs/lodash",
@@ -33,7 +32,7 @@ require.config({
 });
 
 // Include Desktop Specific JavaScript files here (or inside of your Desktop router)
-require(['modernizr','jquery','backbone','routers/gameCenterRouter','bootstrap','backbone.validateAll'], function(Modernizr, $, Backbone, GameCenterRouter) {
+require(['jquery','backbone','routers/gameCenterRouter','bootstrap','backbone.validateAll'], function($, Backbone, GameCenterRouter) {
 
     // Instantiates a new Router
     this.router = new GameCenterRouter();
