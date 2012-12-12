@@ -52,6 +52,12 @@ define(['jquery', 'backbone'], function($, Backbone){
                 $('#playerSlider').removeAttr('disabled');
             });
 
+            fetched = 0;
+
+            $playerCount = 0;
+            $playerPins = new Array();
+
+            $playerCount = this.options.playerCollection.length;
 
             $webSocketModel.on('activateController', function(json){
                 console.log('Connection established');
@@ -59,17 +65,29 @@ define(['jquery', 'backbone'], function($, Backbone){
                 this.options.playerCollection.each(function(player){
                     console.log(player);
                     if(player.get('pin') == json.pin){
+                        fetched++;
+                        $playerPins.push(json.pin);
                         $('#pending_bar_'+player.get('pin')).html("<strong>" +player.get('username') + "</strong> ist am start mit pin <strong>" + player.get('pin') + "</strong> :) ");
+                    }
+
+                    if(fetched == $playerCount){
+
+                        $('#pins').append('<br /><h2>Ready to rumble</h2>');
+
+                        /**
+                         * the final start of the game
+                         */
+                        $.getScript("game/game.js", function(data, textStatus, jqxhr) {
+                           //console.log(data); //data returned
+                           //console.log(textStatus); //success
+                           //console.log(jqxhr.status); //200
+                           //console.log('Load was performed.');
+                        });
+
                     }
 
                 });
 
-                $.getScript("game/game.js", function(data, textStatus, jqxhr) {
-                   //console.log(data); //data returned
-                   //console.log(textStatus); //success
-                   //console.log(jqxhr.status); //200
-                   //console.log('Load was performed.');
-                });
 
             }, this);
 

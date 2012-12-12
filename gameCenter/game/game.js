@@ -40,9 +40,12 @@ $('#main').append('<br /><br /> \
 ');
 
 
+    console.log($playerPins);
 
-var playerCount = 1;
-	
+var playerCount = $playerPins.length;
+
+    console.log(playerCount);
+
 // Game state
 var bossMode = false;
 var bossName = null;
@@ -135,7 +138,7 @@ var REFRESH_RATE		= 15;
 					.addGroup("actors", {width: PLAYGROUND_WIDTH, height: PLAYGROUND_HEIGHT});
 					
 	for(i = 0; i < playerCount; i++){
-						$.playground().addGroup("player"+i, {posx: 60 + i, posy: PLAYGROUND_HEIGHT/2 + 40*i, width: 100, height: 26})
+						$.playground().addGroup("player"+$playerPins[i], {posx: 10, posy: 10 + 40*i, width: 100, height: 26})
 							.addSprite("playerBody",{animation: playerAnimation["idle"], posx: 0, posy: 0, width: 100, height: 26})
 						.end();
 	}					
@@ -143,10 +146,13 @@ var REFRESH_RATE		= 15;
 		$.playground().end()
 
 
+
+
+
 					
 	for(i = 0; i < playerCount; i++){
-		console.log(i);
-		$("#player"+i)[0].player = new Player($("#player"));	
+		console.log($playerPins[i]);
+		$("#player"+$playerPins[i])[0].player = new Player($("#player"));
 	}					
 //	$("#player")[0].player = new Player($("#player"));
 					
@@ -167,45 +173,71 @@ var REFRESH_RATE		= 15;
 		});
 	});
 
+    var $playerStatus = Array();
+    var $jQuery = jQuery.gameQuery;
+    var update = function(){
+        console.log($jQuery);
+            for (var i = 0; i < $playerPins.length; ++i) {
 
+
+                if($playerStatus[$playerPins[i]] != undefined && $playerStatus[$playerPins[i]]){
+
+                    $("#player"+$playerPins[i])[0].player.update();
+                				if($jQuery.keyTracker[65]){ //this is left! (a)
+                					var nextpos = $("#player"+$playerPins[i]).x()-5;
+                					if(nextpos > 0){
+                						$("#player"+$playerPins[i]).x(nextpos);
+                					}
+                				}
+
+                				if($jQuery.keyTracker[68]){ //this is right! (d)
+                					var nextpos = $("#player"+$playerPins[i]).x()+5;
+                					if(nextpos < PLAYGROUND_WIDTH - 100){
+                						$("#player"+$playerPins[i]).x(nextpos);
+                					}
+                				}
+
+                				if($jQuery.keyTracker[87]){ //this is up! (w)
+                					var nextpos = $("#player"+$playerPins[i]).y()-3;
+                					if(nextpos > 0){
+                						$("#player"+$playerPins[i]).y(nextpos);
+                					}
+                				}
+                				if($jQuery.keyTracker[83]){ //this is down! (s)
+                					var nextpos = $("#player"+$playerPins[i]).y()+3;
+                					if(nextpos < PLAYGROUND_HEIGHT - 30){
+                						$("#player"+$playerPins[i]).y(nextpos);
+                					}
+                				}
+
+                }
+
+
+
+            }
+
+    					}
 	
 	// this is the function that control most of the game logic 
-	$.playground().registerCallback(function(){
+	$.playground().registerCallback(update, REFRESH_RATE);
 
 
-				$("#player0")[0].player.update();
-				if(jQuery.gameQuery.keyTracker[65]){ //this is left! (a)
-					var nextpos = $("#player0").x()-5;
-					if(nextpos > 0){
-						$("#player0").x(nextpos);
-					}
-				}
-				if(jQuery.gameQuery.keyTracker[68]){ //this is right! (d)
-					var nextpos = $("#player0").x()+5;
-					if(nextpos < PLAYGROUND_WIDTH - 100){
-						$("#player0").x(nextpos);
-					}
-				}
-				if(jQuery.gameQuery.keyTracker[87]){ //this is up! (w)
-					var nextpos = $("#player0").y()-3;
-					if(nextpos > 0){
-						$("#player0").y(nextpos);
-					}
-				}
-				if(jQuery.gameQuery.keyTracker[83]){ //this is down! (s)
-					var nextpos = $("#player0").y()+3;
-					if(nextpos < PLAYGROUND_HEIGHT - 30){
-						$("#player0").y(nextpos);
-					}
-				}
-		
-					}, REFRESH_RATE);
 
 
 
 $webSocketModel.on('sendCommandToGame', function(json){ // TODO move to central event handler
-
+    console.log("***");
 	console.log(json);
+    console.log("***");
+
+
+    if($playerStatus[json.pin] == undefined){
+        $playerStatus[json.pin] = true;
+    }
+    else{
+        $playerStatus[json.pin] = !$playerStatus[json.pin];
+    }
+
 	//just pass the message type (from node) as an event to be subscribed to
 	
 	switch(json.keycode){

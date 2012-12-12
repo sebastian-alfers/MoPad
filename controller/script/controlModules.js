@@ -120,31 +120,57 @@ window.Joypad = function(){
 
 	var intervalTriggers = new Array();
 
-	$('.controlModule.joypad .button').bind('touchstart', function (e) { //When button is pressed
-		e.preventDefault();
-		$(this).addClass('active');
-		var id = this.id;
-		//send(id);
-		
-		if(connId != undefined){
-			console.log('GOTCHA GAMECONNECTIONID!! boooyaa');
-			$webSocketModel.send({ // TODO auslagern!!
-				type : 'sendCommandToGame',
-				data : {
-					keycode : id,
-					connectionId : connId,
-					pin : $('#pinInput').val() // TODO: Automatic identification on bridge, not via pin. pin input might also be removed already
-				}
-			});
-			
-		} else { console.log('connectionId unknown'); }
-		
-		if($(this).hasClass('continuous')){
-			intervalTriggers[id] = setInterval(function(){
-			  //send(id); // TODO funktionlitŠt nachrŸsten
-			}, 50);
-		}
-	});
+    $('.controlModule.joypad .button').bind('touchstart', function (e) { //When button is pressed
+   		e.preventDefault();
+   		$(this).addClass('active');
+   		var id = this.id;
+   		//send(id);
+
+   		if(connId != undefined){
+   			console.log('GOTCHA GAMECONNECTIONID!! boooyaa');
+   			$webSocketModel.send({ // TODO auslagern!!
+   				type : 'sendCommandToGame',
+   				data : {
+   					keycode : id,
+   					connectionId : connId,
+   					pin : $('#pinInput').val() // TODO: Automatic identification on bridge, not via pin. pin input might also be removed already
+   				}
+   			});
+
+   		} else { console.log('connectionId unknown'); }
+
+   		if($(this).hasClass('continuous')){
+   			intervalTriggers[id] = setInterval(function(){
+   			  //send(id); // TODO funktionlitï¿½t nachrï¿½sten
+   			}, 50);
+   		}
+   	});
+
+    $('.controlModule.joypad .button').bind('touchend', function (e) { //When button is pressed
+   		e.preventDefault();
+   		$(this).addClass('active');
+   		var id = this.id;
+   		//send(id);
+
+   		if(connId != undefined){
+   			console.log('GOTCHA GAMECONNECTIONID!! boooyaa');
+   			$webSocketModel.send({ // TODO auslagern!!
+   				type : 'sendCommandToGame',
+   				data : {
+   					keycode : id,
+   					connectionId : connId,
+   					pin : $('#pinInput').val() // TODO: Automatic identification on bridge, not via pin. pin input might also be removed already
+   				}
+   			});
+
+   		} else { console.log('connectionId unknown'); }
+
+   		if($(this).hasClass('continuous')){
+   			intervalTriggers[id] = setInterval(function(){
+   			  //send(id); // TODO funktionlitï¿½t nachrï¿½sten
+   			}, 50);
+   		}
+   	});
 	
 	$('.controlModule.joypad .button').bind('touchend', function (e) { //When button is pressed
 		e.preventDefault();

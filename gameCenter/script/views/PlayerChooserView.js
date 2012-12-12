@@ -90,6 +90,9 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 			} else {
 
 				playerCollection.forEach(function(player) {
+                    /**
+                     * the PendingPlayerView now listens on an event "activateController"
+                     */
 					console.log('Get new pin');
 					$webSocketModel.getPinForPlayer(player);
 				});
