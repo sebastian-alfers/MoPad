@@ -43,7 +43,7 @@ define(['jquery', 'backbone'], function($, Backbone){
 
             $('#cancel_pending_game').click(function(){
 
-                //sould be done via events
+                //TODO sould be done via events
                 $('#pins').html('');
                 $(this).hide();
 
@@ -73,6 +73,11 @@ define(['jquery', 'backbone'], function($, Backbone){
                     if(fetched == $playerCount){
 
                         $('#pins').append('<br /><h2>Ready to rumble</h2>');
+                        
+                        // Ask before tab close TODO Remove when game is over
+                       $(window).on('beforeunload',function() {
+  					 		return 'O\'rly?';
+						});
 
                         /**
                          * the final start of the game
