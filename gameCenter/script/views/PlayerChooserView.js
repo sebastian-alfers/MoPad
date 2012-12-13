@@ -62,6 +62,21 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 		},
 
 		startGame : function() {
+			
+			// Check for repeating names
+			var tempArray = new Array();
+			var abort = false;
+			$('.username').each(function(i) {
+    			if(tempArray.indexOf($(this).val()) >= 0){
+	    			alert('Please pick unique names!');
+	    			abort=true;
+	    			return false;
+    			}
+    			tempArray.push($(this).val());
+			});
+			if(abort) return false;
+			
+			
 			$('#start_game').attr("disabled", "disabled");
 			$('.username').attr("disabled", "disabled");
 			$('#playerSlider').attr("disabled", "disabled");
