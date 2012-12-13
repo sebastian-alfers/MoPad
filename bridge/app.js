@@ -8,7 +8,6 @@
 /*                                  */
 /************************************/
 
-
 var WebSocketServer = require('websocket').server;
 var http = require('http');
 var port = 8081;
@@ -64,16 +63,15 @@ controllers.push('127.0.0.1');
 controllers.push('localhost');
 controllers.push('141.45.204.172');
 
-
 function originIsAllowed(peername) {
-	
+
 	// Check the accepted game origins
 	for (var i = 0; i < games.length; i++) {
 
 		if (games[i].ip == peername.address)
 			return true;
 	}
-	
+
 	// Check the accepted controller origins
 	for (var i = 0; i < controllers.length; i++) {
 
@@ -93,6 +91,17 @@ function keyIsAllowed(key) {
 	}
 }
 
+// Check whether a connection with a certain pin exists already
+function pinExists(pin, array) {
+	for (var key in array) {
+		if (array.hasOwnProperty(key)) {
+			if (array[key].pin == pin)
+				return true;
+		}
+	}
+	return false;
+}
+
 // Returns the size of an associative Array
 function arraySize(obj) {
 	var size = 0, key;
@@ -110,7 +119,6 @@ function time() {
 // WebSocket server
 wsServer.on('request', function(request) {
 
-
 	// Check if connection is allowed
 	if (!originIsAllowed(request.socket._peername.address)) {
 		// Make sure we only accept requests from an allowed origin
@@ -119,7 +127,7 @@ wsServer.on('request', function(request) {
 		return;
 	} else {
 		//console.log(request.socket);
-		
+
 		var connection = request.accept(null, null);
 		connection.verified = false;
 		console.log(time() + 'WebSocket connection from origin ' + request.socket._peername.address + ' accepted.');
@@ -176,44 +184,43 @@ wsServer.on('request', function(request) {
 				return;
 			}
 
-			
-			if(json.type == 'getPinForUser'){
-                console.log('Generate new pin');
-                console.log(json);
-                
-                //connection.pins = json.data;
+			if (json.type == 'getPinForUser') {
+				console.log('Generate new pin');
+				console.log(json);
 
-				var pin = Math.floor(Math.random()*9000) + 1000; // TODO check whether pin exists already
+				var pin = undefined;
+
+				while (pinExists(pin, connections)){
+					pin = Math.floor(Math.random() * 9000) + 1000;
+				}
+
 				connection.pins = pin;
-				
-                connection.sendUTF(JSON.stringify({
-                                                    type: "getPinForUser",
-                                                    data: {
-                                                        pin: pin,
-                                                        username: json.data.username}
-                                                    }
-                                                ));
 
+				connection.sendUTF(JSON.stringify({
+					type : "getPinForUser",
+					data : {
+						pin : pin,
+						username : json.data.username
+					}
+				}));
 
-
-
-			} else if (json.type == 'registerPinsForGameInstance') { // TODO remove
+			} else if (json.type == 'registerPinsForGameInstance') {// TODO remove
 				console.log(time() + 'Received new pins:');
 
 				connection.pins = json.data;
-			
+
 				json.data.forEach(function(pin) {
 					console.log('Pin: ' + pin);
 				});
-			}  else if (json.type == 'sendCommandToGame') {
+			} else if (json.type == 'sendCommandToGame') {
 
 				console.log(time() + 'Sent command to game instance');
 
-                console.log(json);
+				console.log(json);
 
 				connections[json.data.connectionId].sendUTF(JSON.stringify({
 					type : 'sendCommandToGame',
-					keycode: json.data.keycode,
+					keycode : json.data.keycode,
 					pin : json.data.pin
 				}));
 
@@ -225,16 +232,14 @@ wsServer.on('request', function(request) {
 				Object.keys(connections).forEach(function(key) {
 					var gameConnection = connections[key];
 
-
 					if (gameConnection.pins != undefined && gameConnection.pins.length > 0) {
 						console.log(gameConnection.pins.length);
 						console.log(gameConnection.pins);
 
-
 						gameConnection.pins.forEach(function(pin) {
 
-                            console.log(gameConnection.id);
-                            console.log(gameConnection.connectionId);
+							console.log(gameConnection.id);
+							console.log(gameConnection.connectionId);
 							console.log(json);
 
 							if (json.data.pin == pin) {
@@ -242,16 +247,16 @@ wsServer.on('request', function(request) {
 								console.log('jipp jiopp');
 
 								//send back the connection-id to the controller to cache it
-                                //TODO risk?
-                                console.log('cache controller');
+								//TODO risk?
+								console.log('cache controller');
 								connection.sendUTF(JSON.stringify({
 									type : "cacheConnectionIdOnController",
 									pin : key
 								}));
 
 								//tell the game instance that this pin has been activated by a controller
-                                console.log('activate pin ' + json.data.pin);
-                                gameConnection.sendUTF(JSON.stringify({
+								console.log('activate pin ' + json.data.pin);
+								gameConnection.sendUTF(JSON.stringify({
 									type : "activateController",
 									pin : json.data.pin
 								}));
@@ -274,7 +279,7 @@ wsServer.on('request', function(request) {
 
 				//if we come here, this means the pin is not correct
 				if (successPinMatch == true) {
-					console.log(time()+'Correct pin (id '+connectionId+')');
+					console.log(time() + 'Correct pin (id ' + connectionId + ')');
 				} else {
 					console.log('Wrong pin (id connectionId)');
 				}
@@ -297,9 +302,9 @@ wsServer.on('request', function(request) {
 
 	connection.on('close', function(connection) {
 		if (connectionId != undefined) {
-			console.log(time()+'Id "' + connectionId + '" disconnected');
+			console.log(time() + 'Id "' + connectionId + '" disconnected');
 			delete connections[connectionId];
-			console.log(time()+'Now ' + arraySize(connections) + ' connections');
+			console.log(time() + 'Now ' + arraySize(connections) + ' connections');
 		}
 	});
 });
