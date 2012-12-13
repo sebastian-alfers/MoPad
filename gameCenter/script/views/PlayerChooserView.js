@@ -13,6 +13,7 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 			$that = this;
 
 			fetched = 0;
+			numberPlayer = 1;
 
 			// listen for new pins
 			$webSocketModel.on($webSocketModel.defaults.socketMsgTypePinForUser, function(json) {
@@ -28,7 +29,7 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 						player.set('pin', json.data.pin);
 					}
 				});
-				console.log('Test');
+
 				console.log(fetched);
 				console.log($that.defaults.playerCollection.length);
 
@@ -51,22 +52,34 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 
 		},
 		drawPlayer : function(newNumberPlayer) {
-			if(newNumberPlayer>this.numberPlayer){
-				var template = _.template($('#template_input_username').html(), {i : newNumberPlayer});
-				this.$('ul').append(template);
-			} else if (newNumberPlayer<this.numberPlayer){
-				this.$('ul li:last-child').remove(); // TODO funktioniert nicht, wenn zu schnell gezogen wird
+			console.log(newNumberPlayer);
+			if(newNumberPlayer>this.defaults.numberPlayer){
+				while(newNumberPlayer>this.defaults.numberPlayer){
+					var template = _.template($('#template_input_username').html(), {i : ++this.defaults.numberPlayer });
+					
+					this.$('ul').append(template);
+				}
+				
+			} else if (newNumberPlayer<this.defaults.numberPlayer){
+				while(newNumberPlayer<this.defaults.numberPlayer){
+					this.$('ul li:last-child').remove();
+					this.defaults.numberPlayer--;
+				}
 			}
-			
-			this.numberPlayer = newNumberPlayer;		
+			console.log(this.defaults.numberPlayer);	
 		},
 
 		startGame : function() {
 			
-			// Check for repeating names
+			// Check for repeating and empty names
 			var tempArray = new Array();
 			var abort = false;
 			$('.username').each(function(i) {
+				if($(this).val()<=1){
+					alert('Please fill in all usernames!');
+	    			abort=true;
+	    			return false;
+				}
     			if(tempArray.indexOf($(this).val()) >= 0){
 	    			alert('Please pick unique names!');
 	    			abort=true;

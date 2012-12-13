@@ -33,7 +33,7 @@ define(['jquery', 'backbone', 'views/PlayerChooserView'], function($, Backbone, 
             if(this.playerChooser == null){
                 this.playerChooser = new PlayerChooserView({ el:$('#player_chooser')});
             }
-            this.playerChooser.drawPlayer(numberPlayer)
+            this.playerChooser.drawPlayer(numberPlayer);
         }
     });
 
