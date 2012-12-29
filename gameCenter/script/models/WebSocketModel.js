@@ -12,6 +12,7 @@ define(["jquery", "backbone"], function($, Backbone) {
             model: null, // the game or the controller
             socketMsgTypeIdentify: 'identify',
             socketMsgTypePinForUser: 'getPinForUser',
+            socketMsgTypeKickOffGame: 'kickOffGame',
             connectionType: null //identify as a game or controller
         },
 
@@ -72,6 +73,10 @@ define(["jquery", "backbone"], function($, Backbone) {
 
         getPinForPlayer: function(player){
             $webSocketModel.send({type:this.defaults.socketMsgTypePinForUser, connectionType: $webSocketModel.attributes.connectionType, data : {username: player.get('username')}});
+        },
+        
+        kickOffGame: function(gameId){
+            $webSocketModel.send({type:this.defaults.socketMsgTypeKickOffGame, data : {gameId: gameId}});
         }
     });
 

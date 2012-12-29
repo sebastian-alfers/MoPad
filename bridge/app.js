@@ -203,8 +203,12 @@ wsServer.on('request', function(request) {
 						username : json.data.username
 					}
 				}));
-
-			} else if (json.type == 'registerPinsForGameInstance') {// TODO remove
+			
+			} else if (json.type == 'kickOffGame') { // Announce to the controllers that the game stars
+				
+				// TODO Get game controllers and send the kickOff message
+			
+			} else if (json.type == 'registerPinsForGameInstance') {// TODO remove?
 				console.log(time() + 'Received new pins:');
 
 				connection.pins = json.data;
@@ -252,6 +256,11 @@ wsServer.on('request', function(request) {
 								connection.sendUTF(JSON.stringify({
 									type : "cacheConnectionIdOnController",
 									pin : key
+								}));
+
+								connection.sendUTF(JSON.stringify({ // So the controller can load the specific game controller
+									type : "gameId",
+									game : gameConnection.gameId
 								}));
 
 								//tell the game instance that this pin has been activated by a controller

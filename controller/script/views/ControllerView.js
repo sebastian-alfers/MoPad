@@ -15,11 +15,6 @@ define(['jquery', 'backbone'], function($, Backbone) {
 			$('#sendPin').hide();
 			
 			
-			// TODO wait with this until connection is actually established
-			new Joypad();
-			//$('#sendCommand').show(); 
-			
-			
 			$('#pinInput').attr("disabled", "disabled");
 
 			$webSocketModel.send({
@@ -38,6 +33,11 @@ define(['jquery', 'backbone'], function($, Backbone) {
 				
 				// Initialize controller, when ready
 				connId = this.options.gameConnectionId; // TODO remove!! hilfsvariable
+				
+				
+				// Load controller
+				new Joypad();
+				
 			}, this);
 		},
 

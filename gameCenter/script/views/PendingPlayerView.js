@@ -76,8 +76,10 @@ define(['jquery', 'backbone'], function($, Backbone){
                         
                         // Ask before tab close TODO Remove when game is over
                        $(window).on('beforeunload',function() {
-  					 		return 'O\'rly?';
+  					 		return 'O\'rly? U better not close dat game!';
 						});
+						
+						$webSocketModel.kickOffGame(1); // TODO get real game Id
 
                         /**
                          * the final start of the game

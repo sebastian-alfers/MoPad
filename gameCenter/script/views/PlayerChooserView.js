@@ -7,7 +7,7 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 			pendingPlayer : null
 		},
 		events : {
-			'click button' : 'startGame'
+			'click #start_game' : 'startGame'
 		},
 		initialize : function() {
 			$that = this;
@@ -71,7 +71,7 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 
 		startGame : function() {
 			
-			// Check for repeating and empty names
+			// Check for repetitive and empty usernames
 			var tempArray = new Array();
 			var abort = false;
 			$('.username').each(function(i) {
