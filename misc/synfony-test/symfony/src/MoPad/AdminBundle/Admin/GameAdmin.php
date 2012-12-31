@@ -11,31 +11,6 @@ use Sonata\AdminBundle\Route\RouteCollection;
 
 class GameAdmin extends Admin
 {
-	/*
-	protected $baseRouteName = 'game_admin';
-	
-	protected function configureRoutes(RouteCollection $collection)
-    {
-        $collection->add('duplicate');
-        $collection->add('view', $this->getRouterIdParameter().'/view');
-    }
-	
-	public function getPersistentParameters()
-    {
-        if (!$this->getRequest()) {
-            return array();
-        }
-
-        return array(
-            'provider' => $this->getRequest()->get('provider'),
-            'context'  => $this->getRequest()->get('context', 'default'),
-        );
-		// the result :
-		// $admin->generateUrl('create') => /admin/module/create?context=default
-		// <a href="{{ admin.generateUrl('list') }}">List</a>
-    }
-	*/
-	
 	
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -56,8 +31,45 @@ class GameAdmin extends Admin
 				    'multiple' => false,
 				    'help' => 'Choose the GamePad.'
 				))
+			->add('image', 'file', array('required' => false))
         ;
     }
+
+	/**
+	 * http://blog.code4hire.com/2011/08/symfony2-sonata-admin-bundle-and-file-uploads/
+	 */
+	public function prePersist($game) 
+	{
+		$game->setImageName($game->createImageName());
+	}
+	
+	public function preUpdate($game) 
+	{
+	    $game->setImageName($game->createImageName());
+	}
+	
+	public function postPersist($game) 
+	{
+		$this->saveFile($game);
+	}
+	
+	public function postUpdate($game) 
+	{
+	    $this->saveFile($game);
+	}
+	 
+	public function saveFile($game) 
+	{
+	    $basepath = $this->getRequest()->getBasePath();
+	    $game->upload($basepath);    
+	}
+	
+	public function preRemove($game) 
+	{
+		$basepath = $this->getRequest()->getBasePath();
+		$game->removeImage($basepath);
+	}
+	//-------------------------------
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
