@@ -10,22 +10,13 @@
 	user-select: none;
 }
 
-.helpOverlay {
-	position: absolute;
-	top: 50%;
-	width: 100%;
-	
-	text-align: center;
-	color: #ccc;
-}
-
 .button {
 	height: 4em;
 	width: 4em;
 	text-align: center;
 	line-height: 4em;
 	
-	border: 0.1em solid #333;
+	border: 1px solid #000;
 	border-radius: 50%;
 }
 
@@ -37,33 +28,24 @@
 
 /* Joypad */
 
-.controlModule.joypad { 
-	height: 100%;
-	padding: 0.5em; 
-}
-
-.controlModule.joypad .borderBox {
-	height: 100%;
-	width: 100%;
-	border: 0.1em solid #ccc;
-	text-align: center;
-}
+.controlModule.joypad { margin-top: 1em; }
 
 .controlModule.joypad .dPad {
+	width: 12em;
+	float: left;
+}
+
+.controlModule.joypad .dPad .button {
+	/*line-height: 2.4em;*/
 }
 
 .controlModule.joypad .dPad .up { margin: 0 auto; }
+.controlModule.joypad .dPad .left {	float: left; }
+.controlModule.joypad .dPad .right { float: right; }
 .controlModule.joypad .dPad .down { margin: 0 auto; }
-.controlModule.joypad .dPad .drag { 
-	color: #ccc;
-	margin: 0 auto; 
-	border: 0;
-}
-.button.drag.active { background-color: white; }
 
 
 .controlModule.joypad .buttonGrid {
-	font-weight: bold;
 	width: 9em;
 	float: right;
 }
@@ -83,7 +65,15 @@
 
 .controlModule.joystick {
 	height: 100%;
-	padding: 0.5em;
+}
+
+.controlModule.joystick #helpOverlay {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	
+	text-align: center;
+	color: #ccc;
 }
 
 .controlModule.joystick #joystickField {

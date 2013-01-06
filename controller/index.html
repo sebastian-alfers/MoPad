@@ -2,7 +2,6 @@
 <html>
 <head>
 	<meta charset="utf-8">
-
 	<title>MoPad - Controller</title>
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 	<meta name="description" content="A mobile controller for browser games">
@@ -10,29 +9,32 @@
 	<!-- Mobile viewport optimized: h5bp.com/viewport -->
 	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
 
-	<!-- Include your site specific stylesheets -->
-	<link rel="stylesheet" href="style/reset.css">
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-	<link rel="stylesheet" href="style/style.css">
-	<link rel="stylesheet" href="style/controlModules.css">
-
+	<link rel="stylesheet" type="text/css" href="style/reset.css">
+	<link rel="stylesheet" type="text/css" href="style/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style/style.css">
+	<link rel="stylesheet" type="text/css" href="style/controlModules.css">
+	
+	<script src="script/jquery-1.8.2.min.js"></script>
+	<script src="script/controlModules.js"></script>
+	<script src="script/socket.js"></script>
+	<script src="script/script.js"></script>
 </head>
-<body>
-	<header class="navbar nav navbar-inner">
-		<h1>Controller</h1>
+
+<body OnLoad="document.getElementById('pinInput').focus();">
+
+	<header class="navbar navbar-fixed-top navbar-inner" id="header">
+		<h1><img src="img/mopad_big.png" id="mopad_logo"> MoPad</h1>
 	</header>
 
-	<div id="main">
-		<script type="text/template" id="template_register_controller">
-		<input type="text" id="pinInput" title="Please enter the pin to connect with the game.">
-		<input type="button" id="sendPin" value="submit pin"><br />
-		<input type="button" id="sendCommand" value="Send command" style="display: none;" />
-		</script>
-		
-		<div id="controller"></div>
+	<div id="pinInputWrapper">
+		<div class="input-append">
+			<input id="pinInput" class="span2" type="text" maxlength="4" placeholder="Pin">
+			<button id="submitPin" class="btn" type="button" disabled="disabled">Go!</button>
+		</div>
+		<p>Please enter a Pin to connect your controller with the game.</p>
 	</div>
 
-	<script data-main="script/controller" src="script/libs/require.js"></script>
-	<script type="text/javascript" src="script/controlModules.js"></script> <!-- TODO load via require JS -->
+	<div id="controller" hidden="hidden"></div>
+
 </body>
 </html>

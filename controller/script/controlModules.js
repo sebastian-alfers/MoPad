@@ -6,7 +6,10 @@ window.Joystick = function(){
 	
 	//init
 	function init(){
-		$('#controller').append('<div class="controlModule joystick" id="joystick1"><div id="joystickField"><div id="helpOverlay">Tap anywhere to reveal the joystick</div><div id="joystickWrapper"><div id="joystickNub" /></div></div></div>');
+		console.log('Loading Joystick..');
+		loadControllerInterface();
+
+		$('#controller').append('<div class="controlModule joystick" id="joystick1"><div id="joystickField"><div class="helpOverlay">Tap anywhere to reveal the joystick.</div><div id="joystickWrapper"><div id="joystickNub" /></div></div></div>');
 		$('#joystickWrapper').css('visibility', 'hidden');
 		
 		// Source: http://stackoverflow.com/questions/8569095/draggable-div-without-jquery-ui
@@ -27,7 +30,7 @@ window.Joystick = function(){
 		
 		$('#joystickField').bind('touchstart', function(e){
 			e.preventDefault(); // Bugfix; compare https://code.google.com/p/android/issues/detail?id=19827
-			$('#helpOverlay').hide();
+			$('.helpOverlay').hide();
 		
 			var touch = e.originalEvent.touches[0];
 			
@@ -113,102 +116,124 @@ window.Joystick = function(){
 
 window.Joypad = function(){
 
-	console.log('New joypad');
+	init();
 
-	$('#main').append('<div class="controlModule joypad" id="joypad1"><table class="dPad"><tr><td colspan="2"><div class="button continuous up" id="up">&uarr;</div></td></tr><tr><td><div class="button continuous left" id="left">&larr;</div></td><td><div class="button continuous right" id="right">&rarr;</div></td></tr><tr><td colspan="2"><div class="button continuous down" id="down">&darr;</div></td></tr></table><table class="buttonGrid" id="buttonGrid1" hidden="hidden"><tr><td><div class="button blue" id="blue">B</div></td></tr><tr><td><div class="button red" id="red">A</div></td></tr></table></div><div class="clear"/>');
-	// TODO display buttongroup
+	//init
+	function init(){
+		console.log('Loading Joypad..');
+		loadControllerInterface();
 
-	var intervalTriggers = new Array();
+		$('#controller').append('<div class="controlModule joypad" id="joypad1"><div class="borderBox"><div class="helpOverlay">Drag # to move the touchpad to the desired position.</div><table class="dPad"><tr><td colspan="3"><div class="button continuous up" id="up">&uarr;</div></td></tr><tr><td><div class="button left" id="left">&larr;</div></td><td><div class="button drag"><span id="dragDpad">#</span></div></td><td><div class="button continuous right" id="right">&rarr;</div></td></tr><tr><td colspan="3"><div class="button continuous down" id="down">&darr;</div></td></tr></table><table class="buttonGrid" id="buttonGrid1" hidden="hidden"><tr><td><div class="button blue" id="blue">B</div></td></tr><tr><td><div class="button red" id="red">A</div></td></tr></table></div></div><div class="clear"/>');
+		// TODO display buttongroup
 
-    $('.controlModule.joypad .button').bind('touchstart', function (e) { //When button is pressed
-   		e.preventDefault();
-   		$(this).addClass('active');
-   		var id = this.id;
-   		//send(id);
+		var intervalTriggers = new Array();
 
-   		if(connId != undefined){
-   			console.log('GOTCHA GAMECONNECTIONID!! boooyaa');
-   			$webSocketModel.send({ // TODO auslagern!!
-   				type : 'sendCommandToGame',
-   				data : {
-   					keycode : id,
-   					connectionId : connId,
-   					pin : $('#pinInput').val() // TODO: Automatic identification on bridge, not via pin. pin input might also be removed already
-   				}
-   			});
+	    $('.controlModule.joypad .button').bind('touchstart', function (e) { //When button is pressed
+	   		e.preventDefault();
+	   		$(this).addClass('active');
+	   		var id = this.id;
+	   		//send(id);
 
-   		} else { console.log('connectionId unknown'); }
+	   		if(typeof connectionId != 'undefined'){
+	   			$webSocketModel.send({ // TODO auslagern!!
+	   				type : 'sendCommandToGame',
+	   				data : {
+	   					keycode : id,
+	   					connectionId : connectionId,
+	   					pin : $('#pinInput').val() // TODO: Automatic identification on bridge, not via pin. pin input might also be removed already
+	   				}
+	   			});
 
-   		if($(this).hasClass('continuous')){
-   			intervalTriggers[id] = setInterval(function(){
-   			  //send(id); // TODO funktionlit�t nachr�sten
-   			}, 50);
-   		}
-   	});
+	   		} else { console.log('connectionId unknown'); }
 
-    $('.controlModule.joypad .button').bind('touchend', function (e) { //When button is pressed
-   		e.preventDefault();
-   		$(this).addClass('active');
-   		var id = this.id;
-   		//send(id);
+	   		if($(this).hasClass('continuous')){
+	   			intervalTriggers[id] = setInterval(function(){
+	   			  //send(id); // TODO funktionlit�t nachr�sten
+	   			}, 50);
+	   		}
+	   	});
 
-   		if(connId != undefined){
-   			console.log('GOTCHA GAMECONNECTIONID!! boooyaa');
-   			$webSocketModel.send({ // TODO auslagern!!
-   				type : 'sendCommandToGame',
-   				data : {
-   					keycode : id,
-   					connectionId : connId,
-   					pin : $('#pinInput').val() // TODO: Automatic identification on bridge, not via pin. pin input might also be removed already
-   				}
-   			});
+	    $('.controlModule.joypad .button').bind('touchend', function (e) { //When button is pressed
+	   		e.preventDefault();
+	   		$(this).addClass('active');
+	   		var id = this.id;
+	   		//send(id);
 
-   		} else { console.log('connectionId unknown'); }
+	   		if(typeof connectionId != 'undefined'){
+	   			$webSocketModel.send({ // TODO auslagern!!
+	   				type : 'sendCommandToGame',
+	   				data : {
+	   					keycode : id,
+	   					connectionId : connectionId,
+	   					pin : $('#pinInput').val() // TODO: Automatic identification on bridge, not via pin. pin input might also be removed already
+	   				}
+	   			});
 
-   		if($(this).hasClass('continuous')){
-   			intervalTriggers[id] = setInterval(function(){
-   			  //send(id); // TODO funktionlit�t nachr�sten
-   			}, 50);
-   		}
-   	});
-	
-	$('.controlModule.joypad .button').bind('touchend', function (e) { //When button is pressed
-		e.preventDefault();
-		$(this).removeClass('active');
-	});
-	
-	$('.controlModule.joypad .button.continuous').bind('touchend', function (e) { //When button is released
-		e.preventDefault();
-		var id = this.id;
-		window.clearInterval(intervalTriggers[id]);
-		delete intervalTriggers[id];
-	});
+	   		} else { console.log('connectionId unknown'); }
 
+	   		if($(this).hasClass('continuous')){
+	   			intervalTriggers[id] = setInterval(function(){
+	   			  //send(id); // TODO funktionlit�t nachr�sten
+	   			}, 50);
+	   		}
+	   	});
+		
+		$('.controlModule.joypad .button').bind('touchend', function (e) { //When button is pressed
+			e.preventDefault();
+			$(this).removeClass('active');
+		});
+		
+		$('.controlModule.joypad .button.continuous').bind('touchend', function (e) { //When button is released
+			e.preventDefault();
+			var id = this.id;
+			window.clearInterval(intervalTriggers[id]);
+			delete intervalTriggers[id];
+		});
+
+		// Dragging Source: http://stackoverflow.com/questions/8569095/draggable-div-without-jquery-ui
+
+		var dragging = null;
+
+		$('#dragDpad').bind('touchstart', function(e){
+			e.preventDefault(); // Bugfix; compare https://code.google.com/p/android/issues/detail?id=19827
+			console.log('Dragging dPad..');
+			dragging = true;
+			$('.helpOverlay').hide();
+		});
+		
+		$('#dragDpad').bind('touchmove', function(e){
+			e.preventDefault();
+			var touch = e.originalEvent.touches[0];
+
+			if (dragging) {
+          $('.dPad').offset({
+			      top: touch.pageY-e.target.offsetTop-e.target.offsetHeight/2-$('.button.left').height(),
+            left: touch.pageX-e.target.offsetLeft-e.target.offsetWidth/2-$('.button.left').width()
+          });
+        }
+		});
+		
+		$('#dragDpad').bind('touchend', function(e){
+			e.preventDefault();
+			console.log('Dragging dPad end');
+			dragging = false;
+		});
+
+
+	}
 }
 
 
-// Accelerometer
+// Helper functions
 
-window.Accelerometer = function(){
+function loadControllerInterface(){
+	$("#header").hide();
+	$("#pinInputWrapper").hide();
+	$("#controller").show();
+}
 
-	if(!window.DeviceOrientationEvent) { 
-		$('#controller').fadeOut("fast");
-		$('<p>Whoops, your device doesn\'t seem to have an accelerometer.</p>').appendTo('body');
-	}
-	
-	$(window).bind("deviceorientation", function(e){
-					// compare: http://www.html5rocks.com/en/tutorials/device/orientation/?redirect_from_locale=de
-					console.log('Device moves!',e);
-					var orientation = e.originalEvent;
-                    var x = orientation.gamma;
-                    var y = orientation.beta;
-                    var z = orientation.alpha;
- 
-                    $("body").html(
-                        "x = <b>" + x + "</b><br/>" +
-                        "y = <b>" + y + "</b><br/>" +
-                        "z = <b>" + z + "</b>"
-                    );
-                });
-
+window.resetController = function(){
+	$('#controller').html('');
+	$('#header').show();
+	$('#pinInputWrapper').show();
 }

@@ -146,7 +146,7 @@ wsServer.on('request', function(request) {
 				console.log(time() + 'Parsing error: ' + exception);
 				return;
 			}
-
+			
 			// process WebSocket message
 			if (json.type == 'identify') {// First message identifies the websocket type (game/controller) TODO First message has to be identify, otherwise reject connection
 				if (json.connectionType == 'game') {
@@ -254,13 +254,9 @@ wsServer.on('request', function(request) {
 								//TODO risk?
 								console.log('cache controller');
 								connection.sendUTF(JSON.stringify({
-									type : "cacheConnectionIdOnController",
-									pin : key
-								}));
-
-								connection.sendUTF(JSON.stringify({ // So the controller can load the specific game controller
-									type : "gameId",
-									game : gameConnection.gameId
+									type : "cacheConnectionIdOnController", // TODO rename
+									controllerType : "Joypad",
+									pin : key // TODO rename
 								}));
 
 								//tell the game instance that this pin has been activated by a controller
@@ -290,7 +286,10 @@ wsServer.on('request', function(request) {
 				if (successPinMatch == true) {
 					console.log(time() + 'Correct pin (id ' + connectionId + ')');
 				} else {
-					console.log('Wrong pin (id connectionId)');
+					console.log('Wrong pin (id ' + connectionId + ')');
+					connection.sendUTF(JSON.stringify({
+									type : "wrongPin"
+								}));
 				}
 
 			} else {
