@@ -2,3 +2,4 @@
 .DS_Store
 .project
 misc/synfony-test/symfony/app/config/parameters.yml
+misc/synfony-test/symfony/src/MoPad/misc/synfony-test/symfony/app/phpunit.xml

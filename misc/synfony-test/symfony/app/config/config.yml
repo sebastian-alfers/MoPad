@@ -82,7 +82,7 @@ sonata_admin:
         
         groups:
             sonata_page: ~
-            mopad_gameadmin: ~
+            MoPad User Group: ~
 
     # set to true to persist filter settings per admin module in the user's session
     persist_filters: true

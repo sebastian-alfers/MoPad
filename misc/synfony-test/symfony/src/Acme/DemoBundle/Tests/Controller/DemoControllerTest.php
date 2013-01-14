@@ -4,9 +4,10 @@ namespace Acme\DemoBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class DemoControllerTest extends WebTestCase
+class DemoControllerTest /*extends WebTestCase*/
 {
-    public function testIndex()
+    /*
+	public function testIndex()
     {
         $client = static::createClient();
 
@@ -14,4 +15,5 @@ class DemoControllerTest extends WebTestCase
 
         $this->assertGreaterThan(0, $crawler->filter('html:contains("Hello Fabien")')->count());
     }
+	*/
 }
