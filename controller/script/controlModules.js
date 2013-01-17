@@ -6,7 +6,7 @@ window.Joystick = function(){
 	
 	//init
 	function init(){
-		console.log('Loading Joystick..');
+		console.log('Loading Joystick');
 		loadControllerInterface();
 
 		$('#controller').append('<div class="controlModule joystick" id="joystick1"><div id="joystickField"><div class="helpOverlay">Tap anywhere to reveal the joystick.</div><div id="joystickWrapper"><div id="joystickNub" /></div></div></div>');
@@ -120,7 +120,7 @@ window.Joypad = function(){
 
 	//init
 	function init(){
-		console.log('Loading Joypad..');
+		console.log('Loading Joypad');
 		loadControllerInterface();
 
 		$('#controller').append('<div class="controlModule joypad" id="joypad1"><div class="borderBox"><div class="helpOverlay">Drag # to move the touchpad to the desired position.</div><table class="dPad"><tr><td colspan="3"><div class="button continuous up" id="up">&uarr;</div></td></tr><tr><td><div class="button left" id="left">&larr;</div></td><td><div class="button drag"><span id="dragDpad">#</span></div></td><td><div class="button continuous right" id="right">&rarr;</div></td></tr><tr><td colspan="3"><div class="button continuous down" id="down">&darr;</div></td></tr></table><table class="buttonGrid" id="buttonGrid1" hidden="hidden"><tr><td><div class="button blue" id="blue">B</div></td></tr><tr><td><div class="button red" id="red">A</div></td></tr></table></div></div><div class="clear"/>');
@@ -148,7 +148,7 @@ window.Joypad = function(){
 
 	   		if($(this).hasClass('continuous')){
 	   			intervalTriggers[id] = setInterval(function(){
-	   			  //send(id); // TODO funktionlit�t nachr�sten
+	   			  //send(id); // TODO funktionlität nachrüsten
 	   			}, 50);
 	   		}
 	   	});
@@ -207,7 +207,7 @@ window.Joypad = function(){
 
 			if (dragging) {
           $('.dPad').offset({
-			      top: touch.pageY-e.target.offsetTop-e.target.offsetHeight/2-$('.button.left').height(),
+			top: touch.pageY-e.target.offsetTop-e.target.offsetHeight/2-$('.button.left').height(),
             left: touch.pageX-e.target.offsetLeft-e.target.offsetWidth/2-$('.button.left').width()
           });
         }
