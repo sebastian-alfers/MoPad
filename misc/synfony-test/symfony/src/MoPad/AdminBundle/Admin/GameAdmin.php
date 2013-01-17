@@ -24,14 +24,15 @@ class GameAdmin extends Admin
             ->add('maxPlayer', null, array('help' => 'How many players maximal?'))
             ->add('acceptedGamepads', 'choice', array(
 				    'choices' => array(
-				        'joystick' => 'joystick',
 				        'joypad' => 'joypad',
+				        'joystick' => 'joystick',
 				    ),
 				    'required' => true,
 				    'multiple' => false,
 				    'help' => 'Choose the GamePad.'
 				))
 			->add('image', 'file', array('required' => false))
+			->add('gameJs', 'file', array('required' => false))
         ;
     }
 
@@ -41,33 +42,37 @@ class GameAdmin extends Admin
 	public function prePersist($game) 
 	{
 		$game->setImageName($game->createImageName());
+		$game->setGameJsName($game->createGameJsName());
 	}
 	
 	public function preUpdate($game) 
 	{
 	    $game->setImageName($game->createImageName());
+		$game->setGameJsName($game->createGameJsName());
 	}
 	
 	public function postPersist($game) 
 	{
-		$this->saveFile($game);
+		$this->saveFiles($game);
 	}
 	
 	public function postUpdate($game) 
 	{
-	    $this->saveFile($game);
+	    $this->saveFiles($game);
 	}
 	 
-	public function saveFile($game) 
+	public function saveFiles($game) 
 	{
 	    $basepath = $this->getRequest()->getBasePath();
-	    $game->upload($basepath);    
+	    $game->upload($basepath, 'image');
+		$game->upload($basepath, 'gamejs');
 	}
 	
 	public function preRemove($game) 
 	{
 		$basepath = $this->getRequest()->getBasePath();
 		$game->removeImage($basepath);
+		// remove gameJs
 	}
 	//-------------------------------
 

@@ -14,6 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
  * - $ php app/console doctrine:generate:entities MoPadAdminBundle
  * * Update database schema/tables
  * - $ php app/console doctrine:schema:update --force
+ * Web chache clean
+ * - $ php app/console cache:clear
  */
 class Game
 {
@@ -82,6 +84,32 @@ class Game
 	 * @ORM\Column(type="string", length=255)
 	 */
 	private $imageName = "";
+	
+	/**
+	 * @var string
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $imageUrl = "";
+	
+	/**
+	 * no database safety, local safe
+	 */
+	private $gameJs;
+	
+	/**
+	 * @var string
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $gameJsName = "";
+	
+	/**
+	 * @var string
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $gameJsUrl = "";
+	
+	
+	
 
     /**
      * Get id
@@ -278,29 +306,6 @@ class Game
     }
 	
 	/**
-     * Set imageName
-     *
-     * @param $imageName
-     * @return Game
-     */
-    public function setImageName($imageName)
-    {
-        $this->imageName = $imageName;
-    
-        return $this;
-    }
-	
-	/**
-     * Get imageName
-     *
-     * @return  
-     */
-    public function getImageName()
-    {
-        return $this->imageName;
-    }
-	
-	/**
      * Set image
      *
      * @param $image
@@ -324,80 +329,177 @@ class Game
     }
 	
 	/**
-	 * @return imagename
+     * Set imageName
+     *
+     * @param $imageName
+     * @return Game
+     */
+    public function setImageName($imageName)
+    {
+		$this->imageName = urlencode($imageName);
+		// set image url
+		$this->imageUrl = $this->getGameAdminUrl().$this->getUploadImageDir().'/'.$this->imageName;
+    
+        return $this;
+    }
+	
+	/**
+     * Get imageName
+     *
+     * @return  
+     */
+    public function getImageName()
+    {
+        return $this->imageName;
+    }
+	
+	/**
+     * Set imageUrl
+     *
+     * @param $imageUrl
+     * @return Game
+     */
+    public function setImageUrl($imageUrl)
+    {
+        $this->imageUrl = $imageUrl;
+    
+        return $this;
+    }
+	
+	/**
+     * Get imageUrl
+     *
+     * @return  
+     */
+    public function getImageUrl()
+    {
+        return $this->imageUrl;
+    }
+	
+	/**
+     * Set gameJs
+     *
+     * @param $gameJs
+     * @return Game
+     */
+    public function setGameJs($gameJs)
+    {
+        $this->gameJs = $gameJs;
+    
+        return $this;
+    }
+	
+	/**
+     * Get gameJs
+     *
+     * @return  
+     */
+    public function getGameJs()
+    {
+        return $this->gameJs;
+    }
+	
+	/**
+     * Set gameJsName
+     *
+     * @param $gameJsName
+     * @return Game
+     */
+    public function setGameJsName($gameJsName)
+    {
+		$this->gameJsName = urlencode($gameJsName);
+		// set image url
+		$this->gameJsUrl = $this->getGameAdminUrl().$this->getUploadGameJsDir().'/'.$this->gameJsName;
+    
+        return $this;
+    }
+	
+	/**
+     * Get gameJsName
+     *
+     * @return  
+     */
+    public function getGameJsName()
+    {
+        return $this->gameJsName;
+    }
+	
+	/**
+     * Set gameJsUrl
+     *
+     * @param $gameJsUrl
+     * @return Game
+     */
+    public function setGameJsUrl($gameJsUrl)
+    {
+        $this->gameJsUrl = $gameJsUrl;
+    
+        return $this;
+    }
+	
+	/**
+     * Get gameJsUrl
+     *
+     * @return  
+     */
+    public function getGameJsUrl()
+    {
+        return $this->gameJsUrl;
+    }
+	
+	public function getGameAdminUrl()
+    {
+        return 'http://mopad-symfony.de/';
+    }
+	
+	public function getUploadImageDir()
+    {
+        return 'uploads/gameimage';
+    }
+	
+	public function getUploadGameJsDir()
+    {
+        return 'uploads/gamejs';
+    }
+	
+	/**
+	 * @return imageName
 	 */
 	public function createImageName()
 	{
 		if (null != $this->image) {
-			return "game_".$this->name."_".date('Y-m-d').".png";
+			return "image_".$this->name."_".date('Y-m-d').".png";
 		}
 	}
 	
-	
 	/**
-	 * http://blog.code4hire.com/2011/08/symfony2-sonata-admin-bundle-and-file-uploads/
+	 * @return gameJsName
 	 */
-	protected function getUploadDir()
+	public function createGameJsName()
 	{
-	    // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
-		return 'uploads/gameimages';
+		if (null != $this->gameJs) {
+			return "gamejs_".$this->name."_".date('Y-m-d').".js";
+		}
 	}
-	
-	protected function getUploadRootDir($basepath)
+
+	public function upload($basepath, $type)
 	{
-	    // the absolute directory path where uploaded documents should be saved
-	    return $basepath.$this->getUploadDir();
-	}
-	
-	public function getAbsolutePath($basepath)
-	{
-		return null === $this->imageName ? null : $this->getUploadRootDir($basepath).'/'.$this->imageName;
-	}
-	
-	public function getWebPath()
-	{
-	    return null === $this->imageName ? null : $this->getUploadDir().'/'.$this->imageName;
-	}
-	
-	public function upload($basepath)
-	{
-	    // the file property can be empty if the field is not required
-	    if (null === $this->image) {
-	        return;
-	    }
-	   
-	    if (null === $basepath) {
-	        return;
-	    }    
-	   
-	    // we use the original file name here but you should
-		// sanitize it at least to avoid any security issues
-		//$someNewFilename = $this->createImageName();
-		// set the path property to the filename where you'ved saved the file
-		//$this->setImageName($someNewFilename);
+		$fuh = new FileUploadHelper();
 		
-		// move takes the target directory and then the target filename to move to
-		//$this->image->move($this->getUploadRootDir($basepath), $this->image->getClientOriginalName());
-		$this->image->move($this->getUploadRootDir($basepath), $this->imageName);
-		
-		// clean up the file property as you won't need it anymore
-	    $this->image = null;
+		if ($type == 'image') {
+			$fuh->upload($basepath, $this->getUploadImageDir(), $this->image, $this->imageName);
+			$this->image = null;
+		} else if ($type == 'gamejs') {
+			$fuh->upload($basepath, $this->getUploadGameJsDir(), $this->gameJs, $this->gameJsName);
+			$this->gameJs = null;
+		}
 	}
 	
 	public function removeImage($basepath)
 	{
-	    if (null === $basepath) {
-	        return;
-	    }
-		
-		if (null === $this->imageName) {
-	        return;
-	    }
-	    echo($this->getUploadRootDir($basepath).$this->imageName);
-		unlink($this->getUploadRootDir($basepath).$this->imageName);
-		
+		$fuh = new FileUploadHelper();
+		$fuh->removeImage($basepath, $this->getUploadImageDir(), $this->imageName);
 	}
-	//------------------------------------------
 	
 	public function toString()
     {
