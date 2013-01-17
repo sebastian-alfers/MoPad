@@ -19,6 +19,12 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 			'click #start_game' : 'startGame'
 		},
 		initialize : function() {
+
+            if($webSocketModel.get("connected") == false){
+                alert('no websocket connection :(');
+                return;
+            }
+
 			$that = this;
 
 			fetched = 0;
@@ -79,7 +85,8 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 		},
 
 		startGame : function() {
-			
+
+
 			// Check for repetitive and empty usernames
 			var tempArray = new Array();
 			var abort = false;
@@ -97,7 +104,8 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
     			tempArray.push($(this).val());
 			});
 			if(abort) return false;
-			
+
+
 			
 			$('#start_game').attr("disabled", "disabled");
 			$('.username').attr("disabled", "disabled");
@@ -125,7 +133,7 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 			if (valid <= 0) {
 				alert('At least one player');
 			} else {
-
+                alert('start');
 				playerCollection.forEach(function(player) {
                     /**
                      * the PendingPlayerView now listens on an event "activateController"
@@ -133,9 +141,7 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 					console.log('Get new pin');
 					$webSocketModel.getPinForPlayer(player);
 				});
-
 				console.log('fetch for ' + playerCollection.length);
-
 			}
 
 		},

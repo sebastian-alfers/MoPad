@@ -22,7 +22,8 @@ define(["jquery", "backbone"], function($, Backbone) {
             socketMsgTypeIdentify: 'identify',
             socketMsgTypePinForUser: 'getPinForUser',
             socketMsgTypeKickOffGame: 'kickOffGame',
-            connectionType: null //identify as a game or controller
+            connectionType: null, //identify as a game or controller
+            connected: false
         },
 
         send: function(data){
@@ -48,6 +49,8 @@ define(["jquery", "backbone"], function($, Backbone) {
 
         initialize:function () {
 
+            //init the status view
+
             if (!("WebSocket" in window)) {
                 this.trigger('errorWebSocketAvailable', data);
             }
@@ -59,10 +62,16 @@ define(["jquery", "backbone"], function($, Backbone) {
                 $socket = new WebSocket(this.defaults.host);
 
                 $socket.onopen = function() {
-                    console.log('Websocket: Status ' + $socket.readyState + ' (open)');
-
+                    $webSocketModel.set({"connected": true});
                     $webSocketModel.send({type:$webSocketModel.defaults.socketMsgTypeIdentify, connectionType: $webSocketModel.attributes.connectionType, data: {publicKey:'123456'}});
+                    $webSocketModel.trigger("onopen");
                 }
+
+                $socket.onclose = function() {
+                    $webSocketModel.set({"connected": false});
+                    $webSocketModel.trigger("onclose");
+                }
+
                 $socket.onmessage = function (msg) {
 
                     var json = JSON.parse(msg.data);

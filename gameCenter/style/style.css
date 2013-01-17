@@ -67,3 +67,23 @@ body {
 	list-style-type: none;
 	margin-bottom: 0em;
 }
+
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+
+#template_websocket_connection_status{
+    margin: 20px;
+    background-color: #ff0000;
+     height: 20px;
+     -moz-border-radius:75px;
+     -webkit-border-radius: 75px;
+     width: 20px;
+}
+
+.connection-ok{
+    background-color: #008000 !important;
+}

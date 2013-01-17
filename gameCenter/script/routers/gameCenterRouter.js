@@ -1,4 +1,4 @@
-define(["jquery","backbone", "models/WebSocketModel", "views/GameCenterView"], function($, Backbone, WebSocketModel, GameCenterView){
+define(["jquery","backbone", "models/WebSocketModel", 'views/WebSocketConnectionStatusView'], function($, Backbone, WebSocketModel, WebSocketConnectionStatusView){
 
     var Router = Backbone.Router.extend({
         /**
@@ -28,13 +28,17 @@ define(["jquery","backbone", "models/WebSocketModel", "views/GameCenterView"], f
         home: function() {
             var $playerPins = new Array();
             $webSocketModel = new WebSocketModel({connectionType: 'game'});
-            gameCenterView = new GameCenterView({ el:$('#template_register_controller'), webSocketModel: $webSocketModel});
 
+            //richtig hier?
+            var webSocketConnectionStatusView = new WebSocketConnectionStatusView({el: $('#template_websocket_connection_status')});
 
+            /*
             $webSocketModel.on('sendCommandToGame', function(json){
                 console.log(json);
             });
 
+            console.log($webSocketModel.attributes.connected);
+              */
 
 
         }

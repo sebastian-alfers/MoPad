@@ -22,7 +22,8 @@
 	    <section id="main" class="container">
 	
 		    <header class="navbar nav navbar-inner" id="header">
-	        	<h1><img src="img/mopad_big.png" id="mopad_logo"> GameCenter</h1>
+	        	<h1 class="left"><img src="img/mopad_big.png" id="mopad_logo"> GameCenter</h1>
+                <div id="template_websocket_connection_status" class="right"></div>
 	   		</header>
 	
 	        <div id="contentWrapper" class="row-fluid show-grid">
@@ -68,11 +69,11 @@
             </li>
         </script>
 
-        <script type="text/template" id="template_submit_username">
-          <div class="btn-group">
-            <button class="btn" id="start_game">Start game</button>
-          </div>
-        </script>
+            <script type="text/template" id="template_submit_username">
+              <div class="btn-group">
+                <button class="btn" id="start_game">Start game</button>
+              </div>
+            </script>
 
         <script type="text/template" id="template_error">
             <div class="alert alert-error">

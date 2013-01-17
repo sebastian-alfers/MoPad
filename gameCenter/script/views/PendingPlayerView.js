@@ -17,10 +17,8 @@ define(['jquery', 'backbone'], function($, Backbone){
             this.render();
         },
         render: function(){
+
             $('#cancel_pending_game').show();
-
-            console.log(this.$el);
-
 
             var pins = new Array()
             var i = 0;
