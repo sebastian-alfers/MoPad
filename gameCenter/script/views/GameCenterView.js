@@ -1,7 +1,15 @@
 define(['jquery', 'backbone','models/GameCenterModel', 'views/GameListView', 'views/PlayerListView'], function($, Backbone, GameCenterModel, GameListView, PlayerListView){
 
     var GameCenterView = Backbone.View.extend({
-
+        /**
+         * @author Sebastian Alfers
+         *
+         * @class View to render the entire GameCenter
+         *
+         * @constructs
+         *
+         * WebSocketModel
+         */
         defaults:{
             games:null,
             gameCenterModel: null,

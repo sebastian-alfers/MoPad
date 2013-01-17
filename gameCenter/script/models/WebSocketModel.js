@@ -5,7 +5,16 @@
 define(["jquery", "backbone"], function($, Backbone) {
 
     var WebSocketModel = Backbone.Model.extend({
-
+        /**
+         * @author Sebastian Alfers
+         *
+         * @class Model to handle WebSocket connections to the
+         *        bridge
+         *
+         * @constructs
+         *
+         * WebSocketModel
+         */
         defaults:{
             host: 'ws://localhost:8081/', //can be overloaded while construct this model
             socket: null,

@@ -1,6 +1,15 @@
 define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerModel', 'views/PendingPlayerView'], function($, Backbone, PlayerCollection, PlayerModel, PendingPlayerView) {
 
 	var PlayerChooserView = Backbone.View.extend({
+        /**
+         * @author Sebastian Alfers
+         *
+         * @class View to render the Form to chose player with names
+         *
+         * @constructs
+         *
+         * PlayerChooserView
+         */
 		defaults : {
 			numberPlayer : 1,
 			playerCollection : null,

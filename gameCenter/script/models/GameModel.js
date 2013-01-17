@@ -5,6 +5,15 @@ define(["jquery", "backbone"], function($, Backbone) {
      * @type {*}
      */
     GameModel = Backbone.Model.extend({
+        /**
+         * @author Sebastian Alfers
+         *
+         * @class Store all data for a Game
+         *
+         * @constructs
+         *
+         * GameModel
+         */
         defaults:{
             icon:"",
             name:"",

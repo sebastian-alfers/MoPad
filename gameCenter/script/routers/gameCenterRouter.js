@@ -1,7 +1,15 @@
 define(["jquery","backbone", "models/WebSocketModel", "views/GameCenterView"], function($, Backbone, WebSocketModel, GameCenterView){
 
     var Router = Backbone.Router.extend({
-
+        /**
+         * @author Sebastian Alfers
+         *
+         * @class Router to Bootstrap the GameCenter
+         *
+         * @constructs
+         *
+         * GameCenterRouter
+         */
         initialize: function(){
         
             // Tells Backbone to start watching for hashchange events

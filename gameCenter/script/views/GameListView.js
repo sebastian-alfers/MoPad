@@ -1,6 +1,15 @@
 define(['jquery', 'backbone', 'models/GameListModel'], function($, Backbone, GameListModel){
 
     var GameListView = Backbone.View.extend({
+        /**
+         * @author Sebastian Alfers
+         *
+         * @class View to render the list of Games
+         *
+         * @constructs
+         *
+         * GameListView
+         */
         defaults:{
             model:null
         },

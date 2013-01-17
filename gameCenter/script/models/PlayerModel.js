@@ -1,6 +1,15 @@
 define(["jquery", "backbone"], function($, Backbone) {
 
     PlayerModel = Backbone.Model.extend({
+        /**
+         * @author Sebastian Alfers
+         *
+         * @class Store all data for a Player
+         *
+         * @constructs
+         *
+         * PlayerModel
+         */
         idAttribute: 'username',
         defaults:{
             username: null,

@@ -1,6 +1,14 @@
 define(["jquery", "backbone"], function($, Backbone) {
 
     var GameCenterModel = Backbone.Model.extend({
+        /**
+         * @author Sebastian Alfers
+         *
+         * @class Model to fetch the Games from the API
+         * @constructs
+         *
+         * GameCenterModel
+         */
         defaults:{
             publicKey: null
             // TODO Aktuell kennt der view die games. das muss hier hin

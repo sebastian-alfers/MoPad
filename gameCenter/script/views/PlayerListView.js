@@ -1,6 +1,15 @@
 define(['jquery', 'backbone', 'views/PlayerChooserView'], function($, Backbone, PlayerChooserView){
 
     var PlayerListView = Backbone.View.extend({
+        /**
+         * @author Sebastian Alfers
+         *
+         * @class React on change of number of player slider
+         *
+         * @constructs
+         *
+         * PlayerListView
+         */
         defaults:{
             games: null,
             playerChooser: null

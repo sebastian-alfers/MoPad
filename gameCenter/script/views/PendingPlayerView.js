@@ -1,6 +1,15 @@
 define(['jquery', 'backbone'], function($, Backbone){
 
     var PendingPlayerView = Backbone.View.extend({
+        /**
+         * @author Sebastian Alfers
+         *
+         * @class View to render the pending players
+         *
+         * @constructs
+         *
+         * PendingPlayerView
+         */
         defaults:{
             playerCollection: null
         },

@@ -226,10 +226,6 @@ var REFRESH_RATE		= 15;
 
 
 $webSocketModel.on('sendCommandToGame', function(json){ // TODO move to central event handler
-    console.log("***");
-	console.log(json);
-    console.log("***");
-
 
     if($playerStatus[json.pin] == undefined){
         $playerStatus[json.pin] = true;

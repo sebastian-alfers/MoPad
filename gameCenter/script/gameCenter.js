@@ -1,3 +1,12 @@
+/**
+ * @author Sebastian Alfers
+ *
+ * @class Main entry point
+ *
+ * @constructs
+ *
+ * GameCenter
+ */
 // Sets the require.js configuration for your application.
 require.config({
 

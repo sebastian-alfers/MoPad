@@ -1,15 +1,25 @@
 define(['jquery', 'backbone', 'collections/GameCollection', 'models/GameModel'], function($, Backbone, GameCollection, GameModel) {
 
     var GameListModel = Backbone.Model.extend({
+        /**
+         * @author Sebastian Alfers
+         *
+         * @class Model to store and render all
+         *        games and the selected Game.
+         *
+         * @constructs
+         *
+         * GameListModel
+         */
         defaults:{
             gameCollection:null,
             currentGame:null
         },
-        url:'games-json.php',
+        //url:'games-json.php',
         //url:'http://mopad-symfony.de/mopad/api/getgames',
         parse:function (data) {
 
-            console.log(data);
+            //console.log(data);
 
             var gameCollection = new GameCollection();
 
