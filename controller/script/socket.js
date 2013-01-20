@@ -18,12 +18,12 @@ window.Socket = {
 		} else {
 
 			$webSocketModel = this;
-			$socket = new WebSocket('ws://' + ip + ':8081/');
+			socket = new WebSocket('ws://' + ip + ':8081/');
 
-			$socket.onopen = function() {
+			socket.onopen = function() {
 
 				window.failedConnectionTrials = 0;
-				console.log('Websocket: Status ' + $socket.readyState + ' (open)');
+				console.log('Websocket: Status ' + socket.readyState + ' (open)');
 
 				this.send(JSON.stringify({
 					type : 'identify',
@@ -35,7 +35,7 @@ window.Socket = {
 
 			}
 
-			$socket.onmessage = function(msg) {
+			socket.onmessage = function(msg) {
 
 				var json = JSON.parse(msg.data);
 				console.log(json);
@@ -66,11 +66,11 @@ window.Socket = {
 
 			}
 
-			$socket.onerror = function(msg) {
+			socket.onerror = function(msg) {
 				console.log('WebSocket error', msg);
 			}
 
-			$socket.onclose = function(msg) {
+			socket.onclose = function(msg) {
 				window.failedConnectionTrials++;
 				console.log('WebSocket connection closed');
 
