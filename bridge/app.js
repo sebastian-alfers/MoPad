@@ -211,9 +211,13 @@ wsServer.on('request', function(request) {
 			} else if (json.type == 'registerPinsForGameInstance') {// TODO remove?
 				console.log(time() + 'Received new pins:');
 
-				connection.pins = json.data;
+                connection.pins = json.data.pins;
+                connection.game = json.data.game;
 
-				json.data.forEach(function(pin) {
+                //name of gamepade configured by the symfony admin (php)
+                console.log(connection.game.accepted_game_pads);
+
+				json.data.pins.forEach(function(pin) {
 					console.log('Pin: ' + pin);
 				});
 			} else if (json.type == 'sendCommandToGame') {
@@ -248,14 +252,15 @@ wsServer.on('request', function(request) {
 
 							if (json.data.pin == pin) {
 								//jip jipp :)
-								console.log('jipp jiopp');
+								console.log('jipp jiopp ');
+                                console.log(gameConnection.game.accepted_game_pads);
 
 								//send back the connection-id to the controller to cache it
 								//TODO risk?
 								console.log('cache controller');
 								connection.sendUTF(JSON.stringify({
 									type : "cacheConnectionIdOnController", // TODO rename
-									controllerType : "Joypad",
+									controllerType : gameConnection.game.accepted_game_pads,
 									pin : key // TODO rename
 								}));
 
@@ -263,7 +268,8 @@ wsServer.on('request', function(request) {
 								console.log('activate pin ' + json.data.pin);
 								gameConnection.sendUTF(JSON.stringify({
 									type : "activateController",
-									pin : json.data.pin
+									pin : json.data.pin,
+
 								}));
 
 								successPinMatch = true;

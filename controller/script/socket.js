@@ -50,9 +50,9 @@ window.Socket = {
 						connectionId = json.pin; //TODO Pin?
 						// Load specified controller
 						switch(json.controllerType){
-							case "Joystick" : new Joystick();
+							case "joystick" : new Joystick();
 																break;
-							case "Joypad" : new Joypad();
+							case "joypad" : new Joypad();
 															break;
 							default : console.log("Unkown controllerType");
 						}

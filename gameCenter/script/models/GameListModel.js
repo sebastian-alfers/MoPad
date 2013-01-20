@@ -24,6 +24,8 @@ define(['jquery', 'backbone', 'collections/GameCollection', 'models/GameModel'],
             var gameCollection = new GameCollection();
 
             _.each(data.games, function (game) {
+                console.log(game);
+                console.log('**#####');
                 gameCollection.add(new GameModel(game));
             });
 

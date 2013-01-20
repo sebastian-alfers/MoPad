@@ -44,9 +44,12 @@ define(['jquery', 'backbone'], function($, Backbone){
 
             }, this);
 
+            console.log('whoaattt');
+            console.log(this);
+            console.log('whoaattt');
 
             //register the pins on the bridge for this game instance
-            $webSocketModel.send({type: 'registerPinsForGameInstance', data : pins });
+            $webSocketModel.send({type: 'registerPinsForGameInstance', data : {pins:pins, game: this.options.game} });
 
             $('#cancel_pending_game').click(function(){
 

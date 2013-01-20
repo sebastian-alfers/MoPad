@@ -2,14 +2,14 @@ $(document).ready(function() {
 	
 	var urlParam = function(name){
     	var results = new RegExp('[\\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);
-	    return results && results[1] || ""; ;
+	    return results && results[1] || null; ;
 	}
-	
 
 	//Joystick();
 	if(urlParam('controller') == null){
-		window.socket = Socket.init(); 
+		window.socket = Socket.init();
 	} else {
+
 		switch (urlParam('controller')) {
 			case "joystick":
 				Joystick();
@@ -33,6 +33,7 @@ $(document).ready(function() {
 
 	$('#submitPin').click(function(){ // TODO enable "enter" to send
 		var pin = $('#pinInput').val();
+        console.log(socket);
 		socket.send({
 			type : 'getConnectionForPin',
 			data : {
