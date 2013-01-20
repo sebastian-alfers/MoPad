@@ -17,8 +17,6 @@ window.Socket = {
 			console.log("Websockets not supported");
 		} else {
 
-			// Websockets supported
-
 			$webSocketModel = this;
 			$socket = new WebSocket('ws://' + ip + ':8081/');
 

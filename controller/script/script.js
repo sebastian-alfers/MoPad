@@ -33,6 +33,7 @@ $(document).ready(function() {
 
 	$('#submitPin').click(function() {// TODO enable "enter" to send
 		var pin = $('#pinInput').val();
+        console.log(socket);
 		socket.send({
 			type : 'getConnectionForPin',
 			data : {

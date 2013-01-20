@@ -11,6 +11,7 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
          * PlayerChooserView
          */
 		defaults : {
+            game: null,
 			numberPlayer : 1,
 			playerCollection : null,
 			pendingPlayer : null
@@ -18,7 +19,10 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 		events : {
 			'click #start_game' : 'startGame'
 		},
-		initialize : function() {
+		initialize : function(params) {
+
+            this.defaults.game = params.game;
+
 
             if($webSocketModel.get("connected") == false){
                 alert('no websocket connection :(');
@@ -49,9 +53,11 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 				console.log($that.defaults.playerCollection.length);
 
 				if (fetched == $that.defaults.playerCollection.length) {
+
 					this.pendingPlayer = new PendingPlayerView({
 						el : $('#pins'),
-						playerCollection : $that.defaults.playerCollection
+						playerCollection : $that.defaults.playerCollection,
+                        game: $that.options.game
 					});
 				}
 

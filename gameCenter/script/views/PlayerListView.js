@@ -11,6 +11,7 @@ define(['jquery', 'backbone', 'views/PlayerChooserView'], function($, Backbone, 
          * PlayerListView
          */
         defaults:{
+            currentGame: null,
             games: null,
             playerChooser: null
         },
@@ -28,8 +29,10 @@ define(['jquery', 'backbone', 'views/PlayerChooserView'], function($, Backbone, 
                 var template = _.template($('#template_player_slider').html(), {});
                 
                 this.$el.html(template);
-                this.drawPlayerChooser(1);
 
+                this.options.game = game;
+
+                this.drawPlayerChooser(1);
             }, this);
         },
 
@@ -40,7 +43,8 @@ define(['jquery', 'backbone', 'views/PlayerChooserView'], function($, Backbone, 
         },
         drawPlayerChooser:function (numberPlayer) {
             if(this.playerChooser == null){
-                this.playerChooser = new PlayerChooserView({ el:$('#player_chooser')});
+
+                this.playerChooser = new PlayerChooserView({ el:$('#player_chooser'), game: this.options.game});
             }
             this.playerChooser.drawPlayer(numberPlayer);
         }
