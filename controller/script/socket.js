@@ -18,7 +18,7 @@ window.Socket = {
 		} else {
 
 			$webSocketModel = this;
-			socket = new WebSocket('ws://' + ip + ':8081/');
+			window.socket = new WebSocket('ws://' + ip + ':8081/');
 
 			socket.onopen = function() {
 
