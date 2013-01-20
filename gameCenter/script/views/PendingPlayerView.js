@@ -68,6 +68,7 @@ define(['jquery', 'backbone'], function($, Backbone){
             $playerPins = new Array();
 
             $playerCount = this.options.playerCollection.length;
+            $game = this.options.game;
 
             $webSocketModel.on('activateController', function(json){
                 console.log('Connection established');
@@ -94,7 +95,7 @@ define(['jquery', 'backbone'], function($, Backbone){
                         /**
                          * the final start of the game
                          */
-                        $.getScript("game/game.js", function(data, textStatus, jqxhr) {
+                        $.getScript($game.attributes.game_js_url, function(data, textStatus, jqxhr) {
                            //console.log(data); //data returned
                            //console.log(textStatus); //success
                            //console.log(jqxhr.status); //200

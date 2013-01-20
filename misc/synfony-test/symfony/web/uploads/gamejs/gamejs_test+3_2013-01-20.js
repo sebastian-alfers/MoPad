@@ -176,7 +176,6 @@ var REFRESH_RATE		= 15;
     var $playerStatus = Array();
     var $jQuery = jQuery.gameQuery;
     var update = function(){
-
             for (var i = 0; i < $playerPins.length; ++i) {
 
 
@@ -227,7 +226,7 @@ var REFRESH_RATE		= 15;
 
 $webSocketModel.on('sendCommandToGame', function(json){ // TODO move to central event handler
 
-
+    console.log($playerStatus);
 
     if($playerStatus[json.pin] == undefined){
         $playerStatus[json.pin] = true;
@@ -235,8 +234,6 @@ $webSocketModel.on('sendCommandToGame', function(json){ // TODO move to central 
     else{
         $playerStatus[json.pin] = !$playerStatus[json.pin];
     }
-
-
 
 	//just pass the message type (from node) as an event to be subscribed to
 	
