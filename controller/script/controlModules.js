@@ -74,7 +74,10 @@ window.Joystick = function(){
 				}
 				
 				angle = calcAngle(x,y);
-				console.log('x '+x+' y '+y+' angle '+angle.toFixed(2)+' distance '+distance.toFixed(2)); // X+Y-koordinaten, mÃ¼ssen auf 1 normiert werden
+				if(angle == -1) console.log('Angle calculation failed');
+				
+				console.log('x '+x+' y '+y+' angle '+angle.toFixed(2)+' distance '+distance.toFixed(2)); // X+Y-koordinaten, muessen auf 1 normiert werden
+				//console.log(angle);
 				
 				$('#joystickNub').offset({left: offsetLeft, top: offsetTop})
 			}
@@ -93,10 +96,29 @@ window.Joystick = function(){
 		return Math.sqrt(Math.pow(y2-y1, 2)+Math.pow(x2-x1, 2));
 	}
 	
-	function calcAngle(opposite, adjacent){
-		if(opposite == 0) opposite == 1;
-		if(adjacent == 0) adjacent == 1;
-		return 180/Math.atan(opposite*10/adjacent*10);
+	// function calcAngle(opposite, adjacent){
+		// if(opposite == 0) opposite == 1;
+		// if(adjacent == 0) adjacent == 1;
+		// return 180/Math.atan(opposite*10/adjacent*10);
+	// }
+		
+	function calcAngle(x, y){
+		
+		if(x>0 && y>0){	// 0¡
+			return Math.tan(Math.abs(x)/Math.abs(y)); // opposite/adjacent
+			return Math.abs(x)/Math.abs(y);
+		} else if(x>0 && y<0) { // 90¡
+			return Math.tan(Math.abs(y)/Math.abs(x));
+			return Math.abs(x)/Math.abs(y);
+		} else if(x<0 && y<0) { // 180¡
+			return Math.tan(Math.abs(x)/Math.abs(y));
+			return Math.abs(x)/Math.abs(y);
+		} else if(x<0 && y>0) { // 270¡
+			return Math.tan(Math.abs(y)/Math.abs(x));
+			return Math.abs(x)/Math.abs(y);
+		}
+		
+		return -1;
 	}
 		
 	function calcCoordinates(new_hypotenuse, old_hypotenuse, old_opposite, old_adjacent){
