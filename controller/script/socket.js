@@ -13,9 +13,9 @@ window.Socket = {
 		init : function() {
 			// Try to get the IP
 			if(window.location.search.substring(1) != undefined && window.location.search.substring(1) != ''){
-	      alert(window.location.search.substring(1));
-	      this.defaults.host = 'ws://' + window.location.search.substring(1) + ':8081/';
-	    }
+	      		alert(window.location.search.substring(1));
+	      		this.defaults.host = 'ws://' + window.location.search.substring(1) + ':8081/';
+	    	}
 
 			if (!("WebSocket" in window)) {
 				console.log("Websockets not supported");
