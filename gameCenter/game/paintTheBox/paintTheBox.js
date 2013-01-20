@@ -4,38 +4,14 @@ setTimeout((function(){
 
 
 $('#main').append('<br /><br /> \
-    asdf\
+    <canvas id="canvas"></canvas>\
 \
 \
 ');
 
 var $playerStatus = Array();
-// holds all our rectangles
-var boxes = [];
 
-//Box object to hold data for all drawn rects
-function Box() {
-  this.x = 0;
-  this.y = 0;
-  this.w = 1; // default width and height?
-  this.h = 1;
-  this.fill = '#444444';
-}
 
-//Initialize a new Box, add it, and invalidate the canvas
-function addRect(x, y, w, h, fill) {
-  var rect = new Box;
-  rect.x = x;
-  rect.y = y;
-  rect.w = w
-  rect.h = h;
-  rect.fill = fill;
-  boxes.push(rect);
-  invalidate();
-}
-
-// add an orange rectangle
-  addRect(200, 200, 40, 40, '#FFC02B');
 
 var canvas = document.getElementById("canvas"),
     ctx = canvas.getContext("2d"),
@@ -43,6 +19,9 @@ var canvas = document.getElementById("canvas"),
     lastX = 0,
     lastY = 0,
     lineThickness = 1;
+
+
+
 
 canvas.width = canvas.height = 600;
 ctx.fillRect(0, 0, 600, 600);
@@ -127,6 +106,46 @@ canvas.onmousemove = function(e) {
 
     }
 }
+
+    var x = 50;
+    var y = 50;
+
+    var FRAMES = 10;
+
+    function drawLine(){
+        ctx.fillRect(x, y, 1 , 1 );
+    }
+
+
+
+
+
+    var i = 10;
+function draw() {
+    //ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //ctx.fillRect(0, 0, 600, 600);
+
+    ctx.beginPath();
+    ctx.rect(x, y, i, 1);
+    ctx.fillStyle = 'yellow';
+    ctx.fill();
+
+    ctx.lineWidth = 7;
+    ctx.strokeStyle = 'yellow';
+    ctx.stroke();
+
+}
+
+return setInterval(draw, 10);
+
+
+$webSocketModel.on('sendCommandToGame', function(json){ // TODO move to central event handler
+
+
+console.log(json);
+
+
+});
 
 
 }), 500);

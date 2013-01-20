@@ -105,7 +105,7 @@ function Player(node){
 
 var PLAYGROUND_WIDTH	= 700;
 var PLAYGROUND_HEIGHT	= 250;
-var REFRESH_RATE		= 15;	
+var REFRESH_RATE		= 15;
 	
         var PLAYGROUND_WIDTH	= 700;
         var PLAYGROUND_HEIGHT	= 250;
@@ -176,12 +176,30 @@ var REFRESH_RATE		= 15;
     var $playerStatus = Array();
     var $jQuery = jQuery.gameQuery;
     var update = function(){
-            for (var i = 0; i < $playerPins.length; ++i) {
 
+            for (var i = 0; i < $playerPins.length; i++) {
+
+                console.log($playerStatus[$playerPins[i]]);
 
                 if($playerStatus[$playerPins[i]] != undefined && $playerStatus[$playerPins[i]]){
 
                     $("#player"+$playerPins[i])[0].player.update();
+
+                    if($playerStatus[$playerPins[i]].left){ //this is left! (a)
+                 					var nextpos = $("#player"+$playerPins[i]).x()-5;
+                 					if(nextpos > 0){
+                 						$("#player"+$playerPins[i]).x(nextpos);
+                 					}
+                 				}
+
+                    if($playerStatus[$playerPins[i]].right){ //this is left! (a)
+                        var nextpos = $("#player"+$playerPins[i]).x()+5;
+                   					if(nextpos < PLAYGROUND_WIDTH - 100){
+                   						$("#player"+$playerPins[i]).x(nextpos);
+                   					}
+                 				}
+
+                    /*
                 				if($jQuery.keyTracker[65]){ //this is left! (a)
                 					var nextpos = $("#player"+$playerPins[i]).x()-5;
                 					if(nextpos > 0){
@@ -208,6 +226,7 @@ var REFRESH_RATE		= 15;
                 						$("#player"+$playerPins[i]).y(nextpos);
                 					}
                 				}
+                				*/
 
                 }
 
@@ -226,25 +245,21 @@ var REFRESH_RATE		= 15;
 
 $webSocketModel.on('sendCommandToGame', function(json){ // TODO move to central event handler
 
-    console.log($playerStatus);
 
-    if($playerStatus[json.pin] == undefined){
-        $playerStatus[json.pin] = true;
-    }
-    else{
-        $playerStatus[json.pin] = !$playerStatus[json.pin];
-    }
+
+
+    $playerStatus[json.pin] = {up: false, down: false, right: false, left: false};
 
 	//just pass the message type (from node) as an event to be subscribed to
 	
 	switch(json.keycode){
-		case 'up': jQuery.gameQuery.keyTracker[87] = !jQuery.gameQuery.keyTracker[87];
+		case 'up':  $playerStatus[json.pin].up = true;
 					break;
-		case 'down': jQuery.gameQuery.keyTracker[83] = !jQuery.gameQuery.keyTracker[83];
+		case 'down': $playerStatus[json.pin].down = true;
 					break;
-		case 'left': jQuery.gameQuery.keyTracker[65] = !jQuery.gameQuery.keyTracker[65];
+		case 'left': $playerStatus[json.pin].left = true;
 					break;
-		case 'right': jQuery.gameQuery.keyTracker[68] = !jQuery.gameQuery.keyTracker[68];
+		case 'right': $playerStatus[json.pin].right = true;
 					break;
 		default: console.log('Unkown key command');
 	}
