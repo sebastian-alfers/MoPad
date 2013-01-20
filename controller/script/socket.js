@@ -45,10 +45,10 @@ window.Socket = {
 						//TODO Pin?
 						// Load specified controller
 						switch(json.controllerType) {
-							case "Joystick" :
+							case "joystick" :
 								new Joystick();
 								break;
-							case "Joypad" :
+							case "joypad" :
 								new Joypad();
 								break;
 							default :
