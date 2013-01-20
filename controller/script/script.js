@@ -5,7 +5,6 @@ $(document).ready(function() {
 	//Joystick();
 	if (urlParam[0] == 'ip') {
 		window.socket = Socket.init(urlParam[1]);
-		console.log('socket');
 	} else if (urlParam[0] == 'controller') {
 		switch (urlParam[1]) {
 			case "joystick":
@@ -33,7 +32,6 @@ $(document).ready(function() {
 
 	$('#submitPin').click(function() {// TODO enable "enter" to send
 		var pin = $('#pinInput').val();
-        console.log(socket);
 		socket.send({
 			type : 'getConnectionForPin',
 			data : {

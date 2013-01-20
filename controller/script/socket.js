@@ -5,84 +5,86 @@ window.Socket = {
 
 	// Initialize
 	init : function(ip) {
-		console.log(ip);
+		
 		// Try to get the IP
-		if (ip != null) {
-			console.log('ws://' + ip + ':8081/');
-		} else {
+		if (ip == null) {
 			ip = 'localhost';
 		}
 
 		if (!("WebSocket" in window)) {
 			console.log("Websockets not supported");
 		} else {
+			console.log('Trying to connect to websocket at '+ip)
 
-			$webSocketModel = this;
-			window.socket = new WebSocket('ws://' + ip + ':8081/');
+			try {
+				window.mySocket = new WebSocket('ws://' + ip + ':8081/');
+				console.log(mySocket.readyState);
 
-			socket.onopen = function() {
+				mySocket.onopen = function() {
 
-				window.failedConnectionTrials = 0;
-				console.log('Websocket: Status ' + socket.readyState + ' (open)');
+					window.failedConnectionTrials = 0;
+					console.log('Websocket: Status ' + socket.readyState + ' (open)');
 
-				this.send(JSON.stringify({
-					type : 'identify',
-					connectionType : 'controller',
-					data : {
-						publicKey : '123456'
-					}
-				})), (console.log('Sent identify msg'));
-
-			}
-
-			socket.onmessage = function(msg) {
-
-				var json = JSON.parse(msg.data);
-				console.log(json);
-
-				if (json.type == 'cacheConnectionIdOnController' && true) {
-					connectionId = json.pin;
-					//TODO Pin?
-					// Load specified controller
-					switch(json.controllerType) {
-						case "Joystick" :
-							new Joystick();
-							break;
-						case "Joypad" :
-							new Joypad();
-							break;
-						default :
-							console.log("Unkown controllerType");
-					}
-				} else if (json.type == 'wrongPin') {
-					alert('Wrong pin!');
-					// TODO integrate into UI
-					$('#pinInput').val('');
-				} else if (json.type == 'lostGameConnection') {
-					$('#.helpOverlay').remove();
-					$('#controller').append('<div class="helpOverlay">Lost connection to the game <a onclick="resetController()">ok</a></div>');
-					// TODO implement on server side
+					this.send(JSON.stringify({
+						type : 'identify',
+						connectionType : 'controller',
+						data : {
+							publicKey : '123456'
+						}
+					}));
+					console.log('Sent identify msg');
 				}
 
-			}
+				mySocket.onmessage = function(msg) {
 
-			socket.onerror = function(msg) {
-				console.log('WebSocket error', msg);
-			}
+					var json = JSON.parse(msg.data);
+					console.log(json);
 
-			socket.onclose = function(msg) {
-				window.failedConnectionTrials++;
-				console.log('WebSocket connection closed');
+					if (json.type == 'cacheConnectionIdOnController' && true) {
+						connectionId = json.pin;
+						//TODO Pin?
+						// Load specified controller
+						switch(json.controllerType) {
+							case "Joystick" :
+								new Joystick();
+								break;
+							case "Joypad" :
+								new Joypad();
+								break;
+							default :
+								console.log("Unkown controllerType");
+						}
+					} else if (json.type == 'wrongPin') {
+						alert('Wrong pin!');
+						// TODO integrate into UI
+						$('#pinInput').val('');
+					} else if (json.type == 'lostGameConnection') {
+						$('#.helpOverlay').remove();
+						$('#controller').append('<div class="helpOverlay">Lost connection to the game <a onclick="resetController()">ok</a></div>');
+						// TODO implement on server side
+					}
 
-				if (failedConnectionTrials < 5) {
-					window.socket = Socket.init();
-					// Reconnect
-				} else {
-					$('body').html('Can\'t connect to WebSocket server - Please reload! Sorry :(');
 				}
+
+				mySocket.onerror = function(msg) {
+					console.log('WebSocket error', msg);
+				}
+
+				mySocket.onclose = function(msg) {
+					window.failedConnectionTrials++;
+					console.log('WebSocket connection closed');
+
+					if (failedConnectionTrials < 5) {
+						window.socket = Socket.init(ip);
+						// Reconnect
+					} else {
+						$('body').html('Can\'t connect to WebSocket server - Please reload! Sorry :(');
+					}
+				}
+			} catch (exception) {
+				console.log("WebSocket error " + expection);
 			}
-			
-			
+
 		}
 
 		return this;
@@ -102,7 +104,7 @@ window.Socket = {
 		}
 
 		try {
-			socket.send(JSON.stringify(data));
+			mySocket.send(JSON.stringify(data));
 			console.log('Websocket: Sent ')
 			console.log(data);
 		} catch (exception) {
