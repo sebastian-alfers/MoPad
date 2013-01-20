@@ -4,6 +4,7 @@ $(document).ready(function() {
 
 	//Joystick();
 	if (urlParam[0] == 'ip') {
+		Console.log('Requesting Socket connection');
 		window.socket = Socket.init(urlParam[1]);
 	} else if (urlParam[0] == 'controller') {
 		switch (urlParam[1]) {
