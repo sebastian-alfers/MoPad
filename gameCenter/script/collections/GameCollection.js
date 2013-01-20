@@ -1,4 +1,4 @@
-define(["jquery","backbone","models/GameModel"], function($, Backbone, GameModel) {
+define(["backbone","models/GameModel"], function(Backbone, GameModel) {
 
     /**
      *
