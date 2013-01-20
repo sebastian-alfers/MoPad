@@ -23,7 +23,7 @@ window.Socket = {
 				mySocket.onopen = function() {
 
 					window.failedConnectionTrials = 0;
-					console.log('Websocket: Status ' + socket.readyState + ' (open)');
+					console.log('Websocket: Status ' + mySocket.readyState + ' (open)');
 
 					this.send(JSON.stringify({
 						type : 'identify',

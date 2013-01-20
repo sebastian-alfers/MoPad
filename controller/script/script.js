@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 	//Joystick();
 	if (urlParam[0] == 'ip') {
-		Console.log('Requesting Socket connection');
+		console.log('Requesting Socket connection');
 		window.socket = Socket.init(urlParam[1]);
 	} else if (urlParam[0] == 'controller') {
 		switch (urlParam[1]) {
@@ -31,7 +31,7 @@ $(document).ready(function() {
 			$('#submitPin').attr('disabled', 'disabled');
 	});
 
-	$('#submitPin').click(function() {// TODO enable "enter" to send
+	$('#submitPin').click(function() { // TODO enable "enter" to send
 		var pin = $('#pinInput').val();
 		socket.send({
 			type : 'getConnectionForPin',
