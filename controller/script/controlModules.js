@@ -157,7 +157,7 @@ window.Joypad = function(){
 	   		//send(id);
 
 	   		if(typeof connectionId != 'undefined'){
-	   			$webSocketModel.send({ // TODO auslagern!!
+	   			socket.send({ // TODO auslagern!!
 	   				type : 'sendCommandToGame',
 	   				data : {
 	   					keycode : id,
@@ -182,7 +182,7 @@ window.Joypad = function(){
 	   		//send(id);
 
 	   		if(typeof connectionId != 'undefined'){
-	   			$webSocketModel.send({ // TODO auslagern!!
+	   			socket.send({ // TODO auslagern!!
 	   				type : 'sendCommandToGame',
 	   				data : {
 	   					keycode : id,
