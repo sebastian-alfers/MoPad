@@ -1,10 +1,19 @@
-// Joystick
+/**
+ * Creates a Joystick controller
+ * 
+ * @constructor 
+ * 
+ */
 
 window.Joystick = function(){
 
 	init();
 	
-	//init
+	
+	/*
+	 * Adds a Joystick to the #controller div
+	 */
+	
 	function init(){
 		console.log('Loading Joystick');
 		loadControllerInterface();
@@ -101,7 +110,7 @@ window.Joystick = function(){
 	function calcAngle(x, y){
 		
 		if(x>=0 && y>0){	// 0¡
-			return Math.atan(Math.abs(x)/Math.abs(y))/(Math.PI/2)*90+0; // arctan(opposite/adjacent)/(Pi/2)*90
+			return Math.atan(Math.abs(x)/Math.abs(y))/(Math.PI/2)*90+0;
 		} else if(x>0 && y<=0) { // 90¡
 			return Math.atan(Math.abs(y)/Math.abs(x))/(Math.PI/2)*90+90;
 		} else if(x<=0 && y<0) { // 180¡
@@ -126,13 +135,22 @@ window.Joystick = function(){
 }
 
 
-// Joypad
+/**
+ * Creates a Joypad controller
+ * 
+ * @constructor 
+ * 
+ */
+
 
 window.Joypad = function(){
 
 	init();
 
-	//init
+	/*
+	 * Adds a Joypad to the #controller div
+	 */
+	
 	function init(){
 		console.log('Loading Joypad');
 		loadControllerInterface();
@@ -238,13 +256,19 @@ window.Joypad = function(){
 }
 
 
-// Helper functions
+/*
+ * Clears pin view to display controller
+ */
 
 function loadControllerInterface(){
 	$("#header").hide();
 	$("#pinInputWrapper").hide();
 	$("#controller").show();
 }
+
+/*
+ * Clears controller to display pin view
+ */
 
 window.resetController = function(){
 	$('#controller').html('');
