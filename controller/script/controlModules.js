@@ -104,17 +104,17 @@ window.Joystick = function(){
 		
 	function calcAngle(x, y){
 		
-		if(x>0 && y>0){	// 0¡
-			return Math.tan(Math.abs(x)/Math.abs(y)); // opposite/adjacent
+		if(x>=0 && y>0){	// 0¡
+			return Math.atan(Math.abs(x)/Math.abs(y))/(Math.PI/2)*90; // arctan(opposite/adjacent)/(Pi/2)*90
 			return Math.abs(x)/Math.abs(y);
-		} else if(x>0 && y<0) { // 90¡
-			return Math.tan(Math.abs(y)/Math.abs(x));
+		} else if(x>0 && y<=0) { // 90¡
+			return Math.atan(Math.abs(y)/Math.abs(x))/(Math.PI/2)*90+90;
 			return Math.abs(x)/Math.abs(y);
-		} else if(x<0 && y<0) { // 180¡
-			return Math.tan(Math.abs(x)/Math.abs(y));
+		} else if(x<=0 && y<0) { // 180¡
+			return Math.atan(Math.abs(x)/Math.abs(y))/(Math.PI/2)*90+180;
 			return Math.abs(x)/Math.abs(y);
-		} else if(x<0 && y>0) { // 270¡
-			return Math.tan(Math.abs(y)/Math.abs(x));
+		} else if(x<0 && y>=0) { // 270¡
+			return Math.atan(Math.abs(y)/Math.abs(x))/(Math.PI/2)*90+270;
 			return Math.abs(x)/Math.abs(y);
 		}
 		
