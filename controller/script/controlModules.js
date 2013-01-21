@@ -96,26 +96,18 @@ window.Joystick = function(){
 		return Math.sqrt(Math.pow(y2-y1, 2)+Math.pow(x2-x1, 2));
 	}
 	
-	// function calcAngle(opposite, adjacent){
-		// if(opposite == 0) opposite == 1;
-		// if(adjacent == 0) adjacent == 1;
-		// return 180/Math.atan(opposite*10/adjacent*10);
-	// }
-		
+	
+	// Takes two coordinates (opposite and adjacent) and calculates the angle
 	function calcAngle(x, y){
 		
 		if(x>=0 && y>0){	// 0¡
-			return Math.atan(Math.abs(x)/Math.abs(y))/(Math.PI/2)*90; // arctan(opposite/adjacent)/(Pi/2)*90
-			return Math.abs(x)/Math.abs(y);
+			return Math.atan(Math.abs(x)/Math.abs(y))/(Math.PI/2)*90+0; // arctan(opposite/adjacent)/(Pi/2)*90
 		} else if(x>0 && y<=0) { // 90¡
 			return Math.atan(Math.abs(y)/Math.abs(x))/(Math.PI/2)*90+90;
-			return Math.abs(x)/Math.abs(y);
 		} else if(x<=0 && y<0) { // 180¡
 			return Math.atan(Math.abs(x)/Math.abs(y))/(Math.PI/2)*90+180;
-			return Math.abs(x)/Math.abs(y);
 		} else if(x<0 && y>=0) { // 270¡
 			return Math.atan(Math.abs(y)/Math.abs(x))/(Math.PI/2)*90+270;
-			return Math.abs(x)/Math.abs(y);
 		}
 		
 		return -1;
