@@ -1,10 +1,19 @@
-// Joystick
+/**
+ * Creates a Joystick controller
+ * 
+ * @constructor 
+ * 
+ */
 
 window.Joystick = function(){
 
 	init();
 	
-	//init
+	
+	/*
+	 * Adds a Joystick to the #controller div
+	 */
+	
 	function init(){
 		console.log('Loading Joystick');
 		loadControllerInterface();
@@ -96,26 +105,18 @@ window.Joystick = function(){
 		return Math.sqrt(Math.pow(y2-y1, 2)+Math.pow(x2-x1, 2));
 	}
 	
-	// function calcAngle(opposite, adjacent){
-		// if(opposite == 0) opposite == 1;
-		// if(adjacent == 0) adjacent == 1;
-		// return 180/Math.atan(opposite*10/adjacent*10);
-	// }
-		
+	
+	// Takes two coordinates (opposite and adjacent) and calculates the angle
 	function calcAngle(x, y){
 		
-		if(x>0 && y>0){	// 0¡
-			return Math.tan(Math.abs(x)/Math.abs(y)); // opposite/adjacent
-			return Math.abs(x)/Math.abs(y);
-		} else if(x>0 && y<0) { // 90¡
-			return Math.tan(Math.abs(y)/Math.abs(x));
-			return Math.abs(x)/Math.abs(y);
-		} else if(x<0 && y<0) { // 180¡
-			return Math.tan(Math.abs(x)/Math.abs(y));
-			return Math.abs(x)/Math.abs(y);
-		} else if(x<0 && y>0) { // 270¡
-			return Math.tan(Math.abs(y)/Math.abs(x));
-			return Math.abs(x)/Math.abs(y);
+		if(x>=0 && y>0){	// 0¡
+			return Math.atan(Math.abs(x)/Math.abs(y))/(Math.PI/2)*90+0;
+		} else if(x>0 && y<=0) { // 90¡
+			return Math.atan(Math.abs(y)/Math.abs(x))/(Math.PI/2)*90+90;
+		} else if(x<=0 && y<0) { // 180¡
+			return Math.atan(Math.abs(x)/Math.abs(y))/(Math.PI/2)*90+180;
+		} else if(x<0 && y>=0) { // 270¡
+			return Math.atan(Math.abs(y)/Math.abs(x))/(Math.PI/2)*90+270;
 		}
 		
 		return -1;
@@ -134,13 +135,22 @@ window.Joystick = function(){
 }
 
 
-// Joypad
+/**
+ * Creates a Joypad controller
+ * 
+ * @constructor 
+ * 
+ */
+
 
 window.Joypad = function(){
 
 	init();
 
-	//init
+	/*
+	 * Adds a Joypad to the #controller div
+	 */
+	
 	function init(){
 		console.log('Loading Joypad');
 		loadControllerInterface();
@@ -246,13 +256,19 @@ window.Joypad = function(){
 }
 
 
-// Helper functions
+/*
+ * Clears pin view to display controller
+ */
 
 function loadControllerInterface(){
 	$("#header").hide();
 	$("#pinInputWrapper").hide();
 	$("#controller").show();
 }
+
+/*
+ * Clears controller to display pin view
+ */
 
 window.resetController = function(){
 	$('#controller').html('');

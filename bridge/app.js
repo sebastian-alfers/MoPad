@@ -1,18 +1,22 @@
-/************************************/
-/*                                  */
-/*  MoPad - Mobile Game Controller  */
-/*                                  */
-/*        by Janina Trost           */
-/*           Sebastian Alfers       */
-/*           Jonas Hartweg          */
-/*                                  */
-/************************************/
+/*
+ * 
+ * MoPad server
+ * 
+ */
+
 
 var WebSocketServer = require('websocket').server;
 var http = require('http');
 var port = 8081;
 
-// Websocket server will be bound to a http server
+
+/* 
+ * Http server that the WebSocket server is bound to
+ * 
+ * @constructor
+ *  
+ */
+
 var server = http.createServer(function(req, res) {
 	res.writeHead(200, {
 		'Content-Type' : 'text/plain'
@@ -22,7 +26,10 @@ var server = http.createServer(function(req, res) {
 	console.log(time() + 'Listening on port ' + port)
 });
 
-// create the server
+/*
+ * WebSocket server
+ */
+
 wsServer = new WebSocketServer({
 	httpServer : server
 });
@@ -63,6 +70,13 @@ controllers.push('127.0.0.1');
 controllers.push('localhost');
 controllers.push('141.45.204.172');
 
+/*
+ * Checks whether a gameCenter connection gets accepted
+ * 
+ * @param {peername} Peername string of the WebSocket request
+ * 
+ */
+
 function originIsAllowed(peername) {
 
 	// Check the accepted game origins
@@ -82,6 +96,12 @@ function originIsAllowed(peername) {
 	return false;
 }
 
+/*
+ * Checks whether gameCenter connection gets verified
+ * 
+ * @param {key} Authorization key 
+ */
+
 function keyIsAllowed(key) {
 	for (var i = 0; i < games.length; i++) {
 		if (games[i].publicKey == key)
@@ -91,7 +111,13 @@ function keyIsAllowed(key) {
 	}
 }
 
-// Check whether a connection with a certain pin exists already
+/*
+ * Checks whether a connection with a certain pin exists already
+ * 
+ * @param {pin} The pin
+ * @param {array} an Array with the connected pins  
+ */
+
 function pinExists(pin, array) {
 	for (var key in array) {
 		if (array.hasOwnProperty(key)) {
@@ -102,7 +128,12 @@ function pinExists(pin, array) {
 	return false;
 }
 
-// Returns the size of an associative Array
+/*
+ * Helper function: Returns the size of an associative Array
+ * 
+ * @param {obj} A multi-dimensional array
+ */
+
 function arraySize(obj) {
 	var size = 0, key;
 	for (key in obj) {
@@ -111,6 +142,10 @@ function arraySize(obj) {
 	}
 	return size;
 }
+
+/*
+ * Helper function: Formats a time string
+ */
 
 function time() {
 	return '[' + new Date().toString().substring(4, 21) + '] ';
@@ -305,6 +340,12 @@ wsServer.on('request', function(request) {
 			console.log(time() + 'Invalid message format');
 		}
 	});
+
+	/*
+	 * Returns the connection for a certain pin
+	 * 
+	 * @param {pin} The pin
+	 */
 
 	function getConnectionForPin(pin) {
 		for (key in connections) {
