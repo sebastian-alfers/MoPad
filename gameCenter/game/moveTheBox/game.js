@@ -20,7 +20,7 @@ loadjscssfile("http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js",
 
 
 setTimeout(function(){
-loadjscssfile("game/jquery.gamequery-0.7.0.js", "js") //dynamically load "javascript.php" as a JavaScript file
+loadjscssfile("game/moveTheBox/jquery.gamequery-0.7.0.js", "js") //dynamically load "javascript.php" as a JavaScript file
 
 
 
@@ -29,7 +29,7 @@ setTimeout((function(){
 
 $('#main').append('<br /><br /> \
 	<div id="playground" style="width: 700px; height: 250px; background: black;">\
-		<div id="welcomeScreen" style="width: 700px; height: 250px; position: absolute; z-index: 100; background-image: url(game/idee6_nina.png); font-family: verdana, sans-serif;">\
+		<div id="welcomeScreen" style="width: 700px; height: 250px; position: absolute; z-index: 100; background-image: url(game/moveTheBox/idee6_nina.png); font-family: verdana, sans-serif;">\
 			<div style="position: absolute; top: 120px; width: 700px; color: white;">\
 				<div id="loadingBar" style="position: relative; left: 100px; height: 15px; width: 0px; background: red;"></div><br />\
 				<center><a style="cursor: pointer;" id="startbutton">Click here to start!</a></center>\
@@ -110,15 +110,15 @@ var REFRESH_RATE		= 15;
         var PLAYGROUND_WIDTH	= 700;
         var PLAYGROUND_HEIGHT	= 250;
 	// The background:
-	var background1 = new $.gQ.Animation({imageURL: "game/background1.png"});
-	var background2 = new $.gQ.Animation({imageURL: "game/background2.png"});
-	var background3 = new $.gQ.Animation({imageURL: "game/background3.png"});
-	var background4 = new $.gQ.Animation({imageURL: "game/background4.png"});
-	var background5 = new $.gQ.Animation({imageURL: "game/background5.png"});
-	var background6 = new $.gQ.Animation({imageURL: "game/background6.png"});
+	var background1 = new $.gQ.Animation({imageURL: "game/moveTheBox/background1.png"});
+	var background2 = new $.gQ.Animation({imageURL: "game/moveTheBox/background2.png"});
+	var background3 = new $.gQ.Animation({imageURL: "game/moveTheBox/background3.png"});
+	var background4 = new $.gQ.Animation({imageURL: "game/moveTheBox/background4.png"});
+	var background5 = new $.gQ.Animation({imageURL: "game/moveTheBox/background5.png"});
+	var background6 = new $.gQ.Animation({imageURL: "game/moveTheBox/background6.png"});
  
 	var playerAnimation = new Array(); 
-	playerAnimation["idle"]		= new $.gQ.Animation({imageURL: "game/player_spaceship.png"});
+	playerAnimation["idle"]		= new $.gQ.Animation({imageURL: "game/moveTheBox/player_spaceship.png"});
 	
 	
 	 
