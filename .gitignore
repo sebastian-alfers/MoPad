@@ -3,3 +3,4 @@
 .project
 misc/synfony-test/symfony/app/config/parameters.yml
 misc/synfony-test/symfony/app/phpunit.xml
+misc/synfony-test/symfony/web/uploads/
