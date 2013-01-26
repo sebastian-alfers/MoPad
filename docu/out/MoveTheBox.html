@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: PaintTheBox</title>
+    <title>JSDoc: Class: MoveTheBox</title>
     
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Class: PaintTheBox</h1>
+    <h1 class="page-title">Class: MoveTheBox</h1>
     
     
 
@@ -27,10 +27,10 @@
     
 <header>
     <h2>
-    PaintTheBox
+    MoveTheBox
     </h2>
     
-        <div class="class-description">Game where each player can draw a Line</div>
+        <div class="class-description">Game where each player can move a "box" - here a space ship</div>
     
 </header>  
 
@@ -41,7 +41,7 @@
     
         
 <dt>
-    <h4 class="name" id="PaintTheBox"><span class="type-signature"></span>new PaintTheBox<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="MoveTheBox"><span class="type-signature"></span>new MoveTheBox<span class="signature">()</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -84,7 +84,7 @@
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>paintTheBox.js, line 3</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>game.js, line 31</li></ul></dd>
 	
     
     
@@ -123,14 +123,14 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="canvas"><span class="type-signature">&lt;static> </span>canvas<span class="type-signature"> :HTMLElement</span></h4>
+    <h4 class="name" id="$playerStatus"><span class="type-signature">&lt;static> </span>$playerStatus<span class="type-signature"> :Array</span></h4>
     
     
 </dt>
 <dd>
     
     <div class="description">
-        canvas stage to render the game
+        store the positions for each player
     </div>
     
     
@@ -156,7 +156,7 @@
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>paintTheBox.js, line 20</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>game.js, line 217</li></ul></dd>
 	
     
     
@@ -173,14 +173,14 @@
         
             
 <dt>
-    <h4 class="name" id="colors"><span class="type-signature">&lt;static> </span>colors<span class="type-signature"> :Array</span></h4>
+    <h4 class="name" id="background1"><span class="type-signature">&lt;static> </span>background1<span class="type-signature"> :gQ.Animation</span></h4>
     
     
 </dt>
 <dd>
     
     <div class="description">
-        different colors for differend player
+        background for the stage
     </div>
     
     
@@ -206,7 +206,7 @@
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>paintTheBox.js, line 91</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>game.js, line 118</li></ul></dd>
 	
     
     
@@ -223,14 +223,14 @@
         
             
 <dt>
-    <h4 class="name" id="colors_i"><span class="type-signature">&lt;static> </span>colors_i<span class="type-signature"> :int</span></h4>
+    <h4 class="name" id="background2"><span class="type-signature">&lt;static> </span>background2<span class="type-signature"> :gQ.Animation</span></h4>
     
     
 </dt>
 <dd>
     
     <div class="description">
-        index for the colors array for each color
+        background for the stage
     </div>
     
     
@@ -256,7 +256,7 @@
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>paintTheBox.js, line 83</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>game.js, line 126</li></ul></dd>
 	
     
     
@@ -273,14 +273,14 @@
         
             
 <dt>
-    <h4 class="name" id="FRAMES"><span class="type-signature">&lt;static> </span>FRAMES<span class="type-signature"> :int</span></h4>
+    <h4 class="name" id="background3"><span class="type-signature">&lt;static> </span>background3<span class="type-signature"> :gQ.Animation</span></h4>
     
     
 </dt>
 <dd>
     
     <div class="description">
-        intervall (microseconds) to update the player´s position
+        background for the stage
     </div>
     
     
@@ -306,7 +306,7 @@
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>paintTheBox.js, line 34</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>game.js, line 134</li></ul></dd>
 	
     
     
@@ -323,14 +323,14 @@
         
             
 <dt>
-    <h4 class="name" id="intervalls"><span class="type-signature">&lt;static> </span>intervalls<span class="type-signature"> :Array</span></h4>
+    <h4 class="name" id="background4"><span class="type-signature">&lt;static> </span>background4<span class="type-signature"> :gQ.Animation</span></h4>
     
     
 </dt>
 <dd>
     
     <div class="description">
-        store all the intervalls
+        background for the stage
     </div>
     
     
@@ -356,7 +356,157 @@
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>paintTheBox.js, line 58</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>game.js, line 142</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="background5"><span class="type-signature">&lt;static> </span>background5<span class="type-signature"> :gQ.Animation</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        background for the stage
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>game.js, line 150</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="background6"><span class="type-signature">&lt;static> </span>background6<span class="type-signature"> :gQ.Animation</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        background for the stage
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>game.js, line 158</li></ul></dd>
+	
+    
+    
+	
+	
+	
+	
+</dl>
+
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="playerAnimation"><span class="type-signature">&lt;static> </span>playerAnimation<span class="type-signature"> :Array</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        store all animations for the player
+    </div>
+    
+    
+    
+<dl class="details">
+    
+        
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<dt class="tag-source">Source:</dt>
+	<dd class="tag-source"><ul class="dummy"><li>game.js, line 166</li></ul></dd>
 	
     
     
@@ -380,7 +530,7 @@
 <dd>
     
     <div class="description">
-        cache count player. immutable during a game session
+        cache the number of player
     </div>
     
     
@@ -406,7 +556,7 @@
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>paintTheBox.js, line 66</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>game.js, line 54</li></ul></dd>
 	
     
     
@@ -423,15 +573,14 @@
         
             
 <dt>
-    <h4 class="name" id="playerPositions"><span class="type-signature">&lt;static> </span>playerPositions<span class="type-signature"> :Array</span></h4>
+    <h4 class="name" id="PLAYGROUND_HEIGHT"><span class="type-signature">&lt;static> </span>PLAYGROUND_HEIGHT<span class="type-signature"> :int</span></h4>
     
     
 </dt>
 <dd>
     
     <div class="description">
-        array to store all player. each player is represented with an array with the indexes x, y and color. here
-we could also store the usernames?
+        height of the state
     </div>
     
     
@@ -457,7 +606,7 @@ we could also store the usernames?
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>paintTheBox.js, line 74</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>game.js, line 110</li></ul></dd>
 	
     
     
@@ -474,14 +623,14 @@ we could also store the usernames?
         
             
 <dt>
-    <h4 class="name" id="x_start"><span class="type-signature">&lt;static> </span>x_start<span class="type-signature"> :int</span></h4>
+    <h4 class="name" id="PLAYGROUND_WIDTH"><span class="type-signature">&lt;static> </span>PLAYGROUND_WIDTH<span class="type-signature"> :int</span></h4>
     
     
 </dt>
 <dd>
     
     <div class="description">
-        x coordinate to start for the first player
+        width of the stage
     </div>
     
     
@@ -507,7 +656,7 @@ we could also store the usernames?
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>paintTheBox.js, line 42</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>game.js, line 102</li></ul></dd>
 	
     
     
@@ -524,14 +673,14 @@ we could also store the usernames?
         
             
 <dt>
-    <h4 class="name" id="y_start"><span class="type-signature">&lt;static> </span>y_start<span class="type-signature"> :int</span></h4>
+    <h4 class="name" id="REFRESH_RATE"><span class="type-signature">&lt;static> </span>REFRESH_RATE<span class="type-signature"> :int</span></h4>
     
     
 </dt>
 <dd>
     
     <div class="description">
-        y coordinate to start for the first player
+        refresh rate of the game loop
     </div>
     
     
@@ -557,7 +706,7 @@ we could also store the usernames?
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>paintTheBox.js, line 50</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>game.js, line 94</li></ul></dd>
 	
     
     
@@ -578,69 +727,6 @@ we could also store the usernames?
         <h3 class="subsection-title">Methods</h3>
         
         <dl>
-            
-<dt>
-    <h4 class="name" id="draw"><span class="type-signature">&lt;static> </span>draw<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-    
-</dt>
-<dd>
-    
-    
-    <div class="description">
-        main "game" loop do update the positions of the players
-    </div>
-    
-
-    
-    
-    
-    
-    
-    
-    
-<dl class="details">
-    
-        
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>paintTheBox.js, line 150</li></ul></dd>
-	
-    
-    
-	
-	
-	
-	
-</dl>
-
-    
-    
-    
-    
-    
-    
-    
-    
-</dd>
-
-        
             
 <dt>
     <h4 class="name" id="on('sendCommandToGame')"><span class="type-signature">&lt;static> </span>on('sendCommandToGame')<span class="signature">()</span><span class="type-signature"></span></h4>
@@ -683,7 +769,7 @@ we could also store the usernames?
 	
 	
 	<dt class="tag-source">Source:</dt>
-	<dd class="tag-source"><ul class="dummy"><li>paintTheBox.js, line 170</li></ul></dd>
+	<dd class="tag-source"><ul class="dummy"><li>game.js, line 290</li></ul></dd>
 	
     
     
@@ -719,13 +805,13 @@ we could also store the usernames?
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="PaintTheBox.html">PaintTheBox</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="MoveTheBox.html">MoveTheBox</a></li><li><a href="Player.html">Player</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Sat Jan 26 2013 09:57:23 GMT+0100 (MEZ)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3</a> on Sat Jan 26 2013 09:57:29 GMT+0100 (MEZ)
 </footer>
 
 <script> prettyPrint(); </script>
