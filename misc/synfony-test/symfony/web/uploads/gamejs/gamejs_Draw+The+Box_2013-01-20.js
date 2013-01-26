@@ -75,7 +75,7 @@ setTimeout((function(){
      * @memberof PaintTheBox
      * @member playerPositions
      * @type Array
-     * @desc array to store all player. each player is represented with an array with the indexes x, y and color. here
+     * @desc array to store all playerrrrrr - each player is represented with an array with the index x, y and color. here
      * we could also store the usernames?
      */
     var playerPositions = Array();
