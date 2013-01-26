@@ -7,6 +7,11 @@ use MoPad\AdminBundle\Controller\ApiController;
 
 // run unit test with : $ phpunit -c app/
 
+/**
+ * test the GameAdmin APi, 
+ * if this provides correctly the game data in JSON format
+ * call the APi URL and check the result
+ */
 class MopadApiControllerTest extends WebTestCase
 {
     public function testApi()

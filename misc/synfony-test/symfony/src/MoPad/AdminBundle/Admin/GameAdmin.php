@@ -87,9 +87,13 @@ class GameAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('name')
-            ->add('activated')
-        ;
+            ->add('name')
+			->add('description')
+			->add('vendor')
+			->add('acceptedGamepads')
+			->add('imageName')
+			->add('activated')
+		;
     }
 
     public function validate(ErrorElement $errorElement, $object)

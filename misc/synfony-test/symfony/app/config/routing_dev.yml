@@ -1,37 +1,3 @@
-# Nina: a simple test bundle
-#_test:
-#    resource: "@NinaTestBundle/Controller/TestController.php"
-#    type:     annotation
-#    prefix:   /test
-# 
-#_test2:
-#    resource: "@NinaTestBundle/Controller/Test2Controller.php"
-#    type:     annotation
-#    prefix:   /test2
-#    
-#_test_secured:
-#    resource: "@NinaTestBundle/Controller/TestSecuredController.php"
-#    type:     annotation
-
-#acme_store:
-#    resource: "@AcmeStoreBundle/Resources/config/routing.yml"
-#    prefix:   /store
-
-
-# default settings
-_welcome:
-    pattern:  /welcome
-    defaults: { _controller: AcmeDemoBundle:Welcome:index }
-
-_demo_secured:
-    resource: "@AcmeDemoBundle/Controller/SecuredController.php"
-    type:     annotation
-
-_demo:
-    resource: "@AcmeDemoBundle/Controller/DemoController.php"
-    type:     annotation
-    prefix:   /demo
-
 _wdt:
     resource: "@WebProfilerBundle/Resources/config/routing/wdt.xml"
     prefix:   /_wdt

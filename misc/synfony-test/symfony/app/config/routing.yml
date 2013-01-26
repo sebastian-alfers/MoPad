@@ -5,7 +5,9 @@ mopad_admin:
 mopad_api:
     resource: "@MoPadAdminBundle/Controller/ApiController.php"
     type:     annotation
-    prefix:   /mopad/api
+    prefix:   /mopad/api 
+    # prefix:   /admin/mopad/api # call only in secured area
+
 
 
 # Internal routing configuration to handle ESI
