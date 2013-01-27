@@ -276,54 +276,6 @@ setTimeout(function(){
                 if(next_x > 0 && next_x < PLAYGROUND_WIDTH - 100){
                     $("#player"+$playerPins[i]).x(next_x);
                 }
-
-                    /*
-                    if($playerStatus[$playerPins[i]].left){ //this is left! (a)
-                        var nextpos = $("#player"+$playerPins[i]).x()-5;
-                        if(nextpos > 0){
-                            $("#player"+$playerPins[i]).x(nextpos);
-                        }
-                    }
-
-
-                    if($playerStatus[$playerPins[i]].right){ //this is left! (a)
-                        var nextpos = $("#player"+$playerPins[i]).x()+5;
-                        if(nextpos < PLAYGROUND_WIDTH - 100){
-                            $("#player"+$playerPins[i]).x(nextpos);
-                        }
-                    }
-                    */
-
-                            /*
-                                        if($jQuery.keyTracker[65]){ //this is left! (a)
-                                            var nextpos = $("#player"+$playerPins[i]).x()-5;
-                                            if(nextpos > 0){
-                                                $("#player"+$playerPins[i]).x(nextpos);
-                                            }
-                                        }
-
-                                        if($jQuery.keyTracker[68]){ //this is right! (d)
-                                            var nextpos = $("#player"+$playerPins[i]).x()+5;
-                                            if(nextpos < PLAYGROUND_WIDTH - 100){
-                                                $("#player"+$playerPins[i]).x(nextpos);
-                                            }
-                                        }
-
-                                        if($jQuery.keyTracker[87]){ //this is up! (w)
-                                            var nextpos = $("#player"+$playerPins[i]).y()-3;
-                                            if(nextpos > 0){
-                                                $("#player"+$playerPins[i]).y(nextpos);
-                                            }
-                                        }
-                                        if($jQuery.keyTracker[83]){ //this is down! (s)
-                                            var nextpos = $("#player"+$playerPins[i]).y()+3;
-                                            if(nextpos < PLAYGROUND_HEIGHT - 30){
-                                                $("#player"+$playerPins[i]).y(nextpos);
-                                            }
-                                        }
-                                        */
-
-                //}
             }
         }
 

@@ -25,4 +25,17 @@ class ApiController extends Controller
 		
 		return $response;
 	}
+
+    /**
+     * @Route("/uniqueAppToken/{token}", name="_generate_app_token")
+     *
+     */
+    public function getUniqueAppToken($token)
+    {
+        $response = new Response(json_encode(md5(microtime().$token)));
+      	$response->headers->set('Content-Type', 'application/json', 'charset=utf-8');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+
+   		return $response;
+    }
 }

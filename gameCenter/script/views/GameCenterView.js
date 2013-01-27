@@ -17,16 +17,13 @@ define(['jquery', 'backbone','models/GameCenterModel', 'views/GameListView', 'vi
         },
 
         initialize:function () {
-
             gameCenterModel = new GameCenterModel({publicKey: 123456});
 
             gameCenterModel.on('successOnGenerateUnidqueAppId', function(data){
-
-
                 this.games = new GameListView({ el:$('#list_games_li'),games:this.games });
                 this.player = new PlayerListView({el:$('#player_slider'), games:this.games});
-
             });
+
             gameCenterModel.on('errorOnGenerateUnidqueAppId', function(data){
                 console.log('Event errorOnGenerateUnidqueAppId: ' + data);
             });

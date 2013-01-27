@@ -15,7 +15,6 @@ define(['jquery', 'backbone', 'models/GameListModel'], function($, Backbone, Gam
         },
 
         initialize:function () {
-        	
             this.model = new GameListModel({ el:this.$el });
             this.render();
             this.model.bind('afterLoadGameCollection', this.drawGameMenu, this);

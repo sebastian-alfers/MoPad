@@ -1,4 +1,4 @@
-define(["jquery", "backbone"], function($, Backbone) {
+define(["jquery", "backbone", "views/ErrorView"], function($, Backbone, ErrorView) {
 
     var GameCenterModel = Backbone.Model.extend({
         /**
@@ -8,6 +8,13 @@ define(["jquery", "backbone"], function($, Backbone) {
          * @constructs
          *
          * GameCenterModel
+         */
+
+        /**
+         * @memberof GameCenterModel
+         * @member publicKey
+         * @type String
+         * @desc The public key for the app
          */
         defaults:{
             publicKey: null
@@ -21,19 +28,19 @@ define(["jquery", "backbone"], function($, Backbone) {
 
             //save the scope to make it available in the AJAX-callback to throw events
             $that = this;
-
-            $.get('generateUniqueAppId.php', {publicKey: this.get('publicKey')},
+            $.get('http://mopad-symfony.de/mopad/api/uniqueAppToken/'+this.get('publicKey'),
                 function(data) {
 
                     //throw success
                     $that.trigger('successOnGenerateUnidqueAppId', data);
             }).error(
                 function(data){
+
                     //throw error
                     $that.trigger('errorOnGenerateUnidqueAppId', data);
 
                     //render an error view
-                    var error = new ErrorView({ el: $('#main_content')});
+                    var error = new ErrorView({ el: $('#main_content'), message: 'Error while fetching an unique id for the app'});
                 }
             );
         }

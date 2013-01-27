@@ -9,6 +9,31 @@ use MoPad\AdminBundle\Controller\ApiController;
 
 class MopadApiControllerTest extends WebTestCase
 {
+
+    public function testGetUniqueAppToken(){
+    	// The createClient() method returns a client, which is like a browser that you'll use to crawl your site:
+        $client = static::createClient();
+
+		$crawler = $client->request(
+		    'GET',
+		    '/mopad/api/uniqueAppToken/123321',
+		    array(),
+		    array(),
+		    array(
+		        'CONTENT_TYPE' => 'application/json'
+		    )
+		);
+		$response = $client->getResponse();
+		$content = $response->getContent();
+		//echo("JSON: ".$content);
+
+		$this->assertEquals(200, $response->getStatusCode());
+		// Assert that the response status code is 2xx
+		$this->assertTrue($response->isSuccessful());
+
+        $this->assertNotEmpty($content);
+    }
+
     public function testApi()
     {
     	// The createClient() method returns a client, which is like a browser that you'll use to crawl your site:
