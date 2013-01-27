@@ -10,16 +10,25 @@ define(["jquery", "backbone", "views/ErrorView"], function($, Backbone, ErrorVie
          * GameCenterModel
          */
 
+        defaults:{
+            publicKey: null
+            // TODO Aktuell kennt der view die games. das muss hier hin
+        },
+
         /**
          * @memberof GameCenterModel
          * @member publicKey
          * @type String
          * @desc The public key for the app
          */
-        defaults:{
-            publicKey: null
-            // TODO Aktuell kennt der view die games. das muss hier hin
-        },
+
+
+        /**
+         * @memberof GameCenterModel
+         * @function initialize
+         *
+         * @desc the constructor of this class
+         */
         initialize: function(){
              /*
              * set up the gamecenter
@@ -31,12 +40,20 @@ define(["jquery", "backbone", "views/ErrorView"], function($, Backbone, ErrorVie
             $.get('http://mopad-symfony.de/mopad/api/uniqueAppToken/'+this.get('publicKey'),
                 function(data) {
 
-                    //throw success
+                    /**
+                     * @memberof GameCenterModel
+                     * @Event successOnGenerateUnidqueAppId
+                     * @desc Throws if we got an app id / token in the session in php
+                     */
                     $that.trigger('successOnGenerateUnidqueAppId', data);
             }).error(
                 function(data){
 
-                    //throw error
+                    /**
+                     * @memberof GameCenterModel
+                     * @Event errorOnGenerateUnidqueAppId
+                     * @desc Throws if we got an error while getting the app id
+                     */
                     $that.trigger('errorOnGenerateUnidqueAppId', data);
 
                     //render an error view

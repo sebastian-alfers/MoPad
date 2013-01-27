@@ -26,6 +26,61 @@ define(["jquery", "backbone"], function($, Backbone) {
             connected: false
         },
 
+        /**
+         * @memberof WebSocketModel
+         * @member host
+         * @type String
+         * @desc the web socket url
+         */
+
+        /**
+         * @memberof WebSocketModel
+         * @member socket
+         * @type WebSocket
+         * @desc the web socket model
+         */
+
+        /**
+         * @memberof WebSocketModel
+         * @member socketMsgTypeIdentify
+         * @type String
+         * @desc key to identify a web socket message to identify the gamecenter on the bridge
+         */
+
+        /**
+         * @memberof WebSocketModel
+         * @member socketMsgTypePinForUser
+         * @type String
+         * @desc key to identify a web socket message to receive a new generated pin
+         */
+
+        /**
+         * @memberof WebSocketModel
+         * @member socketMsgTypeKickOffGame
+         * @type String
+         * @desc key to identify a web socket message to start a game
+         */
+
+        /**
+         * @memberof WebSocketModel
+         * @member connectionType
+         * @type String
+         * @desc our type of connection (was needed when we used this model also for the controller)
+         */
+
+        /**
+         * @memberof WebSocketModel
+         * @member connected
+         * @type Boolean
+         * @desc identify if we are connected to the WS
+         */
+
+        /**
+         * @memberof WebSocketModel
+         * @function send
+         *
+         * @desc wrapper arround the browsers native websocket.send() method
+         */
         send: function(data){
 
             if (data == "" || data == undefined) {
@@ -47,6 +102,12 @@ define(["jquery", "backbone"], function($, Backbone) {
             }
         },
 
+        /**
+         * @memberof WebSocketModel
+         * @function initialize
+         *
+         * @desc constructor
+         */
         initialize:function () {
 
             //init the status view
@@ -89,10 +150,23 @@ define(["jquery", "backbone"], function($, Backbone) {
 
         },
 
+        /**
+         * @memberof WebSocketModel
+         * @function getPinForPlayer
+         *
+         * @desc send a web socket message to the server. the playerChooserView listens
+         * for a message that comes back from the server to store a key
+         */
         getPinForPlayer: function(player){
             $webSocketModel.send({type:this.defaults.socketMsgTypePinForUser, connectionType: $webSocketModel.attributes.connectionType, data : {username: player.get('username')}});
         },
-        
+
+        /**
+         * @memberof WebSocketModel
+         * @function getPinForPlayer
+         *
+         * @desc send a web socket message to the server. starts the game
+         */
         kickOffGame: function(gameId){
             $webSocketModel.send({type:this.defaults.socketMsgTypeKickOffGame, data : {gameId: gameId}});
         }
