@@ -4,20 +4,6 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
-    <parameters>
-        <parameter key="mopad_admin.example.class">MoPad\AdminBundle\Example</parameter>
-    </parameters>
-
-    <services>
-        <service id="mopad_admin.example" class="%mopad_admin.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
-        </service>
-    </services>
-    -->
-    
 	<services>
 	   	<service id="sonata.admin.game" class="MoPad\AdminBundle\Admin\GameAdmin">
 	      	<tag name="sonata.admin" manager_type="orm" group="MoPad User Group" label="Game"/>
@@ -26,12 +12,9 @@
 	      	<argument>SonataAdminBundle:CRUD</argument>
 	      	<call method="setTranslationDomain">
 				<argument>messages</argument>
-				<!--<argument>MoPadAdminBundle</argument>
-				<argument>SonataPageBundle</argument>-->
 			</call>
 		</service>
 	</services>
-
 
 </container>
 

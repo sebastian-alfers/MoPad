@@ -3,6 +3,9 @@
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
+/**
+ * import external or your own Bundles
+ */
 class AppKernel extends Kernel
 {
     public function registerBundles()
@@ -20,26 +23,24 @@ class AppKernel extends Kernel
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
 
+			// Bundles for User administration and generate CRUD views for entities
             new \FOS\UserBundle\FOSUserBundle(),
-            
-            new Sonata\BlockBundle\SonataBlockBundle(),
-	        new Sonata\CacheBundle\SonataCacheBundle(),
-	        new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\UserBundle\SonataUserBundle(),
 	        new Sonata\AdminBundle\SonataAdminBundle(),
 	        new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
 	        new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+	        new Sonata\CacheBundle\SonataCacheBundle(),
+	        new Sonata\jQueryBundle\SonatajQueryBundle(),
 	        
-			new MoPad\AdminBundle\MoPadAdminBundle(),
-			
-	        //new Nina\TestBundle\NinaTestBundle(),
-            //new Acme\StoreBundle\AcmeStoreBundle(),
-            
+	        // generate JSON from entity and  vice versa
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            
+			// MoPad Bundle
+            new MoPad\AdminBundle\MoPadAdminBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
-            $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
