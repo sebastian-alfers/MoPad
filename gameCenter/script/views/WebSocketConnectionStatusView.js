@@ -23,7 +23,6 @@ define(['jquery', 'backbone', "views/GameCenterView"], function($, Backbone, Gam
 
         connectionOk: function(){
             console.log(this.$el.addClass('connection-ok'));
-
             gameCenterView = new GameCenterView({ el:$('#template_register_controller'), webSocketModel: $webSocketModel});
         },
         connectionError: function(){

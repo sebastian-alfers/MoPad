@@ -22,12 +22,15 @@ function loadjscssfile(filename, filetype){
 
 loadjscssfile("http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js", "js") //dynamically load and add this .js file
 
-
+alert('a');
 setTimeout(function(){
+        alert('b');
     //first, load the game engine-framework
     loadjscssfile("game/moveTheBox/jquery.gamequery-0.7.0.js", "js") //dynamically load "javascript.php" as a JavaScript file
 
     setTimeout((function(){
+
+        alert('c');
         /**
          * @author Sebastian Alfers
          *
@@ -231,6 +234,7 @@ setTimeout(function(){
         //this is the HUD for the player life and shield
         //$("#overlay").append("<div id='shieldHUD'style='color: white; width: 100px; position: absolute; font-family: verdana, sans-serif;'></div><div id='lifeHUD'style='color: white; width: 100px; position: absolute; right: 0px; font-family: verdana, sans-serif;'></div>")
 
+        alert('aa');
         // this sets the id of the loading bar:
         $.loadCallback(function(percent){
             $("#loadingBar").width(400*percent);
@@ -239,6 +243,7 @@ setTimeout(function(){
         //initialize the start button
         //$("#startbutton").click(function(){
             $.playground().startGame(function(){
+                alert('start now');
                 $("#welcomeScreen").fadeTo(1000,0,function(){$(this).remove();});
             });
         //});

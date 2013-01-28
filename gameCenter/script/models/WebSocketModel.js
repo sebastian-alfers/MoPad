@@ -95,10 +95,10 @@ define(["jquery", "backbone"], function($, Backbone) {
 
             try {
                 this.defaults.socket.send(JSON.stringify(data));
-                console.log('Websocket: Sent ')
-                console.log(data);
+                //console.log('Websocket: Sent ')
+                //console.log(data);
             } catch (exception) {
-                console.log('Websocket: Error '+ exception);
+                //console.log('Websocket: Error '+ exception);
             }
         },
 

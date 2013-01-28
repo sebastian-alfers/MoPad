@@ -40,17 +40,11 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 				//update the player with the id
 				$that.defaults.playerCollection.forEach(function(player) {
 
-					console.log(player);
-					console.log($that.defaults.playerCollection);
-
 					if (player.get('username') == json.data.username) {
 						fetched++;
 						player.set('pin', json.data.pin);
 					}
 				});
-
-				console.log(fetched);
-				console.log($that.defaults.playerCollection.length);
 
 				if (fetched == $that.defaults.playerCollection.length) {
 
@@ -68,12 +62,19 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 			var template = _.template($('#template_input_username').html(), {i : 1});
 			$('#list_player_li').append(template);
 
-			var template = _.template($('#template_submit_username').html());
-			this.$el.append(template);
-
 		},
 		drawPlayer : function(newNumberPlayer) {
-			console.log(newNumberPlayer);
+
+            this.$el.html('');
+            for(k=0; k<newNumberPlayer;k++){
+                var template = _.template($('#template_input_username').html(), {i : k+1 });
+                this.$el.append(template);
+            }
+
+            var template = _.template($('#template_submit_username').html());
+         			this.$el.append(template);
+            /*
+			console.log('***' + newNumberPlayer);
 			if(newNumberPlayer>this.defaults.numberPlayer){
 				while(newNumberPlayer>this.defaults.numberPlayer){
 					var template = _.template($('#template_input_username').html(), {i : ++this.defaults.numberPlayer });
@@ -87,7 +88,8 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 					this.defaults.numberPlayer--;
 				}
 			}
-			console.log(this.defaults.numberPlayer);	
+			console.log(this.defaults.numberPlayer);
+				*/
 		},
 
 		startGame : function() {
@@ -126,7 +128,7 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 			$('.username').each(function(el) {
 				var username = $(this).val();
 				if (username != '') {
-					console.log('player');
+
 					var player = new PlayerModel({
 						username : username
 					});
@@ -139,15 +141,12 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 			if (valid <= 0) {
 				alert('At least one player');
 			} else {
-                alert('start');
 				playerCollection.forEach(function(player) {
                     /**
                      * the PendingPlayerView now listens on an event "activateController"
                      */
-					console.log('Get new pin');
 					$webSocketModel.getPinForPlayer(player);
 				});
-				console.log('fetch for ' + playerCollection.length);
 			}
 
 		},

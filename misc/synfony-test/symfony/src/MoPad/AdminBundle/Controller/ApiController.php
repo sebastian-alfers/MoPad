@@ -11,6 +11,7 @@ class ApiController extends Controller
 {
 	/**
 	 * @Route("/getgames", name="_mopad_api_getgames")
+     * @return Response
 	 */
 	public function getgamesAction()
 	{
