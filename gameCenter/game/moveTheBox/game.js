@@ -301,8 +301,8 @@ setTimeout(function(){
             }
             else
             {
-                //here, wo do not have any intervall for this user (user.pin)
-                switch(user.keycode){
+                //here, we do not have any intervall for this user (user.pin)
+                /*switch(user.keycode){
                         case 'up':
                                intervalls[user.pin] = new Array();
                                intervalls[user.pin] = window.setInterval(function(){playerPositions[user.pin]['y']-=1},REFRESH_RATE)
@@ -324,7 +324,20 @@ setTimeout(function(){
                                 break;
 
                         default: console.log('Unkown key command');
-                }// end switch keycode
+                }// end switch keycode*/
+               
+               
+               	// Back-calculation of the angle and distance
+               
+               	var x = Math.round((Math.sin(user.angle* (Math.PI/180)))*user.distance*10);
+				var y = Math.round((Math.cos(user.angle* (Math.PI/180)))*user.distance*10);
+				
+				console.log('x: '+x+' y: '+y);
+               
+                playerPositions[user.pin]['x']+=x;
+               	playerPositions[user.pin]['y']-=y;
+               
+               
             }// end else
         });// end websocket on message
 
