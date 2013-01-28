@@ -87,12 +87,14 @@ class GameAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('id')
             ->add('name')
 			->add('description')
 			->add('vendor')
 			->add('acceptedGamepads')
 			->add('imageName')
 			->add('activated')
+			->add('_action', null, array('actions' => array('delete' => array(), 'edit' => array())))
 		;
     }
 
@@ -106,4 +108,8 @@ class GameAdmin extends Admin
         ;
     }
 
+	public function configureRoutes(RouteCollection $collection)
+	{
+	  $collection->add('edit');
+	}
 }
