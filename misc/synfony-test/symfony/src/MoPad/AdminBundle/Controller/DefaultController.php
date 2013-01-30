@@ -8,6 +8,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 use MoPad\AdminBundle\Entity\Game;
 
+/**
+ * @package MoPad\AdminBundle\Controller
+ * @author Janina Trost <janina.trost@student.htw-berlin.de>
+ * 
+ * @method indexAction()
+ */
 class DefaultController extends Controller
 {
     /**
@@ -18,10 +24,12 @@ class DefaultController extends Controller
     {
         return array();
     }
-
+	
 	/**
      * @Route("/create", name="_mopad_create")
      * @Template()
+	 * 
+	 * @deprecated No longer used by internal code
      */
 	public function createAction()
 	{
@@ -34,29 +42,31 @@ class DefaultController extends Controller
 		$game->setMinPlayer(1);
 		$game->setMaxPlayer(2);
     	$game->setAcceptedGamePads('JoyPad');
-
+	
 	    $em = $this->getDoctrine()->getManager();
-		// TODO Nina: create ausgeschaltent
+		// TODO Nina: create deactivated
 	    //$em->persist($game);
 	    //$em->flush();
-
+	
 	    return new Response('Created product id '.$game->toString());
 	}
-
+	
 	/**
      * @Route("/show", name="_mopad_show")
      * @Template()
+	 * 
+	 * @deprecated No longer used by internal code
      */
 	public function showAction($id)
 	{
 	    $game = $this->getDoctrine()
 	        ->getRepository('MoPadAdminBundle:Game')
 	        ->find($id);
-
+	
 	    if (!$game) {
 	        throw $this->createNotFoundException('No game found for id '.$id);
 	    }
-
+		
 	    return new Response('game: '.$game->toString());
 	}
 }
