@@ -26,7 +26,12 @@ class ApiController extends Controller
 	public function getgamesAction()
 	{
 		$games = $this->getDoctrine()->getRepository('MoPadAdminBundle:Game')->findAll();
-		
+
+        foreach($games as &$game){
+            $game->setImageUrl($this->container->getParameter('rootUrl') . '/' .$game->getImageUrl());
+            $game->setGameJsUrl($this->container->getParameter('rootUrl') . '/' .$game->getGameJsUrl());
+        }
+
 		$serializer = $this->get('jms_serializer');
 		$gamestr = $serializer->serialize(array('games' => $games), 'json');
 		

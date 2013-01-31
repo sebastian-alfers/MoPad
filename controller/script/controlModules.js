@@ -5,6 +5,34 @@
  *
  */
 
+
+window.BenchmarkController = function() {
+
+	init();
+
+	/*
+	 * Adds a Benchmark view to the #controller div
+	 */
+
+	function init() {
+		console.log('Loading Benchmark');
+		loadControllerInterface();
+
+		$('#controller').append('<div class="controlModule benchmark" id="bench"><div id="bench_btn"></div></div>');
+		$('#joystickWrapper').css('visibility', 'hidden');
+
+
+    }
+
+}
+/**
+ * Creates a Joypad controller
+ *
+ * @constructor
+ *
+ */
+
+
 window.Joystick = function() {
 
 	init();
@@ -136,13 +164,13 @@ window.Joystick = function() {
 	// Takes two coordinates (opposite and adjacent) and calculates the angle
 	function calcAngle(x, y) {
 
-		if (x >= 0 && y > 0) {// 0¡
+		if (x >= 0 && y > 0) {// 0ï¿½
 			return Math.atan(Math.abs(x) / Math.abs(y)) / (Math.PI / 2) * 90 + 0;
-		} else if (x > 0 && y <= 0) {// 90¡
+		} else if (x > 0 && y <= 0) {// 90ï¿½
 			return Math.atan(Math.abs(y) / Math.abs(x)) / (Math.PI / 2) * 90 + 90;
-		} else if (x <= 0 && y < 0) {// 180¡
+		} else if (x <= 0 && y < 0) {// 180ï¿½
 			return Math.atan(Math.abs(x) / Math.abs(y)) / (Math.PI / 2) * 90 + 180;
-		} else if (x < 0 && y >= 0) {// 270¡
+		} else if (x < 0 && y >= 0) {// 270ï¿½
 			return Math.atan(Math.abs(y) / Math.abs(x)) / (Math.PI / 2) * 90 + 270;
 		}
 

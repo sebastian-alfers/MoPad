@@ -17,6 +17,9 @@ window.Socket = {
 			console.log('Trying to connect to websocket at '+ip)
 
 			try {
+
+
+
 				window.mySocket = new WebSocket('ws://' + ip + ':8081/');
 				console.log(mySocket.readyState);
 

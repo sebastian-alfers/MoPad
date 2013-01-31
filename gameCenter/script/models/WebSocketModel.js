@@ -122,10 +122,10 @@ define(["jquery", "backbone"], function($, Backbone) {
                 //build the WS connect url based on the host
                 var url = document.URL.replace(/http:\/\//g, "");
                 url = url.replace(/gameCenter\//g, "");
-                //url = url.replace(/.loc\//g, "");
+                url = url.replace(/.loc\//g, ".loc");
                 url = url.replace(/.de\//g, ".de");
 
-                this.defaults.host = 'ws://mo-pad.de:8081/';
+                this.defaults.host = 'ws://'+ url +':8081/';
 
                 //jea, we support web sockets
                 //this.trigger('successWebSocketAvailable', data);

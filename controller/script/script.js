@@ -12,9 +12,11 @@ $(document).ready(function() {
 				Joystick();
 				break;
 			case "joypad":
-				// doesn't work
 				Joypad();
 				break;
+            case "benchmark":
+                Benchmark();
+                break;
 			default:
 				console.log('Unkown controller specified in URL');
 				break;

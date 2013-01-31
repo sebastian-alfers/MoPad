@@ -50,7 +50,8 @@ class GameAdmin extends Admin
             ->add('acceptedGamepads', 'choice', array(
 				    'choices' => array(
 				        'joypad' => 'joypad',
-				        'joystick' => 'joystick',
+                        'joystick' => 'joystick',
+                        'benchmark' => 'benchmark',
 				    ),
 				    'required' => true,
 				    'multiple' => false,
