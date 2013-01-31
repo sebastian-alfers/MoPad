@@ -123,6 +123,16 @@ define(["jquery", "backbone"], function($, Backbone) {
                 $webSocketModel = this;
                 $socket = new WebSocket(this.defaults.host);
 
+
+                //build the WS connect url based on the host
+                var url = document.URL.replace(/http:\/\//g, "");
+                url = url.replace(/gameCenter\//g, "");
+                url = url.replace(/.loc\//g, "");
+                url = url.replace(/.de\//g, "");
+
+
+                this.defaults.host = 'ws://'+url+':8081/';
+
                 alert('connect to ' + this.defaults.host);
 
                 $socket.onopen = function() {
