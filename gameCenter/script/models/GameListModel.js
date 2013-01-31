@@ -33,7 +33,7 @@ define(['jquery', 'backbone', 'collections/GameCollection', 'models/GameModel'],
          */
 
         //url:'games-json.php',
-        url:'http://mopad-symfony.de/mopad/api/getgames',
+        url:'http://admin.mo-pad.de/mopad/api/getgames',
 
         /**
          * @memberof GameListModel
