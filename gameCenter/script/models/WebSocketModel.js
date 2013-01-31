@@ -110,6 +110,7 @@ define(["jquery", "backbone"], function($, Backbone) {
          */
         initialize:function () {
 
+
             //init the status view
 
             if (!("WebSocket" in window)) {
@@ -121,6 +122,8 @@ define(["jquery", "backbone"], function($, Backbone) {
                 //this.trigger('successWebSocketAvailable', data);
                 $webSocketModel = this;
                 $socket = new WebSocket(this.defaults.host);
+
+                alert('connect to ' + this.defaults.host);
 
                 $socket.onopen = function() {
                     $webSocketModel.set({"connected": true});
