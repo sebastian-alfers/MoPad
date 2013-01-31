@@ -5,10 +5,25 @@ namespace MoPad\AdminBundle\Tests\Controller;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use MoPad\AdminBundle\Controller\ApiController;
 
-// run unit test with : $ phpunit -c app/
-
+/**
+ * Test the correct GameAdmin access.
+ * 
+ *
+ * @package MoPad\AdminBundle\Tests\Controller
+ * @author Janina Trost <janina.trost@student.htw-berlin.de>
+ * 
+ * @example run unit test with : $ phpunit -c app/
+ * 
+ * @method testLogin()
+ * @method testLogin2()
+ */
 class MopadGameAdminControllerTest extends WebTestCase
 {
+	/**
+	 * call the login page and test the login values.
+	 * test the correct access to the GameAdmin dashboard.
+	 * check the correct response status.
+	 */
     public function testLogin()
     {
     	// The createClient() method returns a client, which is like a browser that you'll use to crawl your site:
@@ -38,6 +53,10 @@ class MopadGameAdminControllerTest extends WebTestCase
 		$this->assertEquals(200, $client->getResponse()->getStatusCode());*/
     }
 	
+	/**
+	 * call direct the dashboard and eter login data.
+	 * check the correct response status.
+	 */
 	public function testLogin2()
     {
     	// The createClient() method returns a client, which is like a browser that you'll use to crawl your site:
@@ -58,6 +77,9 @@ class MopadGameAdminControllerTest extends WebTestCase
 		$this->assertTrue( $client->getResponse()->isRedirect() );
     }
 	
+	/**
+	 * @ignore
+	 */
 	public function testCreate()
     {
     	// The createClient() method returns a client, which is like a browser that you'll use to crawl your site:

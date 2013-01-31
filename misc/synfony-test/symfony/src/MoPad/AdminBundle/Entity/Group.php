@@ -18,7 +18,8 @@ use Sonata\UserBundle\Entity\BaseGroup as BaseGroup;
  * References :
  *   working with object : http://www.doctrine-project.org/projects/orm/2.0/docs/reference/working-with-objects/en
  *
- * @author <yourname> <youremail>
+ * @package MoPad\AdminBundle\Entity
+ * @author Janina Trost <janina.trost@student.htw-berlin.de>
  */
 class Group extends BaseGroup
 {

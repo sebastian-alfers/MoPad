@@ -5,10 +5,18 @@ namespace MoPad\AdminBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @package MoPad\AdminBundle\Entity
+ * @author Janina Trost <janina.trost@student.htw-berlin.de>
+ *
  * Game
  * @ORM\Entity
  * @ORM\Table(name="game")
  * @ORM\Entity(repositoryClass="MoPad\AdminBundle\Entity\GameRepository")
+ * 
+ * @method String createGameJsName()
+ * @method String createImageName()
+ * @method upload($basepath, $type)
+ * @method removeImage($basepath)
  * 
  * * Update Game Entity Getter/Setter
  * - $ php app/console doctrine:generate:entities MoPadAdminBundle
@@ -321,7 +329,7 @@ class Game
 	/**
      * Get image
      *
-     * @return  
+     * @return File
      */
     public function getImage()
     {
@@ -329,7 +337,7 @@ class Game
     }
 	
 	/**
-     * Set imageName
+     * Set imageName and imageUrl
      *
      * @param $imageName
      * @return Game
@@ -400,7 +408,7 @@ class Game
     }
 	
 	/**
-     * Set gameJsName
+     * Set gameJsName and gameJsUrl
      *
      * @param $gameJsName
      * @return Game
@@ -447,22 +455,40 @@ class Game
         return $this->gameJsUrl;
     }
 	
-	public function getGameAdminUrl()
+	/**
+	 * return the MoPad URL
+	 *
+	 * @return url
+	 */
+	private function getGameAdminUrl()
     {
         return 'http://mopad-symfony.de/';
     }
 	
-	public function getUploadImageDir()
+	/**
+	 * return the upload file path for image
+	 *
+	 * @return upload path
+	 */
+	private function getUploadImageDir()
     {
         return 'uploads/gameimage';
     }
 	
-	public function getUploadGameJsDir()
+	/**
+	 * return the upload file path for game js
+	 *
+	 * @return upload path
+	 */
+	private function getUploadGameJsDir()
     {
         return 'uploads/gamejs';
     }
 	
 	/**
+	 * create a independent file name consisting of a prefix 'image', 
+	 * the game name and the date
+	 *
 	 * @return imageName
 	 */
 	public function createImageName()
@@ -473,6 +499,9 @@ class Game
 	}
 	
 	/**
+	 * create a independent file name consisting of a prefix 'gamejs', 
+	 * the game name and the date
+	 *
 	 * @return gameJsName
 	 */
 	public function createGameJsName()
@@ -482,6 +511,12 @@ class Game
 		}
 	}
 
+	/**
+	 * upload the file
+	 * 
+	 * @param base path
+	 * @param type (image or gamejs)
+	 */
 	public function upload($basepath, $type)
 	{
 		$fuh = new FileUploadHelper();
@@ -495,12 +530,31 @@ class Game
 		}
 	}
 	
+	/**
+	 * remove the image file
+	 * 
+	 * @param String basepath
+	 */
 	public function removeImage($basepath)
 	{
 		$fuh = new FileUploadHelper();
-		$fuh->removeImage($basepath, $this->getUploadImageDir(), $this->imageName);
+		$fuh->removeFile($basepath, $this->getUploadImageDir(), $this->imageName);
 	}
 	
+	/**
+	 * remove the game js file
+	 * 
+	 * @param String basepath
+	 */
+	public function removeGameJs($basepath)
+	{
+		$fuh = new FileUploadHelper();
+		$fuh->removeFile($basepath, $this->getUploadGameJsDir(), $this->gameJsName);
+	}
+	
+	/**
+	 * @return string representative
+	 */
 	public function toString()
     {
         return 'Product: id: '.$this->id.

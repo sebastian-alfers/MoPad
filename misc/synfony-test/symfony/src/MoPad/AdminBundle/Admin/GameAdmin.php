@@ -9,9 +9,34 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 use Sonata\AdminBundle\Route\RouteCollection;
 
+/**
+ * 
+ * helpful website for file upload
+ * @link http://blog.code4hire.com/2011/08/symfony2-sonata-admin-bundle-and-file-uploads/
+ * 
+ *
+ * @package MoPad\AdminBundle\Admin
+ * @author Janina Trost <janina.trost@student.htw-berlin.de>
+ * 
+ * @method configureFormFields(FormMapper $formMapper)
+ * @method configureDatagridFilters(DatagridMapper $datagridMapper)
+ * @method configureListFields(ListMapper $listMapper)
+ * @method validate(ErrorElement $errorElement, $object)
+ * @method prePersist($game)
+ * @method preUpdate($game)
+ * @method postPersist($game)
+ * @method postUpdate($game) 
+ * @method saveFiles($game) 
+ * @method preRemove($game) 
+ * 
+ */
 class GameAdmin extends Admin
 {
-	
+	/**
+	 * set all parameters for the input form to create or update a game entity
+	 *
+	 * @param FormMapper
+	 */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -37,7 +62,9 @@ class GameAdmin extends Admin
     }
 
 	/**
-	 * http://blog.code4hire.com/2011/08/symfony2-sonata-admin-bundle-and-file-uploads/
+	 * create and set file names for image and js
+	 *
+	 * @param Game
 	 */
 	public function prePersist($game) 
 	{
@@ -45,22 +72,42 @@ class GameAdmin extends Admin
 		$game->setGameJsName($game->createGameJsName());
 	}
 	
+	/**
+	 * create and set file names for image and js
+	 *
+	 * @param Game
+	 */
 	public function preUpdate($game) 
 	{
 	    $game->setImageName($game->createImageName());
 		$game->setGameJsName($game->createGameJsName());
 	}
 	
+	/**
+	 * save local the file (image, js) from the game
+	 *
+	 * @param Game
+	 */
 	public function postPersist($game) 
 	{
 		$this->saveFiles($game);
 	}
 	
+	/**
+	 * save local the file (image, js) from the game
+	 *
+	 * @param Game
+	 */
 	public function postUpdate($game) 
 	{
 	    $this->saveFiles($game);
 	}
-	 
+	
+	/**
+	 * start the upload from the files
+	 *
+	 * @param Game
+	 */
 	public function saveFiles($game) 
 	{
 	    $basepath = $this->getRequest()->getBasePath();
@@ -68,6 +115,11 @@ class GameAdmin extends Admin
 		$game->upload($basepath, 'gamejs');
 	}
 	
+	/**
+	 * remove the file before the game deletion
+	 *
+	 * @param Game
+	 */
 	public function preRemove($game) 
 	{
 		$basepath = $this->getRequest()->getBasePath();
@@ -76,6 +128,11 @@ class GameAdmin extends Admin
 	}
 	//-------------------------------
 
+	/**
+	 * set all possible filter attributes
+	 *
+	 * @param DatagridMapper
+	 */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
@@ -84,6 +141,10 @@ class GameAdmin extends Admin
         ;
     }
 
+	/**
+	 * set all attribute for the list view from all game entities
+	 * @param ListMapper
+	 */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
@@ -98,6 +159,11 @@ class GameAdmin extends Admin
 		;
     }
 
+	/**
+	 * set the value validators for the input form
+	 * @param ErrorElement
+	 * @param object
+	 */
     public function validate(ErrorElement $errorElement, $object)
     {
         $errorElement
@@ -107,9 +173,4 @@ class GameAdmin extends Admin
             ->end()
         ;
     }
-
-	public function configureRoutes(RouteCollection $collection)
-	{
-	  $collection->add('edit');
-	}
 }
