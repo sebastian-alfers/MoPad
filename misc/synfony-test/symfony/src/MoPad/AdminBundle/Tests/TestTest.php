@@ -4,6 +4,10 @@ namespace MoPad\AdminBundle\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * @package MoPad\AdminBundle\Tests
+ * @author Janina Trost <janina.trost@student.htw-berlin.de>
+ */
 class TestTest extends WebTestCase
 {
     public function testPushAndPop()

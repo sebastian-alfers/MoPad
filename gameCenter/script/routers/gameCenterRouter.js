@@ -10,12 +10,19 @@ define(["jquery","backbone", "models/WebSocketModel", 'views/WebSocketConnection
          *
          * GameCenterRouter
          */
+
         initialize: function(){
         
             // Tells Backbone to start watching for hashchange events
             Backbone.history.start();
 
         },
+        /**
+         * @memberof GameCenterRouter
+         * @function initialize
+         *
+         * @desc constructor
+         */
 
         // All of your Backbone Routes (add more)
         routes: {
@@ -25,6 +32,12 @@ define(["jquery","backbone", "models/WebSocketModel", 'views/WebSocketConnection
 
         },
 
+        /**
+         * @memberof GameCenterRouter
+         * @function home
+         *
+         * @desc home location of our gamecenter
+         */
         home: function() {
             var $playerPins = new Array();
             $webSocketModel = new WebSocketModel({connectionType: 'game'});

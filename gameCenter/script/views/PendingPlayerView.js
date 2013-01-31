@@ -44,10 +44,6 @@ define(['jquery', 'backbone'], function($, Backbone){
 
             }, this);
 
-            console.log('whoaattt');
-            console.log(this);
-            console.log('whoaattt');
-
             //register the pins on the bridge for this game instance
             $webSocketModel.send({type: 'registerPinsForGameInstance', data : {pins:pins, game: this.options.game} });
 
@@ -74,7 +70,7 @@ define(['jquery', 'backbone'], function($, Backbone){
                 console.log('Connection established');
 
                 this.options.playerCollection.each(function(player){
-                    console.log(player);
+
                     if(player.get('pin') == json.pin){
                         fetched++;
                         $playerPins.push(json.pin);

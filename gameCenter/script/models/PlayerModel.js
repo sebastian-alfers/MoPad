@@ -14,13 +14,22 @@ define(["jquery", "backbone"], function($, Backbone) {
         defaults:{
             username: null,
             pin: null
-        },
-        pending: function(totalFetched, playerCount){
-            console.log('ja, am waiting ' + totalFetched +', ' + playerCount );
-            if(totalFetched == playerCount){
-                //listen to sockets
-            }
         }
+
+        /**
+         * @memberof PlayerModel
+         * @member username
+         * @type String
+         * @desc the username of the player
+         */
+
+        /**
+         * @memberof PlayerModel
+         * @member pin
+         * @type String
+         * @desc store the pin that the player has to enter on the controller
+         */
+
     });
 
 

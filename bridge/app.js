@@ -263,7 +263,9 @@ wsServer.on('request', function(request) {
 
 				connections[json.data.connectionId].sendUTF(JSON.stringify({
 					type : 'sendCommandToGame',
-					keycode : json.data.keycode,
+					keycode : json.data.keycode, // differenciation between controller types
+					angle : json.data.angle,
+					distance : json.data.distance,
 					pin : json.data.pin
 				}));
 

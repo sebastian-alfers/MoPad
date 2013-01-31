@@ -3,23 +3,32 @@
 namespace MoPad\AdminBundle\Entity;
 
 /**
+ * @package MoPad\AdminBundle\Entity
+ * @author Janina Trost <janina.trost@student.htw-berlin.de>
+ * 
+ * @method upload($basepath, $uploadpath, $file, $filename)
+ * @method removeFile($basepath, $uploadpath, $filename)
+ * 
+ * helpful links:
+ * @link http://symfony.com/doc/master/reference/forms/types/file.html
+ * @link http://symfony.com/doc/master/cookbook/doctrine/file_uploads.html
+ * @link http://blog.code4hire.com/2011/08/symfony2-sonata-admin-bundle-and-file-uploads/
  */
 class FileUploadHelper
 {
 	/**
-	 * http://symfony.com/doc/master/reference/forms/types/file.html
-	 * http://symfony.com/doc/master/cookbook/doctrine/file_uploads.html
-	 * http://blog.code4hire.com/2011/08/symfony2-sonata-admin-bundle-and-file-uploads/
+	 * get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
 	 */
 	protected function getUploadDir()
 	{
-	    // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
 		return 'uploads/gameimage';
 	}
 	
+	/**
+	 * the absolute directory path where uploaded documents should be saved
+	 */
 	protected function getUploadRootDir($basepath)
 	{
-	    // the absolute directory path where uploaded documents should be saved
 	    return $basepath.$this->getUploadDir();
 	}
 	
@@ -33,6 +42,14 @@ class FileUploadHelper
 	    return null === $this->imageName ? null : $this->getUploadDir().'/'.$this->imageName;
 	}
 	
+	/**
+	 * save a file on local path
+	 *
+	 * @param String base path
+	 * @param String upload path
+	 * @param File the file
+	 * @param String filename
+	 */
 	public function upload($basepath, $uploadpath, $file, $filename)
 	{
 	    // the file property can be empty if the field is not required
@@ -48,7 +65,16 @@ class FileUploadHelper
 		$file->move($basepath.$uploadpath, $filename);
 	}
 	
-	public function removeImage($basepath, $uploadpath, $filename)
+	/**
+	 * remove a file from local path
+	 *
+	 * @param String base path
+	 * @param String upload path
+	 * @param String filename
+	 * 
+	 * @return boolean successful
+	 */
+	public function removeFile($basepath, $uploadpath, $filename)
 	{
 	    if (null === $basepath) {
 	        return;
@@ -59,6 +85,7 @@ class FileUploadHelper
 	    }
 		
 	    echo($basepath.$uploadpath.$filename);
-		$successful = unlink($basepath.$uploadpath.$filename);
+		$successful = unlink($basepath.$uploadpath.'/'.$filename);
+		return $successful;
 	}
 }

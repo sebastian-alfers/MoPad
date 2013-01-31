@@ -7,10 +7,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use MoPad\AdminBundle\Entity\Game;
 
+/**
+ * @package MoPad\AdminBundle\Controller
+ * @author Janina Trost <janina.trost@student.htw-berlin.de>
+ * 
+ * @method getgamesAction()
+ * @method getUniqueAppToken($token)
+ */
 class ApiController extends Controller
 {
 	/**
 	 * @Route("/getgames", name="_mopad_api_getgames")
+	 * 
+	 * deliver the JSON formatted game list
+	 * 
+	 * @return Response with the JSON formatted game list 
 	 */
 	public function getgamesAction()
 	{
@@ -25,4 +36,18 @@ class ApiController extends Controller
 		
 		return $response;
 	}
+
+    /**
+     * @Route("/uniqueAppToken/{token}", name="_generate_app_token")
+     *
+	 * @param token
+     */
+    public function getUniqueAppToken($token)
+    {
+        $response = new Response(json_encode(md5(microtime().$token)));
+      	$response->headers->set('Content-Type', 'application/json', 'charset=utf-8');
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+
+   		return $response;
+    }
 }

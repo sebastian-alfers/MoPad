@@ -1,4 +1,7 @@
 #!/bin/bash
+~/jsdoc/jsdoc ../gameCenter/game/paintTheBox/paintTheBox.js
+~/jsdoc/jsdoc ../gameCenter/game/moveTheBox/game.js
+
 ~/jsdoc/jsdoc ../gameCenter/script/collections/GameCollection.js
 ~/jsdoc/jsdoc ../gameCenter/script/collections/PlayerCollection.js
 

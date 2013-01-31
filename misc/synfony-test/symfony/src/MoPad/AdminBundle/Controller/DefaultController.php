@@ -8,6 +8,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Response;
 use MoPad\AdminBundle\Entity\Game;
 
+/**
+ * @package MoPad\AdminBundle\Controller
+ * @author Janina Trost <janina.trost@student.htw-berlin.de>
+ * 
+ * @method indexAction()
+ */
 class DefaultController extends Controller
 {
     /**
@@ -22,6 +28,8 @@ class DefaultController extends Controller
 	/**
      * @Route("/create", name="_mopad_create")
      * @Template()
+	 * 
+	 * @deprecated No longer used by internal code
      */
 	public function createAction()
 	{
@@ -36,7 +44,7 @@ class DefaultController extends Controller
     	$game->setAcceptedGamePads('JoyPad');
 	
 	    $em = $this->getDoctrine()->getManager();
-		// TODO Nina: create ausgeschaltent
+		// TODO Nina: create deactivated
 	    //$em->persist($game);
 	    //$em->flush();
 	
@@ -46,6 +54,8 @@ class DefaultController extends Controller
 	/**
      * @Route("/show", name="_mopad_show")
      * @Template()
+	 * 
+	 * @deprecated No longer used by internal code
      */
 	public function showAction($id)
 	{

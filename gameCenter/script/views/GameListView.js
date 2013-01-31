@@ -15,7 +15,6 @@ define(['jquery', 'backbone', 'models/GameListModel'], function($, Backbone, Gam
         },
 
         initialize:function () {
-        	
             this.model = new GameListModel({ el:this.$el });
             this.render();
             this.model.bind('afterLoadGameCollection', this.drawGameMenu, this);
@@ -34,14 +33,12 @@ define(['jquery', 'backbone', 'models/GameListModel'], function($, Backbone, Gam
         },
 
         chooseGame:function (event) {
-            $('#player_chooser').html('');
+            //$('#player_chooser').html('');
             $('#pins').html('');
 
             event.preventDefault();
             var id = $(event.currentTarget).data("id");
             this.model.set({currentGame:this.model.gameCollection.get(id)});
-
-
         },
 
         render:function () {
