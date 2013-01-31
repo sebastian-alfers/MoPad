@@ -118,11 +118,6 @@ define(["jquery", "backbone"], function($, Backbone) {
             }
             else{
 
-                //jea, we support web sockets
-                //this.trigger('successWebSocketAvailable', data);
-                $webSocketModel = this;
-                $socket = new WebSocket(this.defaults.host);
-
 
                 //build the WS connect url based on the host
                 var url = document.URL.replace(/http:\/\//g, "");
@@ -130,7 +125,12 @@ define(["jquery", "backbone"], function($, Backbone) {
                 //url = url.replace(/.loc\//g, "");
                 url = url.replace(/.de\//g, ".de");
 
-                this.defaults.host = 'ws://'+url+':8081/';
+                this.defaults.host = 'ws://mo-pad.de:8081/';
+
+                //jea, we support web sockets
+                //this.trigger('successWebSocketAvailable', data);
+                $webSocketModel = this;
+                $socket = new WebSocket(this.defaults.host);
 
                 alert('connect to ' + this.defaults.host);
 
