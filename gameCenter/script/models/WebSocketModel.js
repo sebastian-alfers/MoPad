@@ -128,7 +128,7 @@ define(["jquery", "backbone"], function($, Backbone) {
                 var url = document.URL.replace(/http:\/\//g, "");
                 url = url.replace(/gameCenter\//g, "");
                 //url = url.replace(/.loc\//g, "");
-                //url = url.replace(/.de\//g, "");
+                url = url.replace(/.de\//g, ".de");
 
                 this.defaults.host = 'ws://'+url+':8081/';
 
