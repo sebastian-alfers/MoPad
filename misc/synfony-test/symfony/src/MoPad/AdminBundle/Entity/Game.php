@@ -462,7 +462,7 @@ class Game
 	 */
 	private function getGameAdminUrl()
     {
-        return 'http://mopad-symfony.de/';
+        return 'http://asdfmopad-symfony.de/';
     }
 	
 	/**
