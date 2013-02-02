@@ -125,14 +125,14 @@ define(["jquery", "backbone"], function($, Backbone) {
                 //url = url.replace(/.loc\//g, "");
                 url = url.replace(/.de\//g, ".de");
 
-                this.defaults.host = 'ws://mo-pad.de:8081/';
+                this.defaults.host = 'ws:/localhost:8081/';
 
                 //jea, we support web sockets
                 //this.trigger('successWebSocketAvailable', data);
                 $webSocketModel = this;
                 $socket = new WebSocket(this.defaults.host);
 
-                alert('connect to ' + this.defaults.host);
+                //alert('connect to ' + this.defaults.host);
 
                 $socket.onopen = function() {
                     $webSocketModel.set({"connected": true});
