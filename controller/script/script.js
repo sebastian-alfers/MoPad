@@ -4,7 +4,6 @@ $(document).ready(function() {
 
 	//Joystick();
 	if (urlParam[0] == 'ip') {
-		console.log('Requesting Socket connection');
 		window.socket = Socket.init(urlParam[1]);
 	} else if (urlParam[0] == 'controller') {
 		switch (urlParam[1]) {
@@ -21,6 +20,8 @@ $(document).ready(function() {
 				console.log('Unkown controller specified in URL');
 				break;
 		}
+	} else {
+		window.socket = Socket.init(window.location.origin.substr(7,window.location.origin.length));
 	}
 
 	$('#pinInput').keyup(function() {
