@@ -83,6 +83,7 @@ define(["jquery", "backbone"], function($, Backbone) {
          */
         send: function(data){
 
+
             if (data == "" || data == undefined) {
                 console.log('Websocket: No data set');
         		return;
@@ -148,8 +149,6 @@ define(["jquery", "backbone"], function($, Backbone) {
                 $socket.onmessage = function (msg) {
 
                     var json = JSON.parse(msg.data);
-
-                    console.log(json);
 
                     //just pass the message type (from node) as an event to be subscribed to
                     $webSocketModel.trigger(json.type, json);

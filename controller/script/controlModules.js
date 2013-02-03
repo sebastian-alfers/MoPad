@@ -6,7 +6,7 @@
  */
 
 
-window.BenchmarkController = function() {
+window.Benchmark = function() {
 
 	init();
 
@@ -18,8 +18,47 @@ window.BenchmarkController = function() {
 		console.log('Loading Benchmark');
 		loadControllerInterface();
 
-		$('#controller').append('<div class="controlModule benchmark" id="bench"><div id="bench_btn"></div></div>');
-		$('#joystickWrapper').css('visibility', 'hidden');
+		$('#controller').append('<br /><br /> \
+		<input id="conss_down" type="button" value="-" style="height: 50px; width: 50px; margin: 10px;"><input id="conss_up" type="button" value="+" style="height: 50px; width: 50px; margin: 10px;">\
+		                                                \
+		                                                 \
+		<hr />                                            \
+		                                                   \
+		<div id="fire_menu" style="display: none">          \
+		    <ul>                                             \
+		        <li>10 WebSocket messages per second</li>     \
+		    </ul>                                              \
+		</div>                                                  \
+		');
+
+
+
+   		$('#conss_up').bind('touchend', function(e) {
+       			e.preventDefault();
+               if (socket != undefined) {
+                       socket.send({// TODO auslagern!!
+                           type : 'sendCommandToGame',
+                           data : {
+                               keycode : 'plus_one',
+                               connectionId : connectionId
+                           }
+                       });
+                   }
+       		});
+
+
+        $('#conss_down').bind('touchend', function(e) {
+          			e.preventDefault();
+                  if (socket != undefined) {
+                          socket.send({// TODO auslagern!!
+                              type : 'sendCommandToGame',
+                              data : {
+                                  keycode : 'minus_one',
+                                  connectionId : connectionId
+                              }
+                          });
+                      }
+          		});
 
 
     }

@@ -7,19 +7,28 @@
 
 
 	<script src="../../script/libs/jquery-1.8.2.min.js"></script>
-	<script src="paintTheBox.js"></script>
+	<script src="benchmark.js"></script>
 
 </head>
 <body>
 
-<input id="up" type="button" value="up">
-<input id="down" type="button" value="down">
-<input id="left" type="button" value="left">
-<input id="right" type="button" value="right">
+<input id="ping" type="button" value="up">
+<input id="fire" type="button" value="fire on">
+
 
 <hr />
 
-        <canvas id="canvas"></canvas>
+<div id="fire_menu" style="display: none">
+    <ul>
+        <li>10 WebSocket messages per second</li>
+    </ul>
+</div>
+
+        <div id="main"></div>
+
+<hr />
+
+<div id="pong"></div>
 
 </body>
 </html>

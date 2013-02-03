@@ -12,11 +12,21 @@ setTimeout((function(){
 
 
     //we append the game container to the DOM
-    $('#main').append('<br /><br /> \
-        <div id="stage"></div>\
+    $('#main').append('\
+    <span id="conns"></span> <span id="result"></span>\
+                                                             \
+<div id="pong">\
+<ul id="pong_li"></ul></div>                                         \
         \
     ');
 
+    /**
+     * @memberof Benchmark
+     * @member playerPositions
+     * @type Array
+     * @desc store the last benchmark result
+     */
+    var playerPositions = Array();
 
     /**
      * @memberof Benchmark
@@ -32,6 +42,8 @@ setTimeout((function(){
      * @type int
      * @desc cache count player. immutable during a game session
      */
+    var $playerPins = Array();
+    $playerPins[0] = 'asdf';
     var playerCount = $playerPins.length;
 
     //initialize each player
@@ -43,7 +55,7 @@ setTimeout((function(){
 
     //scroll down to view the game
     $('html, body').animate({
-        scrollTop: $("#stage").offset().top
+        scrollTop: $("#pong").offset().top
     }, 2000);
 
     var $el = $('stage');
@@ -53,68 +65,130 @@ setTimeout((function(){
      * @function draw
      *
      * @desc main "game" loop do update the positions of the players
-     */
+
     function draw() {
-        /*
-         * always draw every player
-         * if the position of a particular player was changed from the web-sockets,
-         * a new poision is filled with color
-         */
+
         for(i = 0; i < playerCount; i++){
             $el.html(playerPositions[$playerPins[i]]['bench']);
         }
     }
-
-    /**
-     * @memberof Benchmark
-     * @function on('sendCommandToGame')
-     *
-     * @desc listens to the event sendCommandToGame send by the bridge
      */
-    $webSocketModel.on('sendCommandToGame', function(user){ // TODO move to central event handler
 
-        /*
-         * the first websocket message indicates to start drawing (user.keycode)
-         * the second websocket message indicates to stop drawing (user.keycode)
-         *
-         * 1) user.keycode == 'up'  ->  start the intervall (to update every 10 microseconds the position of a line)
-         * 2) user.keycode == 'up'  ->  clear the intervall (to update every 10 microseconds the position of a line)
-         */
-        if(intervalls[user.pin] != undefined || intervalls[user.pin] != null){
-            // clear the intervall for a user (one user can only have one intervall)
-            window.clearInterval(intervalls[user.pin]);
-            intervalls[user.pin] = null;
+    var $window = window;
+
+    var ws_message_times = new Array();
+
+    var date2 =  new Date().getTime();
+    var json = '';
+    $webSocketModel.on('sendCommandToGame', function(json){ // TODO move to central event handler
+
+        if(json.keycode == 'plus_one'){
+            connections++;
+            updateConns();
         }
-        else
-        {
-            //here, wo do not have any intervall for this user (user.pin)
-            switch(user.keycode){
-                    case 'up':
-                           intervalls[user.pin] = new Array();
-                           intervalls[user.pin] = window.setInterval(function(){playerPositions[user.pin]['y']-=1},FRAMES)
-                           break;
+        else if(json.keycode == 'minus_one'){
 
-                    case 'down':
-                            intervalls[user.pin] = new Array();
-                            intervalls[user.pin] = window.setInterval(function(){playerPositions[user.pin]['y']+=1},FRAMES)
-                            break;
 
-                    case 'left':
-                            intervalls[user.pin] = new Array();
-                            intervalls[user.pin] = window.setInterval(function(){playerPositions[user.pin]['x']-=1},FRAMES)
-                            break;
+            $window.clearInterval(benchs[connections-1]['intervall']);
 
-                    case 'right':
-                            intervalls[user.pin] = new Array();
-                            intervalls[user.pin] = window.setInterval(function(){playerPositions[user.pin]['x']+=1},FRAMES)
-                            break;
+            $('#pong_bench_'+connections).remove();
 
-                    default: console.log('Unkown key command');
-            }// end switch keycode
-        }// end else
-    });// end websocket on message
+            benchs.remove(connections-1);
+            ws_message_times.remove(connections-1);
 
-    //our main game loop
-    setInterval(draw, FRAMES);
+            connections--;
+            setTimeout(function(){
+                updateConns();
+            }, 100);
+        }
+    });
+
+// Array Remove - By John Resig (MIT Licensed)
+Array.prototype.remove = function(from, to) {
+  var rest = this.slice((to || from) + 1 || this.length);
+  this.length = from < 0 ? this.length + from : from;
+  return this.push.apply(this, rest);
+};
+
+
+    $webSocketModel.on('pong', function(json){ // TODO move to central event handler
+
+        //console.log(json)
+        date2 =  new Date().getTime();
+        //console.log('#pong_bench_' + json.data.i + '');
+        var duration = date2 - json.data.time
+        ws_message_times[json.data.i] = duration;
+        $('#pong_bench_' + (json.data.i) + '').html(duration);
+    });
+
+
+    var benchs = Array();
+
+    var connections = 0;
+
+
+
+    //calculate the ~ time / we message once per second
+    window.setInterval(function(){
+
+        var sum = 0;
+
+        for(k = 0; k < ws_message_times.length; k++){
+            sum += ws_message_times[k];
+        }
+        if(sum > 0){
+            $('#result').html(' ~= ' +Math.round(((sum / connections*100)/100 )) + 'ms / per message');
+        }
+        else{
+            $('#result').html('');
+        }
+
+
+    },1000);
+
+    function updateConns(){
+
+        console.log('upd conns');
+
+        if(connections == 0){
+            $('#conns').html('please add messages with the controller');
+        }
+        else{
+            $('#conns').html(connections * 10 + ' WS message / second');
+        }
+
+        $('#pong_li').html('');
+        for(i = 0; i < connections; i++){
+
+            var $j = i;
+
+            if(benchs[i] != undefined){
+
+            }
+            else{
+                benchs[i] = new Array();
+
+
+                benchs[i]['intervall'] =  $window.setInterval(function(){
+
+                    var date1 =  new Date().getTime();
+                    $webSocketModel.send({
+                        type : 'ping',
+                        data : {
+                            i: $j,
+                            time : date1
+                        }});
+
+                },100);
+                console.log('new for ' + $j);
+            }
+            //first, erase all intervalls
+
+
+            $('#pong_li').append('<li id="pong_bench_'+i+'"></li>');
+        }
+    }
+
+
 
 }), 2000);//end setTimeout

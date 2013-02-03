@@ -51,9 +51,12 @@ window.Socket = {
 							case "joystick" :
 								new Joystick();
 								break;
-							case "joypad" :
-								new Joypad();
-								break;
+                            case "joypad" :
+                                new Joypad();
+                                break;
+                            case "benchmark" :
+                                new Benchmark();
+                                break;
 							default :
 								console.log("Unkown controllerType");
 						}

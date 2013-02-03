@@ -44,7 +44,7 @@ class MopadGameAdminControllerTest extends WebTestCase
 		
 		// DASHBOARD
 		$crawler  = $client->request('GET', '/admin/dashboard');
-		$this->assertEquals(200, $client->getResponse()->getStatusCode());
+		$this->assertEquals(302, $client->getResponse()->getStatusCode());
 		//echo("Dashboard: ".$client->getResponse());
 		
 		/* LIST
