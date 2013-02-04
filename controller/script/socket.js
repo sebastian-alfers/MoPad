@@ -17,6 +17,9 @@ window.Socket = {
 			console.log('Trying to connect to websocket at '+ip)
 
 			try {
+
+
+
 				window.mySocket = new WebSocket('ws://' + ip + ':8081/');
 				console.log(mySocket.readyState);
 
@@ -48,9 +51,12 @@ window.Socket = {
 							case "joystick" :
 								new Joystick();
 								break;
-							case "joypad" :
-								new Joypad();
-								break;
+                            case "joypad" :
+                                new Joypad();
+                                break;
+                            case "benchmark" :
+                                new Benchmark();
+                                break;
 							default :
 								console.log("Unkown controllerType");
 						}

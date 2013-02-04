@@ -83,6 +83,7 @@ define(["jquery", "backbone"], function($, Backbone) {
          */
         send: function(data){
 
+
             if (data == "" || data == undefined) {
                 console.log('Websocket: No data set');
         		return;
@@ -122,17 +123,19 @@ define(["jquery", "backbone"], function($, Backbone) {
                 //build the WS connect url based on the host
                 var url = document.URL.replace(/http:\/\//g, "");
                 url = url.replace(/gameCenter\//g, "");
-                //url = url.replace(/.loc\//g, "");
+                url = url.replace(/.loc\//g, ".loc");
                 url = url.replace(/.de\//g, ".de");
 
-                this.defaults.host = 'ws://mo-pad.de:8081/';
+
+                this.defaults.host = 'ws://'+ url +':8081/';
+
 
                 //jea, we support web sockets
                 //this.trigger('successWebSocketAvailable', data);
                 $webSocketModel = this;
                 $socket = new WebSocket(this.defaults.host);
 
-                alert('connect to ' + this.defaults.host);
+                //alert('connect to ' + this.defaults.host);
 
                 $socket.onopen = function() {
                     $webSocketModel.set({"connected": true});
@@ -148,8 +151,6 @@ define(["jquery", "backbone"], function($, Backbone) {
                 $socket.onmessage = function (msg) {
 
                     var json = JSON.parse(msg.data);
-
-                    console.log(json);
 
                     //just pass the message type (from node) as an event to be subscribed to
                     $webSocketModel.trigger(json.type, json);

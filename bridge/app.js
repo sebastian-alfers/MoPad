@@ -143,6 +143,8 @@ function arraySize(obj) {
 	return size;
 }
 
+var pong_counter = 0;
+
 /*
  * Helper function: Formats a time string
  */
@@ -259,8 +261,6 @@ wsServer.on('request', function(request) {
 
 				console.log(time() + 'Sent command to game instance');
 
-				console.log(json);
-
 				connections[json.data.connectionId].sendUTF(JSON.stringify({
 					type : 'sendCommandToGame',
 					keycode : json.data.keycode, // differenciation between controller types
@@ -268,6 +268,21 @@ wsServer.on('request', function(request) {
 					distance : json.data.distance,
 					pin : json.data.pin
 				}));
+
+            } else if (json.type == 'ping') {
+                pong_counter++;
+
+                if(pong_counter % 10 == 0){
+                    console.log(pong_counter);
+                }
+
+                connection.sendUTF(JSON.stringify({
+                    type : "pong",
+                    data : {
+                        time : json.data.time,
+                        i: json.data.i
+                    }
+                }));
 
 			} else if (json.type == 'getConnectionForPin') {
 

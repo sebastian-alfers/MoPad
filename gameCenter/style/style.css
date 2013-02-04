@@ -87,3 +87,8 @@ body {
 .connection-ok{
     background-color: #008000 !important;
 }
+
+#pong_li li{
+    float:left;
+    width: 30px;
+}

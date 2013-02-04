@@ -5,6 +5,73 @@
  *
  */
 
+
+window.Benchmark = function() {
+
+	init();
+
+	/*
+	 * Adds a Benchmark view to the #controller div
+	 */
+
+	function init() {
+		console.log('Loading Benchmark');
+		loadControllerInterface();
+
+		$('#controller').append('<br /><br /> \
+		<input id="conss_down" type="button" value="-" style="height: 50px; width: 50px; margin: 10px;"><input id="conss_up" type="button" value="+" style="height: 50px; width: 50px; margin: 10px;">\
+		                                                \
+		                                                 \
+		<hr />                                            \
+		                                                   \
+		<div id="fire_menu" style="display: none">          \
+		    <ul>                                             \
+		        <li>10 WebSocket messages per second</li>     \
+		    </ul>                                              \
+		</div>                                                  \
+		');
+
+
+
+   		$('#conss_up').bind('touchend', function(e) {
+       			e.preventDefault();
+               if (socket != undefined) {
+                       socket.send({// TODO auslagern!!
+                           type : 'sendCommandToGame',
+                           data : {
+                               keycode : 'plus_one',
+                               connectionId : connectionId
+                           }
+                       });
+                   }
+       		});
+
+
+        $('#conss_down').bind('touchend', function(e) {
+          			e.preventDefault();
+                  if (socket != undefined) {
+                          socket.send({// TODO auslagern!!
+                              type : 'sendCommandToGame',
+                              data : {
+                                  keycode : 'minus_one',
+                                  connectionId : connectionId
+                              }
+                          });
+                      }
+          		});
+
+
+    }
+
+}
+/**
+ * Creates a Joypad controller
+ *
+ * @constructor
+ *
+ */
+
+
 window.Joystick = function() {
 
 	init();
@@ -136,13 +203,13 @@ window.Joystick = function() {
 	// Takes two coordinates (opposite and adjacent) and calculates the angle
 	function calcAngle(x, y) {
 
-		if (x >= 0 && y > 0) {// 0¡
+		if (x >= 0 && y > 0) {// 0ï¿½
 			return Math.atan(Math.abs(x) / Math.abs(y)) / (Math.PI / 2) * 90 + 0;
-		} else if (x > 0 && y <= 0) {// 90¡
+		} else if (x > 0 && y <= 0) {// 90ï¿½
 			return Math.atan(Math.abs(y) / Math.abs(x)) / (Math.PI / 2) * 90 + 90;
-		} else if (x <= 0 && y < 0) {// 180¡
+		} else if (x <= 0 && y < 0) {// 180ï¿½
 			return Math.atan(Math.abs(x) / Math.abs(y)) / (Math.PI / 2) * 90 + 180;
-		} else if (x < 0 && y >= 0) {// 270¡
+		} else if (x < 0 && y >= 0) {// 270ï¿½
 			return Math.atan(Math.abs(y) / Math.abs(x)) / (Math.PI / 2) * 90 + 270;
 		}
 
@@ -184,8 +251,14 @@ window.Joypad = function() {
 
 		$('#controller').append('<div class="controlModule joypad" id="joypad1"><div class="borderBox"><div class="helpOverlay">Drag # to move the touchpad to the desired position.</div><table class="dPad"><tr><td colspan="3"><div class="button continuous up" id="up">&uarr;</div></td></tr><tr><td><div class="button left" id="left">&larr;</div></td><td><div class="button drag"><span id="dragDpad">#</span></div></td><td><div class="button continuous right" id="right">&rarr;</div></td></tr><tr><td colspan="3"><div class="button continuous down" id="down">&darr;</div></td></tr></table><table class="buttonGrid" id="buttonGrid1" hidden="hidden"><tr><td><div class="button blue" id="blue">B</div></td></tr><tr><td><div class="button red" id="red">A</div></td></tr></table></div></div><div class="clear"/>');
 		// TODO display buttongroup
+		
+		$('.dPad').offset({top: $('body').height()/2-$('.dPad').height()/2, left: $('body').width()/2-$('.dPad').width()/2});
 
 		var intervalTriggers = new Array();
+
+		$('.controlModule.joypad').bind('touchstart', function(e) {//When
+			$('.helpOverlay').hide();
+		})
 
 		$('.controlModule.joypad .button').bind('touchstart', function(e) {//When button is pressed
 			e.preventDefault();
