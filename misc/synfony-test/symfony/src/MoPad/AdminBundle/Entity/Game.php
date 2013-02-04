@@ -1,33 +1,36 @@
 <?php
-
+/**
+ * (C) MoPad
+ */
 namespace MoPad\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @package MoPad\AdminBundle\Entity
- * @author Janina Trost <janina.trost@student.htw-berlin.de>
- *
- * Game
+ * Game entity for database storage.
+ * The Getter/Setter methods are used to create and update Game entity.
+ *  
+ * To Create/Update the Game Entity class (generate Getter/Setter methods): 
+ * $ php app/console doctrine:generate:entities MoPadAdminBundle
+ * 
+ * To Update database schema/tables:  
+ * $ php app/console doctrine:schema:update --force
+ * 
+ * To clean the Web cache: 
+ * $ php app/console cache:clear
+ * 
  * @ORM\Entity
  * @ORM\Table(name="game")
  * @ORM\Entity(repositoryClass="MoPad\AdminBundle\Entity\GameRepository")
  * 
- * @method String createGameJsName()
- * @method String createImageName()
- * @method upload($basepath, $type)
- * @method removeImage($basepath)
- * 
- * * Update Game Entity Getter/Setter
- * - $ php app/console doctrine:generate:entities MoPadAdminBundle
- * * Update database schema/tables
- * - $ php app/console doctrine:schema:update --force
- * Web chache clean
- * - $ php app/console cache:clear
+ * @author Janina Trost <janina.trost@student.htw-berlin.de>
+ * @package MoPad\AdminBundle\Entity
  */
 class Game
 {
     /**
+	 * id
+	 *
      * @var integer
 	 * @ORM\Id
      * @ORM\Column(type="integer")
@@ -36,89 +39,100 @@ class Game
     private $id;
 
     /**
-     * @var string
+     * name
+	 * @var string
 	 * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
-     * @var string
+     * description
+	 * @var string
 	 * @ORM\Column(type="text")
      */
     private $description;
 	
 	/**
-     * @var string
+     * apiKey
+	 * @var string
 	 * @ORM\Column(type="string", length=255)
      */
     private $apiKey;
 	
 	/**
-     * @var string
+     * vendor
+	 * @var string
 	 * @ORM\Column(type="string", length=255)
      */
     private $vendor;
 	
 	/**
-     * @var boolean
+     * activated
+	 * @var boolean
 	 * @ORM\Column(type="boolean")
      */
     private $activated = false;
 	
 	/**
+	 * minPlayer
 	 * @var integer
 	 * @ORM\Column(type="integer")
 	 */
 	private $minPlayer = 1;
 	/**
+	 * maxPlayer
 	 * @var integer
 	 * @ORM\Column(type="integer")
 	 */
 	private $maxPlayer = 10;
 	
 	/**
-     * @var string
+     * acceptedGamePads
+	 * @var string
 	 * @ORM\Column(type="string")
      */
     private $acceptedGamePads;
 	
 	/**
+	 * image file
 	 * no database safety, local safe
 	 */
 	private $image;
 	
 	/**
+	 * imageName
 	 * @var string
 	 * @ORM\Column(type="string", length=255)
 	 */
 	private $imageName = "";
 	
 	/**
+	 * imageUrl
 	 * @var string
 	 * @ORM\Column(type="string", length=255)
 	 */
 	private $imageUrl = "";
 	
 	/**
+	 * gameJs
 	 * no database safety, local safe
 	 */
 	private $gameJs;
 	
 	/**
+	 * gameJsName
 	 * @var string
 	 * @ORM\Column(type="string", length=255)
 	 */
 	private $gameJsName = "";
 	
 	/**
+	 * gameJsUrl
 	 * @var string
 	 * @ORM\Column(type="string", length=255)
 	 */
 	private $gameJsUrl = "";
 	
-	
-	
-
     /**
      * Get id
      *
@@ -462,7 +476,7 @@ class Game
 	 */
 	private function getGameAdminUrl()
     {
-        return 'http://asdfmopad-symfony.de/';
+        return '';
     }
 	
 	/**
@@ -553,6 +567,7 @@ class Game
 	}
 	
 	/**
+	 * return s string representative
 	 * @return string representative
 	 */
 	public function toString()

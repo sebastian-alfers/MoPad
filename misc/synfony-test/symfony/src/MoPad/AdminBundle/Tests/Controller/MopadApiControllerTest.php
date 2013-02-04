@@ -1,21 +1,21 @@
 <?php
-
+/**
+ * (C) MoPad
+ */
 namespace MoPad\AdminBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use MoPad\AdminBundle\Controller\ApiController;
 
 /**
- * test the GameAdmin APi, 
- * if this provides correctly the game data in JSON format.
- * call the APi URL and check the result.
+ * Test the GameAdmin APi. 
+ * If this provides correctly the game data in JSON format.
+ * Call the APi URL and check the result.
  *
- * @package MoPad\AdminBundle\Tests\Controller
  * @author Janina Trost <janina.trost@student.htw-berlin.de>
+ * @package MoPad\AdminBundle\Tests\Controller
  * 
- * @example run unit test with : $ phpunit -c app/
- * 
- * @method testApi()
+ * @example run unit test in MoPad\misc\synfony-test\symfony\src with : $ phpunit -c app/
  */
 class MopadApiControllerTest extends WebTestCase
 {

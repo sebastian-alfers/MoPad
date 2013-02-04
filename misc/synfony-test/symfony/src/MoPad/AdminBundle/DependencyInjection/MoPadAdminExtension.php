@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * (C) MoPad
+ */
 namespace MoPad\AdminBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -8,16 +10,17 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
 /**
- * @package MoPad\AdminBundle\DependencyInjection
- * 
  * This is the class that loads and manages your bundle configuration
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
+ * @package MoPad\AdminBundle\DependencyInjection
  */
 class MoPadAdminExtension extends Extension
 {
     /**
      * {@inheritDoc}
+	 * @param array configs
+	 * @param ContainerBuilder container
      */
     public function load(array $configs, ContainerBuilder $container)
     {
