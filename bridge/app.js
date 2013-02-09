@@ -1,20 +1,20 @@
 /*
- * 
+ *
  * MoPad server
- * 
+ *
+ * @authors Sebastian Alfers and Jonas Hartweg
+ *
  */
-
 
 var WebSocketServer = require('websocket').server;
 var http = require('http');
 var port = 8081;
 
-
-/* 
+/*
  * Http server that the WebSocket server is bound to
- * 
+ *
  * @constructor
- *  
+ *
  */
 
 var server = http.createServer(function(req, res) {
@@ -28,6 +28,10 @@ var server = http.createServer(function(req, res) {
 
 /*
  * WebSocket server
+ *
+ * @constructor
+ * @param {httpServer} Http Server
+ *
  */
 
 wsServer = new WebSocketServer({
@@ -59,7 +63,7 @@ games.push({
 	ip : '141.45.204.172'
 });
 
-// Current connections
+// Stores current connections
 var connections = new Array();
 
 //id, connectiongame, connectionController, timestamp, gameId
@@ -72,9 +76,9 @@ controllers.push('141.45.204.172');
 
 /*
  * Checks whether a gameCenter connection gets accepted
- * 
+ *
  * @param {peername} Peername string of the WebSocket request
- * 
+ *
  */
 
 function originIsAllowed(peername) {
@@ -98,8 +102,9 @@ function originIsAllowed(peername) {
 
 /*
  * Checks whether gameCenter connection gets verified
- * 
- * @param {key} Authorization key 
+ *
+ * @param {key} Authorization key
+ *
  */
 
 function keyIsAllowed(key) {
@@ -113,9 +118,9 @@ function keyIsAllowed(key) {
 
 /*
  * Checks whether a connection with a certain pin exists already
- * 
+ *
  * @param {pin} The pin
- * @param {array} an Array with the connected pins  
+ * @param {array} an Array with the connected pins
  */
 
 function pinExists(pin, array) {
@@ -130,7 +135,7 @@ function pinExists(pin, array) {
 
 /*
  * Helper function: Returns the size of an associative Array
- * 
+ *
  * @param {obj} A multi-dimensional array
  */
 
@@ -153,7 +158,10 @@ function time() {
 	return '[' + new Date().toString().substring(4, 21) + '] ';
 }
 
-// WebSocket server
+/*
+ * Handles connection requests from WebSocket clients
+ */
+
 wsServer.on('request', function(request) {
 
 	// Check if connection is allowed
@@ -174,7 +182,9 @@ wsServer.on('request', function(request) {
 	// https://github.com/Worlize/WebSocket-Node/wiki
 	var connectionId = connectionIDCounter++;
 
-	// Incoming message
+	/*
+	 * Handles incoming messages from WebSocket clients
+	 */
 	connection.on('message', function(message) {
 		if (message.type === 'utf8') {
 			try {
@@ -183,7 +193,7 @@ wsServer.on('request', function(request) {
 				console.log(time() + 'Parsing error: ' + exception);
 				return;
 			}
-			
+
 			// process WebSocket message
 			if (json.type == 'identify') {// First message identifies the websocket type (game/controller) TODO First message has to be identify, otherwise reject connection
 				if (json.connectionType == 'game') {
@@ -227,7 +237,7 @@ wsServer.on('request', function(request) {
 
 				var pin = undefined;
 
-				while (pinExists(pin, connections)){
+				while (pinExists(pin, connections)) {
 					pin = Math.floor(Math.random() * 9000) + 1000;
 				}
 
@@ -240,19 +250,19 @@ wsServer.on('request', function(request) {
 						username : json.data.username
 					}
 				}));
-			
-			} else if (json.type == 'kickOffGame') { // Announce to the controllers that the game stars
-				
+
+			} else if (json.type == 'kickOffGame') {// Announce to the controllers that the game stars
+
 				// TODO Get game controllers and send the kickOff message
-			
+
 			} else if (json.type == 'registerPinsForGameInstance') {// TODO remove?
 				console.log(time() + 'Received new pins:');
 
-                connection.pins = json.data.pins;
-                connection.game = json.data.game;
+				connection.pins = json.data.pins;
+				connection.game = json.data.game;
 
-                //name of gamepade configured by the symfony admin (php)
-                console.log(connection.game.accepted_game_pads);
+				//name of gamepade configured by the symfony admin (php)
+				console.log(connection.game.accepted_game_pads);
 
 				json.data.pins.forEach(function(pin) {
 					console.log('Pin: ' + pin);
@@ -269,20 +279,20 @@ wsServer.on('request', function(request) {
 					pin : json.data.pin
 				}));
 
-            } else if (json.type == 'ping') {
-                pong_counter++;
+			} else if (json.type == 'ping') {
+				pong_counter++;
 
-                if(pong_counter % 10 == 0){
-                    console.log(pong_counter);
-                }
+				if (pong_counter % 10 == 0) {
+					console.log(pong_counter);
+				}
 
-                connection.sendUTF(JSON.stringify({
-                    type : "pong",
-                    data : {
-                        time : json.data.time,
-                        i: json.data.i
-                    }
-                }));
+				connection.sendUTF(JSON.stringify({
+					type : "pong",
+					data : {
+						time : json.data.time,
+						i : json.data.i
+					}
+				}));
 
 			} else if (json.type == 'getConnectionForPin') {
 
@@ -305,7 +315,7 @@ wsServer.on('request', function(request) {
 							if (json.data.pin == pin) {
 								//jip jipp :)
 								console.log('jipp jiopp ');
-                                console.log(gameConnection.game.accepted_game_pads);
+								console.log(gameConnection.game.accepted_game_pads);
 
 								//send back the connection-id to the controller to cache it
 								//TODO risk?
@@ -346,8 +356,8 @@ wsServer.on('request', function(request) {
 				} else {
 					console.log('Wrong pin (id ' + connectionId + ')');
 					connection.sendUTF(JSON.stringify({
-									type : "wrongPin"
-								}));
+						type : "wrongPin"
+					}));
 				}
 
 			} else {
@@ -360,7 +370,7 @@ wsServer.on('request', function(request) {
 
 	/*
 	 * Returns the connection for a certain pin
-	 * 
+	 *
 	 * @param {pin} The pin
 	 */
 
@@ -371,6 +381,9 @@ wsServer.on('request', function(request) {
 		return pin;
 	}
 
+	/*
+	 * Handles the closing of a WebSocket connection
+	 */
 
 	connection.on('close', function(connection) {
 		if (connectionId != undefined) {

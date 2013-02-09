@@ -1,3 +1,11 @@
+/*
+ * 
+ * Controller-side website logic
+ * 
+ * @author Jonas Hartweg
+ * 
+ */
+
 $(document).ready(function() {
 
 	var urlParam = location.search.replace('?', '').split('='); // Fetches first Get variable

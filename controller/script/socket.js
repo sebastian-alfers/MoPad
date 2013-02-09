@@ -1,11 +1,25 @@
+/*
+ *
+ * Controller-side socket-handling
+ *
+ * @author Jonas Hartweg
+ *
+ */
+
 window.connectionId = null;
 window.failedConnectionTrials = 0;
 
 window.Socket = {
 
-	// Initialize
+	/*
+	 * Socket initialization
+	 *
+	 * @constructor
+	 *
+	 */
+
 	init : function(ip) {
-		
+
 		// Try to get the IP
 		if (ip == null) {
 			ip = 'localhost';
@@ -14,11 +28,9 @@ window.Socket = {
 		if (!("WebSocket" in window)) {
 			console.log("Websockets not supported");
 		} else {
-			console.log('Trying to connect to websocket at '+ip)
+			console.log('Trying to connect to websocket at ' + ip)
 
 			try {
-
-
 
 				window.mySocket = new WebSocket('ws://' + ip + ':8081/');
 				console.log(mySocket.readyState);
@@ -51,12 +63,12 @@ window.Socket = {
 							case "joystick" :
 								new Joystick();
 								break;
-                            case "joypad" :
-                                new Joypad();
-                                break;
-                            case "benchmark" :
-                                new Benchmark();
-                                break;
+							case "joypad" :
+								new Joypad();
+								break;
+							case "benchmark" :
+								new Benchmark();
+								break;
 							default :
 								console.log("Unkown controllerType");
 						}
@@ -96,7 +108,12 @@ window.Socket = {
 		return this;
 	},
 
-	// Send data
+	/*
+	 * 
+	 * Send data via the socket
+	 *
+	 */
+	
 	send : function(data) {
 
 		if (data == "" || data == undefined) {
