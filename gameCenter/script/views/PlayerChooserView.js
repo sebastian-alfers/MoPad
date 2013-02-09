@@ -47,7 +47,7 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 				});
 
 				if (fetched == $that.defaults.playerCollection.length) {
-
+                    console.log($that.options.game);
 					this.pendingPlayer = new PendingPlayerView({
 						el : $('#pins'),
 						playerCollection : $that.defaults.playerCollection,
@@ -94,6 +94,9 @@ define(['jquery', 'backbone', 'collections/PlayerCollection', 'models/PlayerMode
 
 		startGame : function() {
 
+            //disable game selection
+            $('.game_link').bind('click', false);
+            $('.game_link').css('cursor', 'not-allowed');
 
 			// Check for repetitive and empty usernames
 			var tempArray = new Array();

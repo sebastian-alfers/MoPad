@@ -38,6 +38,11 @@ define(['jquery', 'backbone', 'models/GameListModel'], function($, Backbone, Gam
 
             event.preventDefault();
             var id = $(event.currentTarget).data("id");
+
+            console.log('####################');
+            console.log(id);
+            console.log(this.model.gameCollection.get(id));
+
             this.model.set({currentGame:this.model.gameCollection.get(id)});
         },
 

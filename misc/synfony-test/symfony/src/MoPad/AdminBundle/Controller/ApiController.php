@@ -17,9 +17,11 @@ use MoPad\AdminBundle\Entity\Game;
 class ApiController extends Controller
 {
 	/**
+     *
+     * deliver the JSON formatted game list
+     *
 	 * @Route("/getgames", name="_mopad_api_getgames")
-	 * 
-	 * deliver the JSON formatted game list
+	 *
 	 * 
 	 * @return Response with the JSON formatted game list 
 	 */
