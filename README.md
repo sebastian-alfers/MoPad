@@ -7,6 +7,20 @@ A mobile game controller software system. Control your browser games via your mo
 * About MoPad: https://github.com/sebastian-alfers/MoPad/wiki/About
 * Introduction to MoPad: https://github.com/sebastian-alfers/MoPad/wiki/Introduction
 
+Live Usae
+====
+
+Currently, the MoPad is running on an micro Amazon AWS instance.
+
+* `http://mo-pad.de/` - the gameCenter to list and start games
+* `http://controller.mo-pad.de` - the controller. To be run on a WebKit (!) Mobile Device Browser or normal Browser (to run on a non-mobile browser, you have to simulate touch-events (Chrome -> Developer -> Settings -> Overrides -> check the `Emulate touch events` box
+* `http://admin.mo-pad.de` - the admin (user: `admin` password `m0padadmin`
+
+Note: the colored circle on the top-right corner of the gameCenter indicates the status of the notJS server:
+
+* green: all ok
+* red: server has an error, e.g. nodeJs is down. now, you can not connect to the WeSocket server that causes also that not games are listed
+
 
 Installation
 =====
