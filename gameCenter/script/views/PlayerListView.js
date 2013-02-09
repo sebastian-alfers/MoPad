@@ -46,6 +46,11 @@ define(['jquery', 'backbone', 'views/PlayerChooserView'], function($, Backbone, 
 
                 this.playerChooser = new PlayerChooserView({ el:$('#player_chooser'), game: this.options.game});
             }
+            else{
+                //only update the new game
+                this.playerChooser.options.game = this.options.game;
+            }
+
             this.playerChooser.drawPlayer(numberPlayer);
         }
     });

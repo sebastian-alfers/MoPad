@@ -1,28 +1,35 @@
 <?php
+/**
+ * (C) MoPad
+ */
 namespace MoPad\AdminBundle\Entity;
 
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @package MoPad\AdminBundle\Entity
- * @author Janina Trost <janina.trost@student.htw-berlin.de>
- *
+ * The User entity represent a user.
+ * 
  * @ORM\Entity
  * @ORM\Table(name="fos_user")
+ * 
+ * @package MoPad\AdminBundle\Entity
  */
 class User extends BaseUser
 {
     /**
-     * @ORM\Id
+     * id
+	 * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
+	/**
+	 * constructor
+	 */
     public function __construct()
     {
         parent::__construct();
-        // your own logic
     }
 }

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * (C) MoPad
+ */
 namespace MoPad\AdminBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -8,14 +10,10 @@ use MoPad\AdminBundle\Controller\ApiController;
 /**
  * Test the correct GameAdmin access.
  * 
- *
- * @package MoPad\AdminBundle\Tests\Controller
  * @author Janina Trost <janina.trost@student.htw-berlin.de>
+ * @package MoPad\AdminBundle\Tests\Controller
  * 
- * @example run unit test with : $ phpunit -c app/
- * 
- * @method testLogin()
- * @method testLogin2()
+ * @example run unit in MoPad\misc\synfony-test\symfony\src test with : $ phpunit -c app/
  */
 class MopadGameAdminControllerTest extends WebTestCase
 {
@@ -44,7 +42,7 @@ class MopadGameAdminControllerTest extends WebTestCase
 		
 		// DASHBOARD
 		$crawler  = $client->request('GET', '/admin/dashboard');
-		$this->assertEquals(200, $client->getResponse()->getStatusCode());
+		$this->assertEquals(302, $client->getResponse()->getStatusCode());
 		//echo("Dashboard: ".$client->getResponse());
 		
 		/* LIST

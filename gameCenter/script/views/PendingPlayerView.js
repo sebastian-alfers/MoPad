@@ -48,7 +48,10 @@ define(['jquery', 'backbone'], function($, Backbone){
             $webSocketModel.send({type: 'registerPinsForGameInstance', data : {pins:pins, game: this.options.game} });
 
             $('#cancel_pending_game').click(function(){
+                window.location.reload();
 
+                return
+                /*
                 //TODO sould be done via events
                 $('#pins').html('');
                 $(this).hide();
@@ -56,6 +59,7 @@ define(['jquery', 'backbone'], function($, Backbone){
                 $('#start_game').removeAttr('disabled');
                 $('.username').removeAttr('disabled');
                 $('#playerSlider').removeAttr('disabled');
+                */
             });
 
             fetched = 0;
@@ -64,6 +68,8 @@ define(['jquery', 'backbone'], function($, Backbone){
             $playerPins = new Array();
 
             $playerCount = this.options.playerCollection.length;
+            console.log('++++++++++++++++++++++');
+            console.log(this);
             $game = this.options.game;
 
             $webSocketModel.on('activateController', function(json){

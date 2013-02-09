@@ -1,15 +1,22 @@
 <?php
-
+/**
+ * (C) MoPad
+ */
 namespace MoPad\AdminBundle\Tests;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * @package MoPad\AdminBundle\Tests
+ * Is only a test case to test the PHPUnit working.
+ *
  * @author Janina Trost <janina.trost@student.htw-berlin.de>
+ * @package MoPad\AdminBundle\Tests
  */
 class TestTest extends WebTestCase
 {
+	/**
+	 * Is only a test case to test the PHPUnit working.
+	 */
     public function testPushAndPop()
     {
         $stack = array();

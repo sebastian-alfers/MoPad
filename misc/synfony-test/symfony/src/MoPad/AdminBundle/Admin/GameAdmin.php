@@ -1,4 +1,7 @@
 <?php
+/**
+ * (C) MoPad
+ */
 namespace MoPad\AdminBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
@@ -9,26 +12,14 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 use Sonata\AdminBundle\Route\RouteCollection;
 
-/**
- * 
- * helpful website for file upload
- * @link http://blog.code4hire.com/2011/08/symfony2-sonata-admin-bundle-and-file-uploads/
- * 
+/** 
+ * In the GameAdmin we define all input fields for the create/update form, the field validation, 
+ * the filter attributes and list attributes.
  *
- * @package MoPad\AdminBundle\Admin
+ * Helpful website for file upload is {@link http://blog.code4hire.com/2011/08/symfony2-sonata-admin-bundle-and-file-uploads/}
+ *
  * @author Janina Trost <janina.trost@student.htw-berlin.de>
- * 
- * @method configureFormFields(FormMapper $formMapper)
- * @method configureDatagridFilters(DatagridMapper $datagridMapper)
- * @method configureListFields(ListMapper $listMapper)
- * @method validate(ErrorElement $errorElement, $object)
- * @method prePersist($game)
- * @method preUpdate($game)
- * @method postPersist($game)
- * @method postUpdate($game) 
- * @method saveFiles($game) 
- * @method preRemove($game) 
- * 
+ * @package MoPad\AdminBundle\Admin
  */
 class GameAdmin extends Admin
 {
@@ -50,7 +41,8 @@ class GameAdmin extends Admin
             ->add('acceptedGamepads', 'choice', array(
 				    'choices' => array(
 				        'joypad' => 'joypad',
-				        'joystick' => 'joystick',
+                        'joystick' => 'joystick',
+                        'benchmark' => 'benchmark',
 				    ),
 				    'required' => true,
 				    'multiple' => false,
