@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * (C) MoPad
+ */
 namespace MoPad\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -8,20 +10,17 @@ use Symfony\Component\HttpFoundation\Response;
 use MoPad\AdminBundle\Entity\Game;
 
 /**
- * @package MoPad\AdminBundle\Controller
+ * The ApiController provide the actions.
+ *
  * @author Janina Trost <janina.trost@student.htw-berlin.de>
- * 
- * @method getgamesAction()
- * @method getUniqueAppToken($token)
+ * @package MoPad\AdminBundle\Controller
  */
 class ApiController extends Controller
 {
 	/**
-     *
-     * deliver the JSON formatted game list
-     *
+	 * deliver the JSON formatted game list
+	 * 
 	 * @Route("/getgames", name="_mopad_api_getgames")
-	 *
 	 * 
 	 * @return Response with the JSON formatted game list 
 	 */
@@ -45,7 +44,9 @@ class ApiController extends Controller
 	}
 
     /**
-     * @Route("/uniqueAppToken/{token}", name="_generate_app_token")
+	 * generate a unique application key
+	 * 
+	 * @Route("/uniqueAppToken/{token}", name="_generate_app_token")
      *
 	 * @param token
      */

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * (C) MoPad
+ */
 namespace MoPad\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -9,14 +11,16 @@ use Symfony\Component\HttpFoundation\Response;
 use MoPad\AdminBundle\Entity\Game;
 
 /**
- * @package MoPad\AdminBundle\Controller
- * @author Janina Trost <janina.trost@student.htw-berlin.de>
+ * The DefaultController provide the actions.
  * 
- * @method indexAction()
+ * @author Janina Trost <janina.trost@student.htw-berlin.de>
+ * @package MoPad\AdminBundle\Controller
  */
 class DefaultController extends Controller
 {
     /**
+	 * action for index route
+	 *
      * @Route("/}", name="_mopad")
      * @Template()
      */
@@ -26,7 +30,9 @@ class DefaultController extends Controller
     }
 	
 	/**
-     * @Route("/create", name="_mopad_create")
+     * action for create route
+	 * 
+	 * @Route("/create", name="_mopad_create")
      * @Template()
 	 * 
 	 * @deprecated No longer used by internal code
@@ -52,9 +58,11 @@ class DefaultController extends Controller
 	}
 	
 	/**
-     * @Route("/show", name="_mopad_show")
-     * @Template()
+     * action for show route
 	 * 
+	 * @Route("/show", name="_mopad_show")
+     * @Template()
+	 * @param integer id
 	 * @deprecated No longer used by internal code
      */
 	public function showAction($id)
