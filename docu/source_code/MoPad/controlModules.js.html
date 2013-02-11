@@ -1,4 +1,31 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controlModules.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: controlModules.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/**
  * Creates a Benchmark controller
  *
  * @class Represents a Benchmark controller
@@ -21,17 +48,17 @@ window.Benchmark = function() {
 		console.log('Loading Benchmark');
 		loadControllerInterface();
 
-		$('#controller').append('<br /><br /> \
-		<input id="conss_down" type="button" value="-" style="height: 50px; width: 50px; margin: 10px;"><input id="conss_up" type="button" value="+" style="height: 50px; width: 50px; margin: 10px;">\
+		$('#controller').append('&lt;br />&lt;br /> \
+		&lt;input id="conss_down" type="button" value="-" style="height: 50px; width: 50px; margin: 10px;">&lt;input id="conss_up" type="button" value="+" style="height: 50px; width: 50px; margin: 10px;">\
 		                                                \
 		                                                 \
-		<hr />                                            \
+		&lt;hr />                                            \
 		                                                   \
-		<div id="fire_menu" style="display: none">          \
-		    <ul>                                             \
-		        <li>10 WebSocket messages per second</li>     \
-		    </ul>                                              \
-		</div>                                                  \
+		&lt;div id="fire_menu" style="display: none">          \
+		    &lt;ul>                                             \
+		        &lt;li>10 WebSocket messages per second&lt;/li>     \
+		    &lt;/ul>                                              \
+		&lt;/div>                                                  \
 		');
 
 
@@ -89,7 +116,7 @@ window.Joystick = function() {
 		console.log('Loading Joystick');
 		loadControllerInterface();
 
-		$('#controller').append('<div class="controlModule joystick" id="joystick1"><div id="joystickField"><div class="helpOverlay">Tap anywhere to reveal the joystick.</div><div id="joystickWrapper"><div id="joystickNub" /></div></div></div>');
+		$('#controller').append('&lt;div class="controlModule joystick" id="joystick1">&lt;div id="joystickField">&lt;div class="helpOverlay">Tap anywhere to reveal the joystick.&lt;/div>&lt;div id="joystickWrapper">&lt;div id="joystickNub" />&lt;/div>&lt;/div>&lt;/div>');
 		$('#joystickWrapper').css('visibility', 'hidden');
 
 		// Source: http://stackoverflow.com/questions/8569095/draggable-div-without-jquery-ui
@@ -210,11 +237,11 @@ window.Joystick = function() {
 
 		if (x >= 0 && y > 0) {// 0�
 			return Math.atan(Math.abs(x) / Math.abs(y)) / (Math.PI / 2) * 90 + 0;
-		} else if (x > 0 && y <= 0) {// 90�
+		} else if (x > 0 && y &lt;= 0) {// 90�
 			return Math.atan(Math.abs(y) / Math.abs(x)) / (Math.PI / 2) * 90 + 90;
-		} else if (x <= 0 && y < 0) {// 180�
+		} else if (x &lt;= 0 && y &lt; 0) {// 180�
 			return Math.atan(Math.abs(x) / Math.abs(y)) / (Math.PI / 2) * 90 + 180;
-		} else if (x < 0 && y >= 0) {// 270�
+		} else if (x &lt; 0 && y >= 0) {// 270�
 			return Math.atan(Math.abs(y) / Math.abs(x)) / (Math.PI / 2) * 90 + 270;
 		}
 
@@ -256,7 +283,7 @@ window.Joypad = function() {
 		console.log('Loading Joypad');
 		loadControllerInterface();
 
-		$('#controller').append('<div class="controlModule joypad" id="joypad1"><div class="borderBox"><div class="helpOverlay">Drag # to move the touchpad to the desired position.</div><table class="dPad"><tr><td colspan="3"><div class="button continuous up" id="up">&uarr;</div></td></tr><tr><td><div class="button left" id="left">&larr;</div></td><td><div class="button drag"><span id="dragDpad">#</span></div></td><td><div class="button continuous right" id="right">&rarr;</div></td></tr><tr><td colspan="3"><div class="button continuous down" id="down">&darr;</div></td></tr></table><table class="buttonGrid" id="buttonGrid1" hidden="hidden"><tr><td><div class="button blue" id="blue">B</div></td></tr><tr><td><div class="button red" id="red">A</div></td></tr></table></div></div><div class="clear"/>');
+		$('#controller').append('&lt;div class="controlModule joypad" id="joypad1">&lt;div class="borderBox">&lt;div class="helpOverlay">Drag # to move the touchpad to the desired position.&lt;/div>&lt;table class="dPad">&lt;tr>&lt;td colspan="3">&lt;div class="button continuous up" id="up">&uarr;&lt;/div>&lt;/td>&lt;/tr>&lt;tr>&lt;td>&lt;div class="button left" id="left">&larr;&lt;/div>&lt;/td>&lt;td>&lt;div class="button drag">&lt;span id="dragDpad">#&lt;/span>&lt;/div>&lt;/td>&lt;td>&lt;div class="button continuous right" id="right">&rarr;&lt;/div>&lt;/td>&lt;/tr>&lt;tr>&lt;td colspan="3">&lt;div class="button continuous down" id="down">&darr;&lt;/div>&lt;/td>&lt;/tr>&lt;/table>&lt;table class="buttonGrid" id="buttonGrid1" hidden="hidden">&lt;tr>&lt;td>&lt;div class="button blue" id="blue">B&lt;/div>&lt;/td>&lt;/tr>&lt;tr>&lt;td>&lt;div class="button red" id="red">A&lt;/div>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>&lt;/div>&lt;div class="clear"/>');
 		// TODO display buttongroup
 		
 		$('.dPad').offset({top: $('body').height()/2-$('.dPad').height()/2, left: $('body').width()/2-$('.dPad').width()/2});
@@ -384,4 +411,25 @@ window.resetController = function() {
 	$('#controller').html('');
 	$('#header').show();
 	$('#pinInputWrapper').show();
-}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="window.Benchmark.html">Benchmark</a></li><li><a href="window.Joypad.html">Joypad</a></li><li><a href="window.Joystick.html">Joystick</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.1.0</a> on Mon Feb 11 2013 20:06:36 GMT+0100 (MEZ)
+</footer>
+
+<script> prettyPrint(); </script>
+</body>
+</html>

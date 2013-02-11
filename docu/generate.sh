@@ -1,5 +1,9 @@
 #!/bin/bash
-~/jsdoc/jsdoc -d ./source_code/GameCenter/ ../gameCenter/script/models/WebSocketModel.js 
+
+~/jsdoc/jsdoc -d ./source_code/GameCenter/  ../gameCenter/game/paintTheBox/paintTheBox.js
+~/jsdoc/jsdoc -d ./source_code/GameCenter/  ../gameCenter/game/benchmark/benchmark.js
+~/jsdoc/jsdoc -d ./source_code/GameCenter/  ../gameCenter/game/moveTheBox/game.js
+
 
 ~/jsdoc/jsdoc -d ./source_code/GameCenter/ ../gameCenter/game/moveTheBox/game.js
 
