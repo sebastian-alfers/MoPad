@@ -20,3 +20,9 @@
 ~/jsdoc/jsdoc ../gameCenter/script/views/PlayerListView.js
 
 ~/jsdoc/jsdoc ../gameCenter/script/gameCenter.js
+
+~/jsdoc/jsdoc ../bridge/app.js
+
+~/jsdoc/jsdoc ../controller/script/script.js
+~/jsdoc/jsdoc ../controller/script/controlModules.js
+~/jsdoc/jsdoc ../controller/script/socket.js
