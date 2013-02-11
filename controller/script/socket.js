@@ -2,6 +2,8 @@
  *
  * Controller-side socket-handling
  *
+ * @class
+ * 
  * @author Jonas Hartweg
  *
  */

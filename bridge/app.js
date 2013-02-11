@@ -2,6 +2,8 @@
  *
  * MoPad server
  *
+ * @constructor Represents a MoPad server instance
+ * 
  * @authors Sebastian Alfers, Jonas Hartweg
  *
  */

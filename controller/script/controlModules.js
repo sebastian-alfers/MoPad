@@ -1,7 +1,7 @@
 /**
  * Creates a Benchmark controller
  *
- * @constructor
+ * @class Represents a Benchmark controller
  * 
  * @author Sebastian Alfers
  */
@@ -68,9 +68,9 @@ window.Benchmark = function() {
 
 }
 /**
- * Creates a Joypad controller
+ * Creates a Joystick controller
  * 
- * @constructor
+ * @class Represents a Joystick controller
  * 
  * @author Jonas Hartweg
  *
@@ -238,7 +238,7 @@ window.Joystick = function() {
 /**
  * Creates a Joypad controller
  *
- * @constructor
+ * @class Represents a Joypad controller
  * 
  * @author Jonas Hartweg
  *
