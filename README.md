@@ -6,6 +6,14 @@ A mobile game controller software system. Control your browser games via your mo
 
 * About MoPad: https://github.com/sebastian-alfers/MoPad/wiki/About
 
+Components
+====
+
+* Admin - https://github.com/sebastian-alfers/MoPad/wiki/GameAdmin-(Symfony2)---General-Documentation
+* Controller - https://github.com/sebastian-alfers/MoPad/wiki/Controller---General-Documentation
+* Bridge - https://github.com/sebastian-alfers/MoPad/wiki/Bridge---General-Documentation
+* GameCenter - https://github.com/sebastian-alfers/MoPad/wiki/GameCenter---General-Documentation
+
 Live Usage
 ====
 
