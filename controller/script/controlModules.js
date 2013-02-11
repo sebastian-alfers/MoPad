@@ -1,8 +1,9 @@
 /**
- * Creates a Joystick controller
+ * Creates a Benchmark controller
  *
  * @constructor
- *
+ * 
+ * @author Sebastian Alfers
  */
 
 
@@ -10,8 +11,10 @@ window.Benchmark = function() {
 
 	init();
 
-	/*
+	/**
+	 * 
 	 * Adds a Benchmark view to the #controller div
+	 * 
 	 */
 
 	function init() {
@@ -66,8 +69,10 @@ window.Benchmark = function() {
 }
 /**
  * Creates a Joypad controller
- *
+ * 
  * @constructor
+ * 
+ * @author Jonas Hartweg
  *
  */
 
@@ -234,6 +239,8 @@ window.Joystick = function() {
  * Creates a Joypad controller
  *
  * @constructor
+ * 
+ * @author Jonas Hartweg
  *
  */
 

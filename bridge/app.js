@@ -1,8 +1,8 @@
-/*
+/**
  *
  * MoPad server
  *
- * @authors Sebastian Alfers and Jonas Hartweg
+ * @authors Sebastian Alfers, Jonas Hartweg
  *
  */
 
@@ -10,7 +10,7 @@ var WebSocketServer = require('websocket').server;
 var http = require('http');
 var port = 8081;
 
-/*
+/**
  * Http server that the WebSocket server is bound to
  *
  * @constructor
@@ -26,7 +26,7 @@ var server = http.createServer(function(req, res) {
 	console.log(time() + 'Listening on port ' + port)
 });
 
-/*
+/**
  * WebSocket server
  *
  * @constructor
@@ -74,7 +74,7 @@ controllers.push('127.0.0.1');
 controllers.push('localhost');
 controllers.push('141.45.204.172');
 
-/*
+/**
  * Checks whether a gameCenter connection gets accepted
  *
  * @param {peername} Peername string of the WebSocket request
@@ -100,7 +100,7 @@ function originIsAllowed(peername) {
 	return false;
 }
 
-/*
+/**
  * Checks whether gameCenter connection gets verified
  *
  * @param {key} Authorization key
@@ -116,7 +116,7 @@ function keyIsAllowed(key) {
 	}
 }
 
-/*
+/**
  * Checks whether a connection with a certain pin exists already
  *
  * @param {pin} The pin
@@ -133,7 +133,7 @@ function pinExists(pin, array) {
 	return false;
 }
 
-/*
+/**
  * Helper function: Returns the size of an associative Array
  *
  * @param {obj} A multi-dimensional array
@@ -150,7 +150,7 @@ function arraySize(obj) {
 
 var pong_counter = 0;
 
-/*
+/**
  * Helper function: Formats a time string
  */
 
@@ -158,7 +158,7 @@ function time() {
 	return '[' + new Date().toString().substring(4, 21) + '] ';
 }
 
-/*
+/**
  * Handles connection requests from WebSocket clients
  */
 
@@ -182,7 +182,7 @@ wsServer.on('request', function(request) {
 	// https://github.com/Worlize/WebSocket-Node/wiki
 	var connectionId = connectionIDCounter++;
 
-	/*
+	/**
 	 * Handles incoming messages from WebSocket clients
 	 */
 	connection.on('message', function(message) {
@@ -368,7 +368,7 @@ wsServer.on('request', function(request) {
 		}
 	});
 
-	/*
+	/**
 	 * Returns the connection for a certain pin
 	 *
 	 * @param {pin} The pin
@@ -381,7 +381,7 @@ wsServer.on('request', function(request) {
 		return pin;
 	}
 
-	/*
+	/**
 	 * Handles the closing of a WebSocket connection
 	 */
 

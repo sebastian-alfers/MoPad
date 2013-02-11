@@ -1,4 +1,4 @@
-/*
+/**
  *
  * Controller-side socket-handling
  *
@@ -11,11 +11,10 @@ window.failedConnectionTrials = 0;
 
 window.Socket = {
 
-	/*
+	/**
 	 * Socket initialization
 	 *
 	 * @constructor
-	 *
 	 */
 
 	init : function(ip) {
@@ -108,10 +107,8 @@ window.Socket = {
 		return this;
 	},
 
-	/*
-	 * 
+	/**
 	 * Send data via the socket
-	 *
 	 */
 	
 	send : function(data) {
