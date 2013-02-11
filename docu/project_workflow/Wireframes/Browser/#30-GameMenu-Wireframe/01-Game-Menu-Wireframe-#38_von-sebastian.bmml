@@ -1,0 +1,165 @@
+<mockup version="1.0" skin="sketch" measuredW="655" measuredH="519" mockupW="587" mockupH="467">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="58" y="42" w="587" h="467" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Games%20-%20Menu</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::TabBar" x="73" y="126" w="557" h="339" measuredW="150" measuredH="100" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>0</selectedIndex>
+        <text>Games</text>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::IconLabel" x="95" y="227" w="91" h="-1" measuredW="86" measuredH="71" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <borderStyle>square</borderStyle>
+        <color>472931</color>
+        <italic>true</italic>
+        <text>Move%20the%20Box</text>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::IconLabel" x="95" y="301" w="91" h="-1" measuredW="49" measuredH="71" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <borderStyle>none</borderStyle>
+        <color>3700253</color>
+        <italic>true</italic>
+        <text>Game%202</text>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::IconLabel" x="168" y="227" w="91" h="-1" measuredW="49" measuredH="71" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <borderStyle>none</borderStyle>
+        <color>10027263</color>
+        <italic>true</italic>
+        <text>Game%203</text>
+      </controlProperties>
+    </control>
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::IconLabel" x="168" y="301" w="91" h="-1" measuredW="49" measuredH="71" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <borderStyle>none</borderStyle>
+        <color>0</color>
+        <italic>true</italic>
+        <state>disabled</state>
+        <text>Game%204</text>
+      </controlProperties>
+    </control>
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::HorizontalScrollBar" x="88" y="434" w="171" h="-1" measuredW="100" measuredH="16" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <value>0</value>
+      </controlProperties>
+    </control>
+    <control controlID="19" controlTypeID="com.balsamiq.mockups::FieldSet" x="88" y="197" w="171" h="253" measuredW="200" measuredH="170" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Choose%20a%20game</text>
+      </controlProperties>
+    </control>
+    <control controlID="24" controlTypeID="com.balsamiq.mockups::FieldSet" x="265" y="197" w="145" h="252" measuredW="200" measuredH="170" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Choose%20players</text>
+      </controlProperties>
+    </control>
+    <control controlID="25" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="88" y="156" w="-1" h="-1" measuredW="173" measuredH="19" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>10</size>
+        <text>Games%2C%20Controllerview%2C%20Player</text>
+      </controlProperties>
+    </control>
+    <control controlID="26" controlTypeID="com.balsamiq.mockups::Icon" x="95" y="242" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>GtIcon%7Cxsmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::FieldSet" x="414" y="197" w="182" h="253" measuredW="200" measuredH="170" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Pins%20for%20Player</text>
+      </controlProperties>
+    </control>
+    <control controlID="33" controlTypeID="com.balsamiq.mockups::HSplitter" x="256" y="205" w="-1" h="182" measuredW="12" measuredH="100" zOrder="12" locked="false" isInGroup="-1"/>
+    <control controlID="34" controlTypeID="com.balsamiq.mockups::HSplitter" x="406" y="205" w="-1" h="182" measuredW="12" measuredH="100" zOrder="13" locked="false" isInGroup="-1"/>
+    <control controlID="40" controlTypeID="com.balsamiq.mockups::TextInput" x="274" y="271" w="121" h="-1" measuredW="39" measuredH="27" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Nina</text>
+      </controlProperties>
+    </control>
+    <control controlID="41" controlTypeID="com.balsamiq.mockups::TextInput" x="274" y="335" w="121" h="-1" measuredW="47" measuredH="27" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Jonas</text>
+      </controlProperties>
+    </control>
+    <control controlID="45" controlTypeID="com.balsamiq.mockups::TextInput" x="274" y="402" w="118" h="-1" measuredW="71" measuredH="27" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Sebastian</text>
+      </controlProperties>
+    </control>
+    <control controlID="46" controlTypeID="com.balsamiq.mockups::Label" x="274" y="252" w="-1" h="-1" measuredW="123" measuredH="23" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Player%201%20Username%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="47" controlTypeID="com.balsamiq.mockups::Label" x="274" y="316" w="-1" h="-1" measuredW="126" measuredH="23" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Player%202%20Username%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="48" controlTypeID="com.balsamiq.mockups::Label" x="274" y="378" w="-1" h="-1" measuredW="126" measuredH="23" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Player%203%20Username%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="53" controlTypeID="com.balsamiq.mockups::NumericStepper" x="280" y="218" w="115" h="-1" measuredW="40" measuredH="24" zOrder="21" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>3</text>
+      </controlProperties>
+    </control>
+    <control controlID="55" controlTypeID="com.balsamiq.mockups::Label" x="478" y="227" w="-1" h="-1" measuredW="25" measuredH="23" zOrder="22" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>123</text>
+      </controlProperties>
+    </control>
+    <control controlID="56" controlTypeID="com.balsamiq.mockups::Label" x="478" y="298" w="-1" h="-1" measuredW="27" measuredH="23" zOrder="24" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>456</text>
+      </controlProperties>
+    </control>
+    <control controlID="57" controlTypeID="com.balsamiq.mockups::Label" x="472" y="379" w="-1" h="-1" measuredW="40" measuredH="23" zOrder="26" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>ready</text>
+      </controlProperties>
+    </control>
+    <control controlID="58" controlTypeID="com.balsamiq.mockups::FieldSet" x="420" y="207" w="161" h="57" measuredW="200" measuredH="170" zOrder="20" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Pin%20for%20Nina</text>
+      </controlProperties>
+    </control>
+    <control controlID="59" controlTypeID="com.balsamiq.mockups::FieldSet" x="422" y="272" w="161" h="63" measuredW="200" measuredH="170" zOrder="23" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Pin%20for%20Jonas</text>
+      </controlProperties>
+    </control>
+    <control controlID="60" controlTypeID="com.balsamiq.mockups::FieldSet" x="422" y="350" w="161" h="68" measuredW="200" measuredH="170" zOrder="25" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Pin%20for%20Sebastian</text>
+      </controlProperties>
+    </control>
+    <control controlID="61" controlTypeID="com.balsamiq.mockups::Icon" x="448" y="227" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="27" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>SpinningIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="63" controlTypeID="com.balsamiq.mockups::Icon" x="441" y="297" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="28" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>SpinningIcon%7Csmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="64" controlTypeID="com.balsamiq.mockups::Icon" x="441" y="381" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="29" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>CheckMarkIcon%7Cxsmall</icon>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

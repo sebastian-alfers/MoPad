@@ -1,0 +1,55 @@
+<mockup version="1.0" skin="sketch" measuredW="849" measuredH="518" mockupW="773" mockupH="492">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="66" y="16" w="773" h="492" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>MooPad%20-%20Game%20Management%0Ahttp%3A//moopad.de/admin/games</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::TabBar" x="81" y="105" w="720" h="352" measuredW="305" measuredH="100" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>0</selectedIndex>
+        <text>Manage%20Games%2C%20Manage%20Vendors</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Button" x="737" y="97" w="-1" h="-1" measuredW="64" measuredH="28" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Logout</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::DataGrid" x="105" y="151" w="671" h="291" measuredW="492" measuredH="116" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Name%2C%20Vendor%2C%20GamePad%2C%20Enabled%2C%20Player%20Edit%2C%20Delete%0AMoveTheBox%201%2C%20MooGames%2C%20GamePad%2C%20yes%2C%0AMoveTheBox%202%2C%20MooGames%2C%20JoyStick%2C%20yes%2C%0AMoveTheBox%203%2C%20MooGames%2C%20Accelerometer%2C%20yes</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Icon" x="630" y="179" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>PencilIcon%7Cxsmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Icon" x="630" y="210" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>PencilIcon%7Cxsmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Icon" x="630" y="241" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>PencilIcon%7Cxsmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Icon" x="727" y="179" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>TrashIcon%7Cxsmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::Icon" x="727" y="210" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>TrashIcon%7Cxsmall</icon>
+      </controlProperties>
+    </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::Icon" x="727" y="241" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>TrashIcon%7Cxsmall</icon>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

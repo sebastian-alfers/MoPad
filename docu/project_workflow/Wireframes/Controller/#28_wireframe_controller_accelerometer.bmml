@@ -1,0 +1,21 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="538" measuredH="609" mockupW="282" mockupH="510">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="256" y="99" w="-1" h="-1" measuredW="282" measuredH="510" zOrder="0" locked="false" isInGroup="-1"/>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Arrow" x="321" y="256" w="150" h="150" measuredW="150" measuredH="100" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Arrow" x="324" y="256" w="150" h="150" measuredW="150" measuredH="100" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <direction>bottom</direction>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="357" y="241" w="-1" h="-1" measuredW="81" measuredH="21" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>move%20/%20swing</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

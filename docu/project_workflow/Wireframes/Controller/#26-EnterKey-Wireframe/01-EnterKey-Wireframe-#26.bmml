@@ -1,0 +1,21 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="458" measuredH="558" mockupW="282" mockupH="510">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="176" y="48" w="-1" h="-1" measuredW="282" measuredH="510" zOrder="0" locked="false" isInGroup="-1"/>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::iPhoneKeyboard" x="203" y="314" w="-1" h="-1" measuredW="227" measuredH="160" zOrder="1" locked="false" isInGroup="-1"/>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::TextInput" x="218" y="176" w="197" h="-1" measuredW="79" measuredH="27" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::FieldSet" x="207" y="148" w="218" h="160" measuredW="200" measuredH="170" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Please%20enter%20the%20pin</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="296" y="265" w="-1" h="-1" measuredW="111" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Start%20the%20game</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

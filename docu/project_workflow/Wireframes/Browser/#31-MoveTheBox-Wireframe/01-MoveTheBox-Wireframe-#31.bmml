@@ -1,0 +1,43 @@
+<mockup version="1.0" skin="sketch" measuredW="744" measuredH="420" mockupW="674" mockupH="400">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="60" y="10" w="674" h="400" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Move%20The%20Box</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::RoundButton" x="251" y="187" w="-1" h="-1" measuredW="32" measuredH="32" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <shape>rectangle</shape>
+        <text>box</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::RoundButton" x="692" y="108" w="16" h="16" measuredW="32" measuredH="32" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>40463</color>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::TextArea" x="571" y="102" w="148" h="29" measuredW="200" measuredH="140" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Connection%20Status</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::FieldSet" x="80" y="93" w="476" h="275" measuredW="200" measuredH="170" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Move%20The%20Box</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::FieldSet" x="572" y="136" w="147" h="232" measuredW="200" measuredH="170" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Logs</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::VerticalScrollBar" x="702" y="143" w="-1" h="225" measuredW="16" measuredH="100" zOrder="6" locked="false" isInGroup="-1"/>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::List" x="579" y="151" w="123" h="209" measuredW="100" measuredH="126" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>none</borderStyle>
+        <text>Connected%0AMoved%20x/y%20%0AMoved%20x/y%0AMoved%20x/y%0AClose</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

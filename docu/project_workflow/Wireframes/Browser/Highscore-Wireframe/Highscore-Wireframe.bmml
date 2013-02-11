@@ -1,0 +1,20 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="762" measuredH="422" mockupW="494" mockupH="333">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::FieldSet" x="268" y="89" w="494" h="333" measuredW="200" measuredH="170" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Highscore</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::DataGrid" x="283" y="162" w="464" h="223" measuredW="231" measuredH="173" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%23%20%5E%2C%20Name%2C%20Score%2C%20Full%20Score%0A1%2C%20Sebastian%2C%20320%2C%202000%0A2%2C%20Janina%2C%20300%2C%201910%0A3%2C%20Jonas%2C%20280%2C%201630%0A4%2C%20Franz%2C%20240%2C%201230%0A5%2C%20Hans%2C%20210%2C%201160</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="283" y="119" w="-1" h="-1" measuredW="111" measuredH="28" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>20</size>
+        <text>Game%20over%21</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

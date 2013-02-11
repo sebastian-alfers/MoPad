@@ -1,0 +1,40 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="531" measuredH="307" mockupW="510" mockupH="282">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::RoundButton" x="223" y="121" w="82" h="82" measuredW="32" measuredH="32" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::RoundButton" x="248" y="146" w="-1" h="-1" measuredW="32" measuredH="32" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Arrow" x="227" y="218" w="74" h="10" measuredW="150" measuredH="100" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <leftArrow>true</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Arrow" x="320" y="129" w="10" h="67" measuredW="150" measuredH="100" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="237" y="85" w="-1" h="-1" measuredW="54" measuredH="21" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Joystick</text>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::iPhone" x="21" y="25" w="-1" h="-1" measuredW="510" measuredH="282" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <orientation>landscape</orientation>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::Button" x="385" y="249" w="-1" h="-1" measuredW="53" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>EXIT</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

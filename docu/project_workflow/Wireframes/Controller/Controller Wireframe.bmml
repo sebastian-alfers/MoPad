@@ -1,0 +1,51 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="654" measuredH="273" mockupW="456" mockupH="143">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::RoundButton" x="198" y="166" w="82" h="82" measuredW="32" measuredH="32" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::RoundButton" x="223" y="191" w="-1" h="-1" measuredW="32" measuredH="32" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Arrow" x="202" y="263" w="74" h="10" measuredW="150" measuredH="100" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <leftArrow>true</leftArrow>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Arrow" x="295" y="174" w="10" h="67" measuredW="150" measuredH="100" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="212" y="130" w="-1" h="-1" measuredW="54" measuredH="21" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Joystick</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::RoundButton" x="428" y="191" w="-1" h="-1" measuredW="32" measuredH="32" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>A</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Label" x="424" y="130" w="-1" h="-1" measuredW="41" measuredH="21" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Button</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Canvas" x="614" y="178" w="21" h="57" measuredW="100" measuredH="70" zOrder="7" locked="false" isInGroup="-1"/>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Canvas" x="595" y="197" w="59" h="18" measuredW="100" measuredH="70" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <backgroundAlpha>0.25</backgroundAlpha>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::Label" x="603" y="130" w="-1" h="-1" measuredW="42" measuredH="21" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>D-Pad</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
