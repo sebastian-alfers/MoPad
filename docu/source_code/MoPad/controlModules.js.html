@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controlModules.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: controlModules.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/**
+ * Creates a Benchmark controller
+ *
+ * @class Represents a Benchmark controller
+ * 
+ * @author Sebastian Alfers
+ */
+
+
+window.Benchmark = function() {
+
+	init();
+
+	/**
+	 * 
+	 * Adds a Benchmark view to the #controller div
+	 * 
+	 */
+
+	function init() {
+		console.log('Loading Benchmark');
+		loadControllerInterface();
+
+		$('#controller').append('&lt;br />&lt;br /> \
+		&lt;input id="conss_down" type="button" value="-" style="height: 50px; width: 50px; margin: 10px;">&lt;input id="conss_up" type="button" value="+" style="height: 50px; width: 50px; margin: 10px;">\
+		                                                \
+		                                                 \
+		&lt;hr />                                            \
+		                                                   \
+		&lt;div id="fire_menu" style="display: none">          \
+		    &lt;ul>                                             \
+		        &lt;li>10 WebSocket messages per second&lt;/li>     \
+		    &lt;/ul>                                              \
+		&lt;/div>                                                  \
+		');
+
+
+
+   		$('#conss_up').bind('touchend', function(e) {
+       			e.preventDefault();
+               if (socket != undefined) {
+                       socket.send({// TODO auslagern!!
+                           type : 'sendCommandToGame',
+                           data : {
+                               keycode : 'plus_one',
+                               connectionId : connectionId
+                           }
+                       });
+                   }
+       		});
+
+
+        $('#conss_down').bind('touchend', function(e) {
+          			e.preventDefault();
+                  if (socket != undefined) {
+                          socket.send({// TODO auslagern!!
+                              type : 'sendCommandToGame',
+                              data : {
+                                  keycode : 'minus_one',
+                                  connectionId : connectionId
+                              }
+                          });
+                      }
+          		});
+
+
+    }
+
+}
+/**
+ * Creates a Joystick controller
+ * 
+ * @class Represents a Joystick controller
+ * 
+ * @author Jonas Hartweg
+ *
+ */
+
+
+window.Joystick = function() {
+
+	init();
+
+	/*
+	 * Adds a Joystick to the #controller div
+	 */
+
+	function init() {
+		console.log('Loading Joystick');
+		loadControllerInterface();
+
+		$('#controller').append('&lt;div class="controlModule joystick" id="joystick1">&lt;div id="joystickField">&lt;div class="helpOverlay">Tap anywhere to reveal the joystick.&lt;/div>&lt;div id="joystickWrapper">&lt;div id="joystickNub" />&lt;/div>&lt;/div>&lt;/div>');
+		$('#joystickWrapper').css('visibility', 'hidden');
+
+		// Source: http://stackoverflow.com/questions/8569095/draggable-div-without-jquery-ui
+		var dragging = null;
+
+		// Initial coordinates of the nub relative to the page
+		var joystickLeft = null;
+		var joystickTop = null;
+
+		// Current coordinates of the nub relative to the page
+		var offsetLeft = null;
+		var offsetTop = null;
+
+		// Coordinates within wrapper
+		var x = null;
+		var y = null;
+
+		$('#joystickField').bind('touchstart', function(e) {
+			e.preventDefault();
+			// Bugfix; compare https://code.google.com/p/android/issues/detail?id=19827
+			$('.helpOverlay').hide();
+
+			var touch = e.originalEvent.touches[0];
+
+			//Display joystickWrapper at tap position
+			$('#joystickWrapper').offset({
+				left : touch.pageX - ($('#joystickWrapper').width() / 2),
+				top : touch.pageY - ($('#joystickWrapper').width() / 2)
+			})
+			var joystickNubOffset = $('#joystickNub').offset();
+			joystickLeft = joystickNubOffset.left;
+			joystickTop = joystickNubOffset.top;
+			$('#joystickWrapper').css('visibility', 'visible');
+			dragging = true;
+		});
+
+		$('#joystickField').bind('touchmove', function(e) {
+			e.preventDefault();
+			if (dragging) {
+
+				var touch = e.originalEvent.touches[0];
+
+				// Position of the nub on the page
+				var joystickNubOffset = {
+					'left' : touch.pageX - ($('#joystickNub').width() / 2),
+					'top' : touch.pageY - ($('#joystickNub').width() / 2)
+				};
+
+				// Nub distance and angle relative to wrapper center
+				var distance = calcDistance(joystickNubOffset.left, joystickLeft, joystickNubOffset.top, joystickTop);
+
+				var joystickRadius = $('#joystickWrapper').width() / 2 - $('#joystickNub').width() / 2;
+
+				if (distance > joystickRadius) {// Out of bounds
+					var coordinates = calcCoordinates(joystickRadius, distance, joystickNubOffset.left - joystickLeft, joystickNubOffset.top - joystickTop);
+					offsetLeft = joystickLeft + coordinates.opposite;
+					offsetTop = joystickTop + coordinates.adjacent;
+					x = (joystickNubOffset.left - joystickLeft);
+					y = ((joystickNubOffset.top - joystickTop) * -1);
+					distance = 1;
+
+				} else {// Nub is within joystick
+					offsetLeft = joystickNubOffset.left;
+					offsetTop = joystickNubOffset.top;
+					x = (joystickNubOffset.left - joystickLeft);
+					y = ((joystickNubOffset.top - joystickTop) * -1);
+					distance = distance / joystickRadius;
+				}
+
+				angle = calcAngle(x, y);
+				if (angle == -1)
+					console.log('Angle calculation failed');
+
+				console.log('distance ' + distance.toFixed(2) + ' angle ' + angle.toFixed(0));
+
+				// Example-translation to x and y in a game:
+
+				//console.log('x: '+Math.round((Math.sin(angle* (Math.PI/180)))*distance*10));
+				//console.log('y: '+Math.round((Math.cos(angle* (Math.PI/180)))*distance*10));
+
+				$('#joystickNub').offset({
+					left : offsetLeft,
+					top : offsetTop
+				})
+
+				if (socket != undefined) {
+					socket.send({// TODO auslagern!!
+						type : 'sendCommandToGame',
+						data : {
+							angle : angle,
+							distance : distance,
+							connectionId : connectionId,
+							pin : $('#pinInput').val() // TODO: Automatic identification on bridge, not via pin. pin input might also be removed already
+						}
+					});
+				}
+			}
+		});
+
+		$('#joystickField').bind('touchend', function(e) {
+			e.preventDefault();
+			dragging = false;
+			$('#joystickNub').css({
+				left : '0',
+				top : '0'
+			})
+			$('#joystickWrapper').css('visibility', 'hidden');
+		});
+
+	}
+
+	function calcDistance(x1, x2, y1, y2) {// Pythagoras
+		return Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
+	}
+
+	// Takes two coordinates (opposite and adjacent) and calculates the angle
+	function calcAngle(x, y) {
+
+		if (x >= 0 && y > 0) {// 0�
+			return Math.atan(Math.abs(x) / Math.abs(y)) / (Math.PI / 2) * 90 + 0;
+		} else if (x > 0 && y &lt;= 0) {// 90�
+			return Math.atan(Math.abs(y) / Math.abs(x)) / (Math.PI / 2) * 90 + 90;
+		} else if (x &lt;= 0 && y &lt; 0) {// 180�
+			return Math.atan(Math.abs(x) / Math.abs(y)) / (Math.PI / 2) * 90 + 180;
+		} else if (x &lt; 0 && y >= 0) {// 270�
+			return Math.atan(Math.abs(y) / Math.abs(x)) / (Math.PI / 2) * 90 + 270;
+		}
+
+		return -1;
+	}
+
+	function calcCoordinates(new_hypotenuse, old_hypotenuse, old_opposite, old_adjacent) {
+		// Calculate the coordinates if out of bounds
+
+		var sinA = old_opposite / old_hypotenuse;
+		var tanA = old_opposite / old_adjacent;
+		var opposite = (sinA * new_hypotenuse);
+
+		return {
+			'opposite' : opposite,
+			'adjacent' : (opposite / tanA)
+		};
+	}
+
+}
+/**
+ * Creates a Joypad controller
+ *
+ * @class Represents a Joypad controller
+ * 
+ * @author Jonas Hartweg
+ *
+ */
+
+window.Joypad = function() {
+
+	init();
+
+	/*
+	 * Adds a Joypad to the #controller div
+	 */
+
+	function init() {
+		console.log('Loading Joypad');
+		loadControllerInterface();
+
+		$('#controller').append('&lt;div class="controlModule joypad" id="joypad1">&lt;div class="borderBox">&lt;div class="helpOverlay">Drag # to move the touchpad to the desired position.&lt;/div>&lt;table class="dPad">&lt;tr>&lt;td colspan="3">&lt;div class="button continuous up" id="up">&uarr;&lt;/div>&lt;/td>&lt;/tr>&lt;tr>&lt;td>&lt;div class="button left" id="left">&larr;&lt;/div>&lt;/td>&lt;td>&lt;div class="button drag">&lt;span id="dragDpad">#&lt;/span>&lt;/div>&lt;/td>&lt;td>&lt;div class="button continuous right" id="right">&rarr;&lt;/div>&lt;/td>&lt;/tr>&lt;tr>&lt;td colspan="3">&lt;div class="button continuous down" id="down">&darr;&lt;/div>&lt;/td>&lt;/tr>&lt;/table>&lt;table class="buttonGrid" id="buttonGrid1" hidden="hidden">&lt;tr>&lt;td>&lt;div class="button blue" id="blue">B&lt;/div>&lt;/td>&lt;/tr>&lt;tr>&lt;td>&lt;div class="button red" id="red">A&lt;/div>&lt;/td>&lt;/tr>&lt;/table>&lt;/div>&lt;/div>&lt;div class="clear"/>');
+		// TODO display buttongroup
+		
+		$('.dPad').offset({top: $('body').height()/2-$('.dPad').height()/2, left: $('body').width()/2-$('.dPad').width()/2});
+
+		var intervalTriggers = new Array();
+
+		$('.controlModule.joypad').bind('touchstart', function(e) {//When
+			$('.helpOverlay').hide();
+		})
+
+		$('.controlModule.joypad .button').bind('touchstart', function(e) {//When button is pressed
+			e.preventDefault();
+			$(this).addClass('active');
+			var id = this.id;
+			//send(id);
+
+			if ( typeof connectionId != 'undefined') {
+				socket.send({// TODO auslagern!!
+					type : 'sendCommandToGame',
+					data : {
+						keycode : id,
+						connectionId : connectionId,
+						pin : $('#pinInput').val() // TODO: Automatic identification on bridge, not via pin. pin input might also be removed already
+					}
+				});
+
+			} else {
+				console.log('connectionId unknown');
+			}
+
+			if ($(this).hasClass('continuous')) {
+				intervalTriggers[id] = setInterval(function() {
+					//send(id); // TODO funktionlität nachrüsten
+				}, 50);
+			}
+		});
+
+		$('.controlModule.joypad .button').bind('touchend', function(e) {//When button is pressed
+			e.preventDefault();
+			$(this).addClass('active');
+			var id = this.id;
+			//send(id);
+
+			if ( typeof connectionId != 'undefined') {
+				socket.send({// TODO auslagern!!
+					type : 'sendCommandToGame',
+					data : {
+						keycode : id,
+						connectionId : connectionId,
+						pin : $('#pinInput').val() // TODO: Automatic identification on bridge, not via pin. pin input might also be removed already
+					}
+				});
+
+			} else {
+				console.log('connectionId unknown');
+			}
+
+			if ($(this).hasClass('continuous')) {
+				intervalTriggers[id] = setInterval(function() {
+					//send(id); // TODO funktionlit�t nachr�sten
+				}, 50);
+			}
+		});
+
+		$('.controlModule.joypad .button').bind('touchend', function(e) {//When button is pressed
+			e.preventDefault();
+			$(this).removeClass('active');
+		});
+
+		$('.controlModule.joypad .button.continuous').bind('touchend', function(e) {//When button is released
+			e.preventDefault();
+			var id = this.id;
+			window.clearInterval(intervalTriggers[id]);
+			delete intervalTriggers[id];
+		});
+
+		// Dragging Source: http://stackoverflow.com/questions/8569095/draggable-div-without-jquery-ui
+
+		var dragging = null;
+
+		$('#dragDpad').bind('touchstart', function(e) {
+			e.preventDefault();
+			// Bugfix; compare https://code.google.com/p/android/issues/detail?id=19827
+			console.log('Dragging dPad..');
+			dragging = true;
+			$('.helpOverlay').hide();
+		});
+
+		$('#dragDpad').bind('touchmove', function(e) {
+			e.preventDefault();
+			var touch = e.originalEvent.touches[0];
+
+			if (dragging) {
+				$('.dPad').offset({
+					top : touch.pageY - e.target.offsetTop - e.target.offsetHeight / 2 - $('.button.left').height(),
+					left : touch.pageX - e.target.offsetLeft - e.target.offsetWidth / 2 - $('.button.left').width()
+				});
+			}
+		});
+
+		$('#dragDpad').bind('touchend', function(e) {
+			e.preventDefault();
+			console.log('Dragging dPad end');
+			dragging = false;
+		});
+
+	}
+
+}
+/*
+ * Clears pin view to display controller
+ */
+
+function loadControllerInterface() {
+	$("#header").hide();
+	$("#pinInputWrapper").hide();
+	$("#controller").show();
+}
+
+/*
+ * Clears controller to display pin view
+ */
+
+window.resetController = function() {
+	$('#controller').html('');
+	$('#header').show();
+	$('#pinInputWrapper').show();
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="window.Benchmark.html">Benchmark</a></li><li><a href="window.Joypad.html">Joypad</a></li><li><a href="window.Joystick.html">Joystick</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.1.0</a> on Mon Feb 11 2013 20:06:36 GMT+0100 (MEZ)
+</footer>
+
+<script> prettyPrint(); </script>
+</body>
+</html>

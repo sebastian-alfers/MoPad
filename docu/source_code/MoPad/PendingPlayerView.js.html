@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: PendingPlayerView.js</title>
+    
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+    
+    <h1 class="page-title">Source: PendingPlayerView.js</h1>
+    
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>define(['jquery', 'backbone'], function($, Backbone){
+
+    var PendingPlayerView = Backbone.View.extend({
+        /**
+         * @author Sebastian Alfers
+         *
+         * @class View to render the pending players
+         *
+         * @constructs
+         *
+         * PendingPlayerView
+         */
+        defaults:{
+            playerCollection: null
+        },
+        initialize: function(){
+            this.render();
+        },
+        render: function(){
+
+            $('#cancel_pending_game').show();
+
+            var pins = new Array()
+            var i = 0;
+            this.options.playerCollection.each(function(player){
+
+                if(player.get('pin') == undefined || player.get('pin') == ''){
+                    alert('error. player ' + player.get('username') + ' has no pin');
+                }
+                else{
+
+                    //generate associative array like [player0] =123, [player1] =456
+
+                    //pins.push(player.toJSON()); //push the player
+                    pins.push(player.get('pin')); //push only the pin
+
+                    i++;
+
+                    var template = _.template( $('#template_pending_player').html(), player.toJSON());
+                    this.$el.append(template);
+
+                }
+
+
+            }, this);
+
+            //register the pins on the bridge for this game instance
+            $webSocketModel.send({type: 'registerPinsForGameInstance', data : {pins:pins, game: this.options.game} });
+
+            $('#cancel_pending_game').click(function(){
+                window.location.reload();
+
+                return
+                /*
+                //TODO sould be done via events
+                $('#pins').html('');
+                $(this).hide();
+
+                $('#start_game').removeAttr('disabled');
+                $('.username').removeAttr('disabled');
+                $('#playerSlider').removeAttr('disabled');
+                */
+            });
+
+            fetched = 0;
+
+            $playerCount = 0;
+            $playerPins = new Array();
+
+            $playerCount = this.options.playerCollection.length;
+            console.log('++++++++++++++++++++++');
+            console.log(this);
+            $game = this.options.game;
+
+            $webSocketModel.on('activateController', function(json){
+                console.log('Connection established');
+
+                this.options.playerCollection.each(function(player){
+
+                    if(player.get('pin') == json.pin){
+                        fetched++;
+                        $playerPins.push(json.pin);
+                        $('#pending_bar_'+player.get('pin')).html("&lt;strong>" +player.get('username') + "&lt;/strong> ist am start mit pin &lt;strong>" + player.get('pin') + "&lt;/strong> :) ");
+                    }
+
+                    if(fetched == $playerCount){
+
+                        $('#pins').append('&lt;br />&lt;h2>Ready to rumble&lt;/h2>');
+                        
+                        // Ask before tab close TODO Remove when game is over
+                       $(window).on('beforeunload',function() {
+  					 		return 'O\'rly? U better not close dat game!';
+						});
+						
+						$webSocketModel.kickOffGame(1); // TODO get real game Id
+
+                        /**
+                         * the final start of the game
+                         */
+                        $.getScript($game.attributes.game_js_url, function(data, textStatus, jqxhr) {
+                           //console.log(data); //data returned
+                           //console.log(textStatus); //success
+                           //console.log(jqxhr.status); //200
+                           //console.log('Load was performed.');
+                        });
+
+                    }
+
+                });
+
+
+            }, this);
+
+        }
+    });
+
+
+    return PendingPlayerView;
+
+});
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="PendingPlayerView.html">PendingPlayerView</a></li></ul>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.1.0</a> on Mon Feb 11 2013 20:06:03 GMT+0100 (MEZ)
+</footer>
+
+<script> prettyPrint(); </script>
+</body>
+</html>
