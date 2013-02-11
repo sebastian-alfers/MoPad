@@ -4,7 +4,7 @@ MoPad
 A mobile game controller software system. Control your browser games via your mobile device.
 
 
-* About MoPad: https://github.com/sebastian-alfers/MoPad/wiki/About
+* About MoPad: https://github.com/sebastian-alfers/MoPad/wiki/1)-About
 
 Components
 ====
