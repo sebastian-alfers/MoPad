@@ -1,0 +1,77 @@
+Sebastian-Alferss-MacBook-Pro:src sebastianalfers$ phpdoc -d ./
+Initializing parser and collecting files .. OK
+Parsing files
+Parsing /Users/sebastianalfers/Uni/Master/web1/MoPad/misc/synfony-test/symfony/src/MoPad/AdminBundle/Admin/GameAdmin.php
+  No page-level DocBlock was found in file Admin/GameAdmin.php
+Parsing /Users/sebastianalfers/Uni/Master/web1/MoPad/misc/synfony-test/symfony/src/MoPad/AdminBundle/Controller/ApiController.php
+  No page-level DocBlock was found in file Controller/ApiController.php
+  No short description for class \MoPad\AdminBundle\Controller\ApiController
+  No short description for method getgamesAction()
+  No short description for method getUniqueAppToken()
+Parsing /Users/sebastianalfers/Uni/Master/web1/MoPad/misc/synfony-test/symfony/src/MoPad/AdminBundle/Controller/DefaultController.php
+  No page-level DocBlock was found in file Controller/DefaultController.php
+  No short description for class \MoPad\AdminBundle\Controller\DefaultController
+  No short description for method indexAction()
+  No short description for method createAction()
+  No short description for method showAction()
+  Argument $id is missing from the Docblock of showAction()
+Parsing /Users/sebastianalfers/Uni/Master/web1/MoPad/misc/synfony-test/symfony/src/MoPad/AdminBundle/Controller/GameAdminController.php
+  No page-level DocBlock was found in file Controller/GameAdminController.php
+  No short description for class \MoPad\AdminBundle\Controller\GameAdminController
+Parsing /Users/sebastianalfers/Uni/Master/web1/MoPad/misc/synfony-test/symfony/src/MoPad/AdminBundle/DependencyInjection/Configuration.php
+  No page-level DocBlock was found in file DependencyInjection/Configuration.php
+  No short description for class \MoPad\AdminBundle\DependencyInjection\Configuration
+Parsing /Users/sebastianalfers/Uni/Master/web1/MoPad/misc/synfony-test/symfony/src/MoPad/AdminBundle/DependencyInjection/MoPadAdminExtension.php
+  No page-level DocBlock was found in file DependencyInjection/MoPadAdminExtension.php
+  No short description for class \MoPad\AdminBundle\DependencyInjection\MoPadAdminExtension
+  Argument $configs is missing from the Docblock of load()
+  Argument $container is missing from the Docblock of load()
+Parsing /Users/sebastianalfers/Uni/Master/web1/MoPad/misc/synfony-test/symfony/src/MoPad/AdminBundle/Entity/FileUploadHelper.php
+  No page-level DocBlock was found in file Entity/FileUploadHelper.php
+  No short description for class \MoPad\AdminBundle\Entity\FileUploadHelper
+  Argument $basepath is missing from the Docblock of getUploadRootDir()
+  No DocBlock was found for method getAbsolutePath()
+  No DocBlock was found for method getWebPath()
+Parsing /Users/sebastianalfers/Uni/Master/web1/MoPad/misc/synfony-test/symfony/src/MoPad/AdminBundle/Entity/Game.php
+  No page-level DocBlock was found in file Entity/Game.php
+  No short description for class \MoPad\AdminBundle\Entity\Game
+  No short description for property $id
+  No short description for property $name
+  No short description for property $description
+  No short description for property $apiKey
+  No short description for property $vendor
+  No short description for property $activated
+  No short description for property $minPlayer
+  No short description for property $maxPlayer
+  No short description for property $acceptedGamePads
+  No short description for property $imageName
+  No short description for property $imageUrl
+  No short description for property $gameJsName
+  No short description for property $gameJsUrl
+  No short description for method toString()
+Parsing /Users/sebastianalfers/Uni/Master/web1/MoPad/misc/synfony-test/symfony/src/MoPad/AdminBundle/Entity/GameRepository.php
+  No page-level DocBlock was found in file Entity/GameRepository.php
+Parsing /Users/sebastianalfers/Uni/Master/web1/MoPad/misc/synfony-test/symfony/src/MoPad/AdminBundle/Entity/Group.php
+  No short description for property $id
+Parsing /Users/sebastianalfers/Uni/Master/web1/MoPad/misc/synfony-test/symfony/src/MoPad/AdminBundle/Entity/User.php
+  No page-level DocBlock was found in file Entity/User.php
+  No short description for class \MoPad\AdminBundle\Entity\User
+  No short description for property $id
+  No DocBlock was found for method __construct()
+Parsing /Users/sebastianalfers/Uni/Master/web1/MoPad/misc/synfony-test/symfony/src/MoPad/AdminBundle/MoPadAdminBundle.php
+  No page-level DocBlock was found in file MoPadAdminBundle.php
+  No short description for class \MoPad\AdminBundle\MoPadAdminBundle
+Parsing /Users/sebastianalfers/Uni/Master/web1/MoPad/misc/synfony-test/symfony/src/MoPad/AdminBundle/Tests/Controller/MopadApiControllerTest.php
+  No page-level DocBlock was found in file Tests/Controller/MopadApiControllerTest.php
+Parsing /Users/sebastianalfers/Uni/Master/web1/MoPad/misc/synfony-test/symfony/src/MoPad/AdminBundle/Tests/Controller/MopadGameAdminControllerTest.php
+  No page-level DocBlock was found in file Tests/Controller/MopadGameAdminControllerTest.php
+Parsing /Users/sebastianalfers/Uni/Master/web1/MoPad/misc/synfony-test/symfony/src/MoPad/AdminBundle/Tests/TestTest.php
+  No page-level DocBlock was found in file Tests/TestTest.php
+  No short description for class \MoPad\AdminBundle\Tests\TestTest
+  No DocBlock was found for method testPushAndPop()
+Storing structure.xml in "/Users/sebastianalfers/Uni/Master/web1/MoPad/misc/synfony-test/symfony/src/output/structure.xml" .. OK
+Initializing transformer .. OK
+Processing behaviours .. OK
+Executing transformations
+  Unable to find the `dot` command of the GraphViz package. Is GraphViz correctly installed and present in your path?
+  Unable to find the `dot` command of the GraphViz package. Is GraphViz correctly installed and present in your path?

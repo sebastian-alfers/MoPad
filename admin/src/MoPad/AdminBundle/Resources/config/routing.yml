@@ -1,0 +1,11 @@
+mopad_admin_homepage:
+    pattern:  /
+    defaults: { _controller: MoPadAdminBundle:Default:index }
+
+#_mopad_admin_create:
+#    pattern:  /create
+#    defaults: { _controller: MoPadAdminBundle:Default:create }
+#    
+#_mopad_admin_show:
+#    pattern:  /show/{id}
+#    defaults: { _controller: MoPadAdminBundle:Default:show }
